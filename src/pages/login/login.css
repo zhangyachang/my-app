@@ -1,0 +1,91 @@
+.login{
+    width: 100%;
+    height: 100%;
+    padding: 0 0.5rem;
+}
+.lg_logo{
+    height: 3rem;
+}
+.lg_logo img{
+    width: 2rem;
+    height: 2rem;
+}
+.lg_inputwrap{
+    height: 0.7rem;
+}
+.lg_wrap input{
+    font-size: 0.28rem;
+    width: 100%;
+    height: 100%;
+    text-indent: 0.8rem;
+    border-bottom: 1px solid #ccc;
+    background: #f4f4f8;
+}
+.lg_user{
+    position: relative;
+    margin-bottom: 0.4rem;
+}
+.lg_inputwrap .iconyonghu,
+.lg_inputwrap .iconmima1{
+    position: absolute;
+    font-size: 0.5rem;
+}
+.lg_wrap .lg_downup{
+    position: absolute;
+    right: 0.2rem;
+    top: 0.1rem;
+    font-size: 0.36rem;
+}
+.lg_history{
+    margin-left: 0.8rem;
+    margin-top: -0.3rem;
+    line-height: 0.8rem;
+}
+.lg_history p {
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+.lg_history p:nth-last-child{
+    border-bottom: none;
+}
+
+
+
+.lg_submit {
+    margin-top: 0.8rem;
+}
+.lg_type{
+    margin-top: 0.3rem;
+    justify-content: space-between;
+    color: #108ee9;
+}
+.lg_login_tips{
+    margin-top: 1rem;
+}
+.lg_login_tips p{
+    flex-grow: 1;
+    margin: 0 0.2rem;
+    border-bottom: 1px solid #000;
+}
+.lg_login_type{
+    margin-top: 0.32rem;
+    text-align: center;
+}
+.lg_login_type i{
+    flex-grow: 1;
+    font-size: 0.7rem;
+}
+.iconQQ{
+    color: #30A5DD;
+}
+.iconzhifubao{
+    color: #5A9EF7;
+}
+.iconweixin{
+    color: #50B674;
+}
+
+
+
+
+
