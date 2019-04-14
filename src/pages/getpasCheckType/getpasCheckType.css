@@ -1,0 +1,26 @@
+.getpas_type .btn{
+    width: 60%;
+    margin: 1rem auto 0 auto;
+}
+.getpas_type .gp_item{
+    position: relative;
+}
+.gt_time,
+.gt_getcode{
+    position: absolute;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    right: 0.38rem;
+    top: 0;
+    font-size: 0.24rem;
+    color: #108ee9;
+}
+
+.gt_other_type{
+    margin-top: 0.4rem;
+    padding-left: 0.3rem;
+}
+.gt_other_type span{
+    color: #108ee9;
+}
+

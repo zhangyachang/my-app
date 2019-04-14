@@ -58,16 +58,16 @@ class Login extends Component {
       return ZERO.Toast('密码不能为空');
     }
     // 这里提交吧，等之后在写一下请求
+    this.props.history.push('/');
   };
 
   // 点击注册按钮
   handleGoReg = () => {
     console.log('点击了注册按钮');
     console.log(this);
-    this.props.history.push('/regist');
-
+    this.props.history.push('/registType');
     // this.props.history.push({
-    //   pathname: '/regist',
+    //   pathname: '/registType',
     //   query: {
     //     name: 'aaa',
     //     age: 12
@@ -81,9 +81,9 @@ class Login extends Component {
     // });
   };
 
+  // 忘记密码
   handleForgetPass = () => {
-    console.log('点击了忘记密码');
-
+    this.props.history.push('/forgetPas');
   };
 
   // 通过几种方式登录

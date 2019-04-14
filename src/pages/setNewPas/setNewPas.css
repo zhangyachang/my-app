@@ -1,0 +1,9 @@
+.set_newpas .gp_item{
+    position: relative;
+}
+
+
+.set_newpas .btn{
+    width: 60%;
+    margin: 1rem auto 0 auto;
+}

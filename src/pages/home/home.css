@@ -1,0 +1,34 @@
+
+.ho_header{
+    padding: 0 0.2rem;
+    height: 0.7rem;
+    color: #bbb;
+}
+.ho_logo{
+    width: 0.6rem;
+    height: 0.6rem;
+}
+.ho_logo img{
+    width: 100%;
+    height: 100%;
+    margin-top: -0.02rem;
+}
+.ho_input_wrap{
+    position: relative;
+}
+.ho_input_wrap .p_icon{
+    position: absolute;
+    left: 0.1rem;
+    font-size: 0.32rem;
+}
+.ho_input_wrap input{
+    width: 100%;
+    height: 0.5rem;
+    text-indent: 0.5rem;
+    border-radius: 0.2rem;
+}
+.ho_list{
+    padding: 0 0.3rem;
+}
+
+

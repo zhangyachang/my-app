@@ -1,0 +1,20 @@
+.gp_item{
+    position: relative;
+    height: 0.88rem;
+    padding: 0 0.3rem;
+    font-size: 0.34rem;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+.gp_item img{
+    position: absolute;
+    z-index: 9;
+    right: 0.1rem;
+    top: 0.04rem;
+    width: 1.6rem;
+    height: 0.82rem;
+}
+.getPas .btn{
+    width: 60%;
+    margin: 1rem auto 0 auto;
+}

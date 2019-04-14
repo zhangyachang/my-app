@@ -1,0 +1,10 @@
+.ri_wrap{
+    position: relative;
+}
+.rg_checkcode{
+    position: absolute;
+    right: 0.26rem;
+    top: 0.3rem;
+    z-index: 9;
+    color: #108ee9;
+}
