@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import '../node_modules/antd-mobile/dist/antd-mobile.min.css'
 import './static/css/common.css'
 // import './static/css/iconfont.css'
-import '../node_modules/antd-mobile/dist/antd-mobile.min.css'
 
 
 import App from './App';

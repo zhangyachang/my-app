@@ -5,7 +5,6 @@ import TopTips from '../../components/topTips/index'
 import {Button} from "antd-mobile";
 
 class GetpasCheckType extends Component {
-
   constructor(props){
     super(props);
     this.state = {

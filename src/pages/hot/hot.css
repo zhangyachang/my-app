@@ -1,0 +1,57 @@
+.hot_search{
+
+}
+.hs_header{
+    height: 0.7rem;
+    padding: 0 0.1rem 0 0.3rem;
+    background: #fff;
+}
+.hs_search{
+    width: 0.9rem;
+    text-align: center;
+}
+.hs_search_active{
+    color: #108ee9;
+}
+
+.hs_navbar{
+    height: 0.8rem;
+}
+.hs_title{
+    margin-top: 0.2rem;
+    padding: 0 0.3rem;
+    background: #fff;
+}
+.hs_title_title{
+    justify-content: space-between;
+    padding-top: 0.3rem;
+    font-size: 0.36rem;
+    font-weight: bold;
+}
+.hs_title_title .iconziyuan{
+    font-size: 0.28rem;
+    font-weight: normal;
+}
+
+.hs_history{
+    flex-wrap: wrap;
+    padding: 0 0.3rem 0.4rem 0.3rem;
+    background: #fff;
+}
+
+.hs_history p{
+    margin: 0.3rem 0.2rem 0 0;
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.08rem;
+    background: #F5F5F5;
+}
+.hs_hot_history p{
+    width: 40%;
+    border-left: 1px solid #efefef;
+    border-right: 1px solid #efefef;
+    background: none;
+}
+
+
+
+

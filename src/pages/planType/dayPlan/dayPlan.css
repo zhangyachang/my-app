@@ -1,0 +1,24 @@
+.plan_con{
+
+}
+.pc_com{
+    padding: 0 0.3rem 0.3rem 0.3rem;
+    margin-top: 0.24rem;
+    background: #fff;
+}
+.pc_title{
+    padding: 0.2rem 0;
+}
+.pc_need{
+    margin-left: 0.04rem;
+    color: red;
+}
+.pc_com textarea{
+    width: 100%;
+    height: 3rem;
+    border: none;
+}
+.pc_des_plan{
+    width: 60%;
+    margin: 0.4rem auto 0.6rem auto;
+}

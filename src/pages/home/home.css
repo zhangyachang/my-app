@@ -1,7 +1,13 @@
-
+.home{
+    background: #fff;
+}
 .ho_header{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
     padding: 0 0.2rem;
     height: 0.7rem;
+    background: #fff;
     color: #bbb;
 }
 .ho_logo{
@@ -13,22 +19,28 @@
     height: 100%;
     margin-top: -0.02rem;
 }
-.ho_input_wrap{
-    position: relative;
-}
-.ho_input_wrap .p_icon{
-    position: absolute;
-    left: 0.1rem;
-    font-size: 0.32rem;
-}
-.ho_input_wrap input{
-    width: 100%;
-    height: 0.5rem;
-    text-indent: 0.5rem;
-    border-radius: 0.2rem;
-}
+/*.ho_input_wrap{*/
+/*    position: relative;*/
+/*}*/
+/*.ho_input_wrap .p_icon{*/
+/*    position: absolute;*/
+/*    left: 0.1rem;*/
+/*    font-size: 0.32rem;*/
+/*}*/
+/*.ho_input_wrap input{*/
+/*    width: 100%;*/
+/*    height: 0.5rem;*/
+/*    text-indent: 0.5rem;*/
+/*    border-radius: 0.2rem;*/
+/*    background: #F4F4F8;*/
+/*}*/
 .ho_list{
-    padding: 0 0.3rem;
+    background: #F4F4F8;
 }
-
+.ho_list .plan_item:nth-child(1){
+    margin-top: 0;
+}
+.ho_list .plan_item{
+    margin-top: 0.2rem;
+}
 

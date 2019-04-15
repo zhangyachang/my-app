@@ -1,0 +1,65 @@
+.add_plan{
+
+}
+.plan_list{
+
+}
+.plan_list_ul{
+    padding: 0 0.2rem;
+}
+
+.plan_list_ul li{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 2.36rem;
+    height: 2.36rem;
+    border: 1px solid #efefef;
+}
+.plan_list_ul li .iconfont{
+    font-size: 0.6rem;
+}
+.plan_list_ul li span{
+    margin-top: 0.2rem;
+}
+.plan_list_ul .iconicon-test1,
+.plan_list_ul .iconzhoubao,
+.plan_list_ul .iconyuebao,
+.plan_list_ul .icongongzuohuibao{
+    color: #1994EE;
+}
+
+.plan_list_ul .iconxiaoshouqushi,
+.plan_list_ul .iconbaogao,
+.plan_list_ul .iconhome{
+    color: #10C323;
+}
+/* 底部的tabbar */
+.ap_type {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1rem;
+    border-top: 1px solid #ccc;
+    background: #fff;
+    display: flex;
+    justify-content: space-around;
+}
+
+.ap_type .ap_type_add{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ap_type_add.active{
+    color: #108ee9;
+}
+
+
+
+
+
