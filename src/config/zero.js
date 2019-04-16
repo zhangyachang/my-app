@@ -7,8 +7,8 @@ import url from 'url'
 
 export default {
 
-  Toast(info){
-    Toast.info(info, 1);
+  Toast(info, time=1){
+    Toast.info(info, time);
   },
 
   // 切割url传参的内容

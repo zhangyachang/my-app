@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {NavLink} from "react-router-dom";
 import './addNewPlan.css'
+import PlanTabBar from '../../components/planTabBar/index'
 
 class AddNewPlan extends Component {
 
@@ -56,19 +56,19 @@ class AddNewPlan extends Component {
           </ul>
         </div>
 
-        <div className={'ap_type'}>
+        <PlanTabBar />
 
+
+        {/*<div className={'ap_type'}>
           <NavLink to={'/addNewPlan'} className={'ap_type_add ap_type_add'}>
             <i className={'iconfont iconxinjian'}></i>
             <span>新建</span>
           </NavLink>
-
           <NavLink to={'/planLogs'} className={'ap_type_add ap_type_log'}>
             <i className={'iconfont iconjilu1'}></i>
             <span>记录</span>
           </NavLink>
-
-        </div>
+        </div>*/}
 
       </div>
     );

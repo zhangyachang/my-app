@@ -1,0 +1,29 @@
+.tabbar{
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 7.5rem;
+    max-width: 768px;
+    height: 1rem;
+    border-top: 1px solid #ccc;
+    background: #FAFAFA;
+}
+.tabbar .active{
+    color: #0089DC;
+}
+.tabbar a{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tabbar .iconfont{
+    font-size: 0.46rem;
+}
+.tabbar span{
+    font-size: 0.24rem;
+}

@@ -35,7 +35,9 @@
 .plan_list_ul .iconhome{
     color: #10C323;
 }
-/* 底部的tabbar */
+
+/*
+!* 底部的tabbar *!
 .ap_type {
     position: fixed;
     left: 0;
@@ -58,6 +60,7 @@
 .ap_type_add.active{
     color: #108ee9;
 }
+*/
 
 
 

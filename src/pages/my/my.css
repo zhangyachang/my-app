@@ -1,0 +1,81 @@
+
+.my_info{
+    background: #fff;
+}
+
+.my_info_top{
+    padding: 0.4rem 0.3rem;
+}
+.my_info_top_avatar{
+    width: 1rem;
+    height: 1rem;
+}
+.my_info_top_avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.08rem;
+}
+.my_info_person{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 0.2rem;
+}
+.my_info_username{
+    font-size: 0.32rem;
+    font-weight: bold;
+}
+.my_info_list{
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #eee;
+    padding: 0.3rem 0 0.2rem 0;
+}
+.my_info_list_item{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.my_info_list_item p{
+    margin-top: 0.08rem;
+    font-size: 0.24rem;
+    color: #666;
+}
+
+.my_item{
+    display: flex;
+    align-items: center;
+    height: 0.8rem;
+    margin-top: 0.3rem;
+    padding: 0 0.3rem;
+    background: #fff;
+    transition: 0.1s;
+}
+.my_item:active{
+    background: #DDD;
+}
+.my_item .iconfont{
+    font-size: 0.36rem;
+}
+.my_item .iconcaogaoxiang{
+    color: #4EB575;
+}
+
+.my_item_con{
+    margin-left: 0.3rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

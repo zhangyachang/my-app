@@ -173,7 +173,7 @@ html {
 }
 
 body {
-    font-family: "PingFangSC-Regular", "Microsoft YaHei", Helvetica;
+    font-family: "Microsoft YaHei","PingFangSC-Regular", Helvetica;
     background: #f5f7f9;
 }
 
@@ -193,20 +193,27 @@ html a {
     }
     html #root {
         width: 768px;
-        position: relative;
         margin: 0 auto;
     }
 }
 
 /* **************** */
-
+html,body{
+    width: 100%;
+    height: 100%;
+}
 body{
+    position: relative;
     font-size: 0.28rem;
+    padding-bottom: 40px;
 }
 *{
     box-sizing: border-box;
 }
-
+#root{
+    width: 100%;
+    height: 100%;
+}
 
 /* flex css 样式 */
 .flex {

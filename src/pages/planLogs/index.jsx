@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './planLogs.css'
+import PlanTabBar from '../../components/planTabBar/index'
 
 class PlanLogs extends Component {
 
@@ -90,12 +91,10 @@ class PlanLogs extends Component {
             </div>
 
           </div>
-
-
-
         </div>
 
-
+        <PlanTabBar />
+        
       </div>
     );
   }

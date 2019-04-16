@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './home.css'
 import HotSearch from '../../components/searchInput/index'
 import PlanItem from '../../components/planItem/index'
+import TabBar from '../../components/tabBar/index'
 
 class Home extends Component {
 
@@ -34,6 +35,8 @@ class Home extends Component {
           <PlanItem />
           <PlanItem />
         </div>
+
+        <TabBar />
 
       </div>
     );

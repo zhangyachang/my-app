@@ -1,0 +1,37 @@
+.plan_detail{
+    background: #fff;
+    margin-bottom: 0.8rem;
+}
+.pd_header{
+    justify-content: space-between;
+    height: 1.2rem;
+    padding: 0 0.3rem;
+    background: #fff;
+}
+.pd_avatar{
+
+}
+.pd_avatar img{
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 0.08rem;
+}
+.pd_header_type{
+    margin-left: 0.2rem;
+}
+.pd_content{
+    padding: 0.2rem 0.3rem;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.pd_logo{
+    font-size: 0.24rem;
+    padding: 0.1rem 0.3rem;
+    border-bottom: 1px solid #efefef;
+}
+.pd_logo img{
+    width: 0.36rem;
+    height: 0.36rem;
+}
+
+

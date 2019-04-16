@@ -159,6 +159,14 @@ class Login extends Component {
 
     );
   }
+
+  componentDidMount() {
+    console.log('这里的这个地方');
+
+    console.log(this.props);
+
+  }
+
 }
 
 export default Login;
