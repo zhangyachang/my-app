@@ -7,8 +7,13 @@
 
 .cr_list{
     padding: 0 0.3rem;
+    overflow: scroll;
 }
-.cr_list_item{
+/*.cr_list_item{*/
+/*    margin-top: 0.2rem;*/
+/*}*/
+.cr_list_friend,
+.cr_list_item_self{
     margin-top: 0.2rem;
 }
 .cr_list_item_time{
@@ -77,37 +82,67 @@
     position: fixed;
     z-index: 999;
     left: 0;
+    right: 0;
     bottom: 0;
     width: 100%;
+    max-width: 7.5rem;
     padding: 0.18rem 0;
-    border-top: 1px solid #CCC;
-    background: #EAEAEA;
+    margin: auto;
+    border-top: 1px solid #EEE;
+    background: #F7F7F7;
 }
-.cr_inp{
-    height: 0.8rem;
-    max-height: 2.2rem;
-    min-height: 0.8rem;
-    text-indent: 0.1rem;
-    font-size: 0.32rem;
-    background: #fff;
-}
+/*.cr_inp{*/
+/*    height: 0.8rem;*/
+/*    max-height: 2.2rem;*/
+/*    min-height: 0.8rem;*/
+/*    text-indent: 0.1rem;*/
+/*    font-size: 0.32rem;*/
+/*    background: #fff;*/
+/*}*/
 .cr_input .iconfont{
     font-size: 0.5rem;
     align-self: flex-end;
 }
 .cr_input .iconyuyin{
-    margin: 0 0.12rem;
+    margin: 0 0.12rem 0.04rem 0.12rem;
 }
 .cr_input .iconbiaoqing1{
-    margin: 0 0.12rem;
+    margin: 0 0.08rem 0.04rem 0.08rem;
 }
-.cr_input .icontianjia{
-    margin: 0 0.12rem 0 0;
+.cr_right_icon{
+    align-self: flex-end;
+    width: 0.8rem;
+    margin-bottom: 0.04rem;
+    text-align: center;
+}
+/*.cr_input .icontianjia{*/
+/*}*/
+
+.cr_inp_import{
+    /*width: 400px;*/
+    min-height: 20px;
+    max-height: 100px;
+    _height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3px;
+    border: none;
+    outline: 0;
+    background: #fff;
+    /*border: 1px solid #a0b3d6;*/
+    /*font-size: 12px;*/
+    /*line-height: 24px;*/
+    font-size: 0.32rem;
+    line-height: 1.6;
+    padding: 2px;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #textarea {
     /*width: 400px;*/
-    min-height: 30px;
+    min-height: 20px;
     max-height: 100px;
     _height: 120px;
     margin-left: auto;
@@ -129,10 +164,16 @@
 }
 
 .cr_inp_submit{
+    width: 0.74rem;
     align-self: flex-end;
-    padding: 0.1rem 0.1rem;
-    margin-right: 0.15rem;
-    background: #108ee9;
+    padding: 0.14rem 0.1rem;
+    /*margin: 0 0.12rem 0.04rem 0.12rem;*/
+    border-radius: 0.08rem;
+    font-size: 0.24rem;
+    color: #fff;
+    background: #07C160;
+    transition: color 0.1s;
 }
-
-
+.cr_inp_submit:active{
+    background: #009619;
+}

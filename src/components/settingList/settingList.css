@@ -1,12 +1,12 @@
 .c_setlist{
-    margin-top: 0.2rem;
     background: #fff;
     text-indent: 0.3rem;
 }
 .c_set_item{
-    height: 0.8rem;
+    height: 1rem;
     border-bottom: 1px solid #efefef;
-    line-height: 0.8rem;
+    line-height: 1rem;
+    font-size: 0.32rem;
     transition: 0.5s;
 }
 .c_set_item:active{

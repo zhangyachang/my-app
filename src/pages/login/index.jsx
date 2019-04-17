@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 import './login.css'
 import {Button} from "antd-mobile";
 import ZERO from '../../config/zero'
@@ -66,19 +67,6 @@ class Login extends Component {
     console.log('点击了注册按钮');
     console.log(this);
     this.props.history.push('/registType');
-    // this.props.history.push({
-    //   pathname: '/registType',
-    //   query: {
-    //     name: 'aaa',
-    //     age: 12
-    //   },
-    //   state: {
-    //     post: 'post传递'
-    //   },
-    //   zidingyi: {
-    //     "aaa": '自定义的可以传递过去吗'
-    //   }
-    // });
   };
 
   // 忘记密码
@@ -92,17 +80,19 @@ class Login extends Component {
   };
 
   loginQQ = () => {
-    console.log('通过qq登录')
+    console.log('通过qq登录');
+    ZERO.noNextToast();
   };
 
   loginZfb = () => {
     console.log('通过支付宝登录');
+    ZERO.noNextToast();
   };
 
   loginWx = () => {
     console.log('通过微信登录');
+    ZERO.noNextToast();
   };
-
 
   render() {
     let state = this.state;
@@ -150,7 +140,9 @@ class Login extends Component {
           <p></p>
         </div>
         <div className={'lg_login_type flex flex-content'}>
-          <i onClick={this.loginGithub} className={'iconfont icongithub'}></i>
+          <a href={'http://127.0.0.1:3000/oauth/github/login'}>
+            <i onClick={this.loginGithub} className={'iconfont icongithub'} />
+          </a>
           <i onClick={this.loginQQ} className={'iconfont iconQQ'}></i>
           <i onClick={this.loginZfb} className={'iconfont iconzhifubao'}></i>
           <i onClick={this.loginWx} className={'iconfont iconweixin'}></i>
@@ -161,10 +153,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    console.log('这里的这个地方');
-
-    console.log(this.props);
-
+    // console.log(this.props);
   }
 
 }

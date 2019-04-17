@@ -1,6 +1,9 @@
 .setting{
 
 }
+.setting .c_setlist:nth-child(1){
+    margin-bottom: 0.2rem;
+}
 
 
 

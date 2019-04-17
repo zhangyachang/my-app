@@ -29,7 +29,7 @@ class Setting extends Component {
       return ;
     }
 
-    ZERO.Toast('该权限暂时还未开放，请等待版本更新通知', 2);
+    ZERO.Toast('该权限暂时还未开放，请等待版本更新通知', 1.5);
   };
 
 

@@ -34,6 +34,7 @@ const routes = [
   {
     path: '/find',
     component: Find,
+    auth: true, // 表示该路由需要权限校验
     meta: {
       title: '发现'
     }
@@ -41,6 +42,7 @@ const routes = [
   {
     path: '/message',
     component: Message,
+    auth: true,
     meta: {
       title: '消息'
     }
@@ -48,6 +50,7 @@ const routes = [
   {
     path: '/my',
     component: My,
+    auth: true,
     meta: {
       title: '个人中心'
     }
@@ -104,6 +107,7 @@ const routes = [
   {
     path: '/personalPage',
     component: PersonalPage,
+    auth: true,
     meta: {
       title: '一个人的名字，进去的时候改一下的个人主页'
     }
@@ -111,6 +115,7 @@ const routes = [
   {
     path: '/addNewPlan',
     component: AddNewPlan,
+    auth: true,
     meta: {
       title: '制定计划'
     }
@@ -118,6 +123,7 @@ const routes = [
   {
     path: '/plan/dayPlan',
     component: DayPlan,
+    auth: true,
     meta: {
       title: '今日计划'
     }
@@ -125,6 +131,7 @@ const routes = [
   {
     path: '/planLogs',
     component: PlanLogs,
+    auth: true,
     meta: {
       title: '我的记录'
     }
@@ -132,6 +139,7 @@ const routes = [
   {
     path: '/planDetail',
     component: PlanDetail,
+    auth: true,
     meta: {
       title: '计划详情'
     }
@@ -139,6 +147,7 @@ const routes = [
   {
     path: '/setting',
     component: Setting,
+    auth: true,
     meta: {
       title: '设置'
     }
@@ -146,6 +155,7 @@ const routes = [
   {
     path: '/accountManage',
     component: AccountManage,
+    auth: true,
     meta: {
       title: '账号管理'
     }
@@ -153,8 +163,16 @@ const routes = [
   {
     path: '/chat',
     component: Chat,
+    auth: true,
     meta: {
       title: '进入的时候修改这个标题'
+    }
+  },
+  {
+    path: '/404',
+    component: NotFind404,
+    meta: {
+      title: '找不到页面啦'
     }
   },
   {

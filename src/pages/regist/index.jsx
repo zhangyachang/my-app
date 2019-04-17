@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './regist.css'
 import url from 'url'
 import TopTips from '../../components/topTips/index'
-import {InputItem} from "antd-mobile";
+import {InputItem, Button} from "antd-mobile";
 
 
 class Regist extends Component {
@@ -31,6 +31,12 @@ class Regist extends Component {
     console.log(e.target);
   };
 
+  // 点击注册
+  handleRegist = () => {
+    console.log('点击注册');
+
+  };
+
 
   render() {
     const state = this.state;
@@ -56,7 +62,7 @@ class Regist extends Component {
           <InputItem type={"password"} placeholder={`再次输入您的密码`} name={'repetpas'} onChange={this.handleChange}>确认密码</InputItem>
           <InputItem type={'number'} placeholder={`输入验证码`} name={'checkCode'} onChange={this.handleChange}>验证码</InputItem>
         </div>
-
+        <Button onClick={this.handleRegist} className="btn rg_regbtn" type="primary">注册</Button>
       </div>
     );
   }

@@ -59,8 +59,6 @@ class My extends Component {
           <span className={'my_item_con'}>设置</span>
         </div>
 
-
-
         <TabBar />
       </div>
     );
