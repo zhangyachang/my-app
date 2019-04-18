@@ -83,20 +83,20 @@ export default {
 
 
   // 验证身份证号码
-  idCard(idCard){
+  regIdCard(idCard){
     return /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(
       idCard
     );
   },
 
   // 验证手机号码是否合法
-  Phone(phone) {
+  regPhone(phone) {
     return /^1[34578]\d{9}$/.test(phone);
   },
 
   // 验证邮箱是否合法
-  email(email){
-    return /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.text(email);
+  regEmail(email){
+    return /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email);
   }
 }
 
