@@ -5,6 +5,7 @@ import config from './config'
 const server = {
   server(obj){
     return new Promise((resolve, reject) => {
+      /*
       !obj.method ? (obj.method = 'GET'): false;
       !obj.data ? (obj.data = {}): false;
       !obj.params ? (obj.params = {}): false;
@@ -20,6 +21,7 @@ const server = {
             resolve(res.data);
           }
         })
+       */
 
     });
   }

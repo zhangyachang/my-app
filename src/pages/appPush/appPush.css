@@ -1,0 +1,72 @@
+.app_push{
+    border-top: 1px solid transparent;
+    padding:0 0.3rem;
+}
+.app_push_item{
+    margin-top: 1rem;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 0.16rem;
+}
+.app_push_item_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem 0.2rem;
+    border-bottom: 1px solid #eee;
+}
+.app_push_item_h_con{
+    display: flex;
+    align-items: center;
+}
+.app_push_item_h_con img{
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: -0.06rem;
+}
+.app_push_item_header .iconfont{
+    font-size: 0.32rem;
+}
+.app_push_item_main{
+    padding: 0 0.2rem;
+}
+.apppi_item{
+    display: flex;
+    align-items: center;
+    line-height: 0.5rem;
+}
+.apppi_item p{
+    width: 1.6rem;
+    color: #828282;
+    flex-shrink: 0;
+}
+.apppi_item span{
+    color: #000;
+}
+.apppi_item .iconxingxing1{
+    font-size: 0.32rem;
+    color: yellow;
+}
+.app_push_item_main .app_push_item_main_title {
+    padding: 0.2rem 0 0.1rem 0;
+    font-size: 0.32rem;
+    font-weight: bold;
+    color: #000;
+}
+.app_push_item_main_time{
+    font-size: 0.24rem;
+    color: #666;
+}
+
+.app_push_more{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.2rem;
+    border-top: 1px solid #eee;
+    height: 0.8rem;
+}
+.app_push_more .iconfont{
+    font-size: 0.32rem;
+}
+

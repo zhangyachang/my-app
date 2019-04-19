@@ -1,0 +1,87 @@
+.chat_user_detail{
+
+}
+.cud_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 0.3rem;
+    border-bottom: 1px solid #ccc;
+    background: #fff;
+}
+.cud_header_avatar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cud_h_avatar{
+    width: 1rem;
+    height: 1rem;
+}
+.cud_h_avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.1rem;
+}
+.cud_h_info{
+    margin-left: 0.2rem;
+}
+.cud_h_info_name{
+    font-size: 0.36rem;
+    font-weight: bold;
+    color: #666;
+}
+.cud_h_info_signature{
+    margin-top: 0.16rem;
+}
+.cud_header_avatar .iconiconfonticonfonti2copycopy{
+
+}
+
+/*置顶聊天*/
+.cud_config{
+    margin-top: 0.4rem;
+    background: #fff;
+}
+.cud_config_item{
+    padding: 0 0.3rem;
+    border-bottom: 1px solid #ccc;
+}
+.cud_config_item_con{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.1rem 0;
+    font-size: 0.32rem;
+}
+.cud_config_item_tips{
+    font-size: 0.28rem;
+    color: #bbb;
+}
+.cud_config_item_con .iconfont{
+    font-size: 0.6rem;
+}
+.cud_config_item_con .iconkaiguan3{
+    color: #999;
+}
+.cud_config_item_con .iconkaiguan4{
+    color: #118EEA;
+}
+.cud_cleat_chat_log{
+    margin-top: 1rem;
+    padding: 0.2rem 0.3rem;
+    text-align: center;
+    background: #fff;
+    color: red;
+    transition: 0.1s;
+}
+.cud_cleat_chat_log:active{
+    background: #CCC;
+    color: #fff;
+}
+
+
+
+
+
+

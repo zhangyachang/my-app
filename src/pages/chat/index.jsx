@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './chat.css'
+import ZERO from '../../config/zero'
 
 class Chat extends Component {
   constructor(props) {
@@ -8,16 +9,19 @@ class Chat extends Component {
       message: '',
       msgLog: [
         {
+          id: 'aaaaaaa',
           con: '如果信息过多超出去会怎么样的呢你在哪呢。如果信息过多超出去会怎么样的呢你在哪呢如果信息过多超出去会怎么样的呢你在哪呢',
           time: 1555467986458,
           who: 'friend'
         },
         {
+          id: 'aaaaaaa',
           con: '如果信息过多超出去会怎么样的呢你在哪呢。如果信息过多超出去会怎么样的呢你在哪呢如果信息过多超出去会怎么样的呢你在哪呢',
           time: 1555467981458,
           who: 'friend'
         },
         {
+          id: 'bbbbbb',
           con: '如果信息过多超出去会怎么样的呢你在哪呢。如果信息过多超出去会怎么样的呢你在哪呢如果信息过多超出去会怎么样的呢你在哪呢',
           time: 1555467919458,
           who: 'self'
@@ -50,10 +54,19 @@ class Chat extends Component {
       msgLog: this.state.msgLog
     });
 
-
     const current = this.elChatbox.current;
     current.scrollTop = current.scrollHeight - current.offsetHeight + 700;
     this.clearMessage();
+  };
+
+  // 查看好友的详细信息
+  handleSeeFriendMessage = (id) => {
+    console.log('查看好友的详细信息');
+    console.log(id);
+    if(id){
+      return this.props.history.push(`/chatUserDetail?userId=${id}`);
+    }
+    ZERO.noNextToast();
   };
 
   // 清空输入框
@@ -88,7 +101,7 @@ class Chat extends Component {
                 <div key={item.time} className={ item.who === 'self'?' cr_list_item_self':' cr_list_friend'}>
                   <div className={'cr_list_item_time'}>4月12日 下午17:52</div>
                   <div className={'cr_list_item_info'}>
-                    <div className={'cr_list_item_avatar flex-shirink'}>
+                    <div onClick={this.handleSeeFriendMessage.bind(this, item.id)} className={'cr_list_item_avatar flex-shirink'}>
                       <img src={require('../../static/img/home/download.jpg')} alt=""/>
                     </div>
                     <div className={'cr_content'}>

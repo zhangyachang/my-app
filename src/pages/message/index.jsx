@@ -10,6 +10,12 @@ class Message extends Component {
     this.props.history.push('/chat');
   };
 
+  // app 推送
+  handleAppPush = () => {
+    console.log('app推送');
+    this.props.history.push('/appPush');
+  };
+
   render() {
     return (
       <div className={'message'}>
@@ -29,50 +35,19 @@ class Message extends Component {
         </div>
 
 
-        <div className={'me_item flex'}>
+        <div onClick={this.handleAppPush} className={'me_item flex'}>
           <div className={'me_avatar flex-shirink'}>
-            <img src={require('../../static/img/home/download.jpg')} alt=""/>
+            <img src={require('../../static/img/logo/logo.png')} alt=""/>
           </div>
 
           <div className={'me_user_info ellipse'}>
             <div className={'me_user_info_title flex'}>
-              <p className={'me_user_info_name'}>益达口香糖</p>
+              <p className={'me_user_info_name'}>管理助手</p>
               <span>15:43</span>
             </div>
-            <p className={'me_user_info_con ellipse'}>你还在吗？你还在吗？你还在吗？你还在吗？你还在吗？你还在吗？你还在吗？</p>
+            <p className={'me_user_info_con ellipse'}>您有一个计划已完成</p>
           </div>
         </div>
-
-
-        <div className={'me_item flex'}>
-          <div className={'me_avatar flex-shirink'}>
-            <img src={require('../../static/img/home/download.jpg')} alt=""/>
-          </div>
-
-          <div className={'me_user_info ellipse'}>
-            <div className={'me_user_info_title flex'}>
-              <p className={'me_user_info_name'}>益达口香糖</p>
-              <span>15:43</span>
-            </div>
-            <p className={'me_user_info_con ellipse'}>你还在吗？你还在吗？你还在吗？你还在吗？你还在吗？你还在吗？你还在吗？</p>
-          </div>
-        </div>
-
-
-        <div className={'me_item flex'}>
-          <div className={'me_avatar flex-shirink'}>
-            <img src={require('../../static/img/home/download.jpg')} alt=""/>
-          </div>
-
-          <div className={'me_user_info ellipse'}>
-            <div className={'me_user_info_title flex'}>
-              <p className={'me_user_info_name'}>益达口香糖</p>
-              <span>15:43</span>
-            </div>
-            <p className={'me_user_info_con ellipse'}>你还在吗？你还在吗？你还在吗？你还在吗？你还在吗？你还在吗？你还在吗？</p>
-          </div>
-        </div>
-
 
         <TabBar />
       </div>

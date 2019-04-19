@@ -5,5 +5,21 @@
     margin-bottom: 0.2rem;
 }
 
+.setting_logout{
+    height: 1rem;
+    margin-top: 2rem;
+    padding: 0 0.3rem;
+    line-height: 1rem;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    background: #fff;
+    color: red;
+    text-align: center;
+    transition: 0.1s;
+}
+.setting_logout:active{
+    background: #ddd;
+}
+
 
 

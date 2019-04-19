@@ -1,0 +1,29 @@
+.login_logs{
+    background: #fff;
+}
+.login_logs .ll_item{
+    display: flex;
+    align-items: center;
+    height: 1.4rem;
+    padding: 0 0.3rem;
+    border-bottom: 1px solid #ddd;
+}
+.login_logs .ll_item .ll_item_icon{
+    width: 1rem;
+}
+.login_logs .ll_item .ll_item_icon .iconfont{
+    font-size: 0.7rem;
+    color: #E96815;
+}
+.login_logs .log_out{
+    padding: 0.1rem 0.2rem;
+    border: 1px solid #E96815;
+    border-radius: 0.08rem;
+    color: #fff;
+    background: #E96815;
+    transition: 0.1s;
+}
+.login_logs .log_out:active{
+    background: #BD2419;
+}
+

@@ -1,7 +1,6 @@
 // 初始化 js 封装一些东西
 // https://www.npmjs.com/package/babel-plugin-import
 // 减少引入体积的，最后再导入吧，看起来挺麻烦的
-
 import {Toast} from "antd-mobile";
 import url from 'url'
 
@@ -13,7 +12,7 @@ export default {
   },
 
   noNextToast(info = '此功能暂未开放，开发者正在努力开发中-----'){
-    Toast.info(info);
+    Toast.info(info, 1);
   },
 
   // 切割url传参的内容
@@ -22,6 +21,7 @@ export default {
   },
 
   // cookie的操作
+  // time 单位年
   setCookie(json, time){
     let timer = new Date(Date.now()+time*365*24*60*60*1000).toUTCString();
     for(let key in json){
@@ -47,6 +47,7 @@ export default {
     json[attr] = '';
     this.setCookie(json,-1);
   },
+
 
   // 封装 LocalStorage 数据
   /**
@@ -81,6 +82,39 @@ export default {
     window.localStorage.clear();
   },
 
+  // SessionStorage的一些方法
+  /**
+   * SessionStorage中的一些东西
+   * @params {String}
+   */
+  getSessionStorage(key){
+    return JSON.parse(window.sessionStorage.getItem(key));
+  },
+
+  /**
+   * 设置 SessionStorage 中的一些东西
+   * @params {Object-json} json
+   */
+  setSessionStorage(json){
+    for(let key in json){
+      let val = JSON.stringify(json[key]);
+      window.sessionStorage.setItem(key, val);
+    }
+  },
+
+  /**
+   * 删除一个 SessionStorage方法
+   * @params {String} key
+   */
+  removeSessionStorage(key){
+    window.sessionStorage.removeItem(key);
+  },
+  /**
+   * 清空 Session 中的值
+   */
+  clearSession(){
+    window.sessionStorage.clear();
+  },
 
   // 验证身份证号码
   regIdCard(idCard){
@@ -99,7 +133,3 @@ export default {
     return /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email);
   }
 }
-
-
-
-

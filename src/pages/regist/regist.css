@@ -2,6 +2,8 @@
     position: relative;
 }
 .ri_wrap_inpwrap{
+    display: flex;
+    align-items: center;
     position: relative;
     padding: 0 0.3rem;
     font-size: 0.32rem;
@@ -23,6 +25,9 @@
     right: 0.2rem;
     line-height: 0.88rem;
     font-size: 0.32rem;
+}
+.ri_wrap_inpwrap_pass .iconfork{
+    right: 0.8rem;
 }
 .ri_get_code{
     font-size: 0.24rem;

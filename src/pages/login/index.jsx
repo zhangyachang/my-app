@@ -58,6 +58,7 @@ class Login extends Component {
     if(!this.state.password){
       return ZERO.Toast('密码不能为空');
     }
+    ZERO.setLocaStorage({user: this.state.user});
     // 这里提交吧，等之后在写一下请求
     this.props.history.push('/');
   };

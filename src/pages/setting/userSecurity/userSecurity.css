@@ -1,0 +1,27 @@
+.user_security{
+    font-size: 0.32rem;
+}
+.uus_list{
+    margin-top: 0.4rem;
+    padding: 0 0.3rem;
+    background: #fff;
+}
+.uus_list:nth-child(1){
+    margin-top: 0;
+}
+.uus_list_item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1rem;
+    border-bottom: 1px solid #eee;
+}
+.uus_list_item .iconfont{
+    color: #999;
+    font-size: 0.32rem;
+}
+.user_security .tips{
+    padding: 0 0.3rem;
+    margin-top: 0.2rem;
+    font-size: 0.24rem;
+}

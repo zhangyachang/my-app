@@ -16,10 +16,15 @@ import PlanLogs from "../pages/planLogs";  // 记录历史
 import PlanDetail from "../pages/planDetail";
 import My from "../pages/my"; // 我的
 import Message from "../pages/message"; // 消息
-import Find from "../pages/find";
-import Setting from "../pages/setting";
-import AccountManage from "../pages/accountManage";
-import Chat from "../pages/chat";  // 设置新密码
+import Find from "../pages/find"; // 发现
+import Setting from "../pages/setting"; // 设置
+import AccountManage from "../pages/accountManage"; // 账号管理 添加新账号
+import Chat from "../pages/chat"; // 聊天
+import UserSecurity from "../pages/setting/userSecurity"; // 设置 --> 账号与安全
+import LoginLogs from "../pages/setting/loginLogs"; // 登录设备历史
+import UserInfo from "../pages/my/userInfo"; // 我的 --> 点击顶部头像查看到的信息
+import ChatUserDetail from "../pages/chat/chatUserDetail"; // 聊天中点击用户头像的用户详细信息
+import AppPush from "../pages/appPush";  // 设置新密码
 
 
 const routes = [
@@ -169,10 +174,45 @@ const routes = [
     }
   },
   {
+    path: '/chatUserDetail',
+    component: ChatUserDetail,
+    meta: {
+      title: '某个人的名字+'
+    }
+  },
+  {
     path: '/404',
     component: NotFind404,
     meta: {
       title: '找不到页面啦'
+    }
+  },
+  {
+    path: '/userSecurity',
+    component: UserSecurity,
+    meta: {
+      title: '账号与安全'
+    }
+  },
+  {
+    path: '/loginLogs',
+    component: LoginLogs,
+    meta: {
+      title: '登录记录'
+    }
+  },
+  {
+    path: '/userInfo',
+    component: UserInfo,
+    meta: {
+      title: '用户信息'
+    }
+  },
+  {
+    path: '/appPush',
+    component: AppPush,
+    meta: {
+      title: '管理助手'
     }
   },
   {

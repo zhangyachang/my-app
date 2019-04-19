@@ -11,7 +11,7 @@
     border-top: 1px solid #ccc;
     background: #FAFAFA;
 }
-.tabbar .active{
+.tabbar a.active{
     color: #0089DC;
 }
 .tabbar a{
@@ -20,6 +20,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #999;
 }
 .tabbar .iconfont{
     font-size: 0.46rem;
