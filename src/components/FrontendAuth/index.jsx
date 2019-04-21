@@ -5,7 +5,7 @@ import ZERO from '../../config/zero'
 export class FrontendAuth extends React.Component {
   render() {
     const {location, config} = this.props;
-    console.log(this.props);
+    // console.log(this.props);
 
     const {pathname} = location;
     // const isLogin = localStorage.getItem('__config_center_token');

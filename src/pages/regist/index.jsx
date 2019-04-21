@@ -4,7 +4,7 @@ import url from 'url'
 import TopTips from '../../components/topTips/index'
 import {Button} from "antd-mobile";
 import ZERO from '../../config/zero'
-import {server} from '../../config/server'
+import {$axios} from '../../config/server'
 
 
 class Regist extends Component {
@@ -13,7 +13,7 @@ class Regist extends Component {
     const {type} = url.parse(this.props.location.search, true).query;
     this.state = {
       type: type, // 这里的type 就是  email  phone
-      user: '', // 账号
+      user: '', // 账号 邮箱 或 手机号 根据type来区分
       password: '', // 第一次的密码
       password1: '', // 第二次的密码
       checkCode: '', // 验证码
@@ -51,10 +51,8 @@ class Regist extends Component {
       // 所有项不为空
       const {type, user, password, checkCode} = this.state;
       console.log(type, user, password, checkCode);
-
-      /*
       $axios({
-        url: '/user',
+        url: '/bs/api/user',
         method: 'POST',
         data: {
           type,
@@ -64,20 +62,28 @@ class Regist extends Component {
         }
       })
         .then(res => {
-          console.log(res);
+          // console.log(res);
+          if(res.status === 200){
+            ZERO.Toast('注册成功');
+            window.history.go(-2);
+          }else if(res.status === 251){
+            ZERO.Toast('验证码错误，请输入正确的验证码', 1.5);
+          }else if(res.status === 300){
+            ZERO.Toast('用户名已被注册，请填写未被注册的用户名', 1.5);
+          }else{
+            ZERO.Toast('服务器繁忙，请稍后再试', 1.5);
+          }
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
+          ZERO.Toast('服务器繁忙，请稍后再试', 1.5);
         });
-
-       */
     }
-
   };
 
   // 点击是否可以显示密码
   handleShowPas = (index) => {
-    console.log(index);
+    // console.log(index);
     this.state.passShow[index] = !this.state.passShow[index] ;
     this.setState({
       passShow: this.state.passShow
@@ -86,29 +92,47 @@ class Regist extends Component {
 
   // 获取验证码
   getCheckCode = () => {
-    console.log('点击获取验证码');
+    // console.log('点击获取验证码');
     if(this.state.type === 'email'){
-
       if(ZERO.regEmail(this.state.user)){
         // 正确的邮箱
-        if(this.isCheckUndefined()){
-          // 所有项不为空
-
-        }
+        return this.sendEmail(this.state.user);
       }
       ZERO.Toast('请输入正确的邮箱');
     }else if(this.state.type === 'phone'){
       if(ZERO.regPhone(this.state.user)){
         // 正确的手机号码
-        if(this.isCheckUndefined()){
-          // 不为空
-        }
+        return ;
       }
       ZERO.Toast('请输入正确的手机号码');
     }
   };
 
-  // 检验是否有空值
+  // 给邮箱发邮件
+  sendEmail = (email) => {
+    $axios({
+      url: '/bs/api/email',
+      method: 'POST',
+      data: {
+        to: email,
+        type: 1
+      }
+    })
+      .then(res => {
+        if(res.status === 200){
+          ZERO.Toast('邮件已发送至您的邮箱，请查收验证码', 2);
+        }else if(res.status === 400){
+          ZERO.Toast('邮件发送失败，请稍后再试', 2);
+        }
+      })
+      .catch(err => {
+        ZERO('服务器错误，请稍后再试');
+      })
+  };
+
+
+  // 检验是否有空值 提交之前的检查
+  // 有空值 undefined 没有空值 true
   isCheckUndefined = () => {
     const state = this.state;
     if(!(this.state.type === 'email' || this.state.type === 'phone')){
@@ -121,7 +145,7 @@ class Regist extends Component {
     if(!state.password){
       return ZERO.Toast('密码不能为空');
     }
-    if(state.password !== state.password1){
+    if(state.password !== state.password1) {
       return ZERO.Toast('两次密码不一致');
     }
     if(!state.checkCode){
@@ -190,7 +214,11 @@ class Regist extends Component {
       </div>
     );
   }
+  componentDidMount() {
+    // console.log(this.props)
+    // this.props.history.goForward(-2);
 
+  }
 }
 
 export default Regist;

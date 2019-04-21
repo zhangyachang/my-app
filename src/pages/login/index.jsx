@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
 import './login.css'
 import {Button} from "antd-mobile";
 import ZERO from '../../config/zero'
+// import {$axios} from '../../config/server'
 
 class Login extends Component {
   constructor(props){
@@ -105,9 +105,9 @@ class Login extends Component {
         </div>
         <div className={'lg_wrap'}>
           <div className={'lg_inputwrap lg_user'}>
-            <i className={'iconfont iconyonghu'}></i>
+            <i className={'iconfont iconyonghu'} />
             <input value={state.user} type="text" onChange={this.handleUserInp} placeholder={'请输入用户名'}/>
-            <i className={'lg_downup iconfont ' + state.loginHistory.icon} onClick={this.showLoginUser}></i>
+            <i className={'lg_downup iconfont ' + state.loginHistory.icon} onClick={this.showLoginUser} />
           </div>
 
           {
@@ -122,9 +122,9 @@ class Login extends Component {
           }
 
           <div className={'lg_inputwrap lg_password'}>
-            <i className={'iconfont iconmima1'}></i>
+            <i className={'iconfont iconmima1'} />
             <input defaultValue={state.password} type="password" onChange={this.handlePassChange} placeholder={'请输入密码'} />
-            <i className={'iconfont '}></i>
+            <i className={'iconfont '} />
           </div>
         </div>
 
@@ -144,17 +144,13 @@ class Login extends Component {
           <a href={'http://127.0.0.1:3000/oauth/github/login'}>
             <i onClick={this.loginGithub} className={'iconfont icongithub'} />
           </a>
-          <i onClick={this.loginQQ} className={'iconfont iconQQ'}></i>
-          <i onClick={this.loginZfb} className={'iconfont iconzhifubao'}></i>
-          <i onClick={this.loginWx} className={'iconfont iconweixin'}></i>
+          <i onClick={this.loginQQ} className={'iconfont iconQQ'} />
+          <i onClick={this.loginZfb} className={'iconfont iconzhifubao'} />
+          <i onClick={this.loginWx} className={'iconfont iconweixin'} />
         </div>
       </div>
 
     );
-  }
-
-  componentDidMount() {
-    // console.log(this.props);
   }
 
 }

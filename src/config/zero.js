@@ -11,6 +11,16 @@ export default {
     Toast.info(info, time);
   },
 
+  // 加载中
+  Loadding(info, time = 1){
+    Toast.loading(info, time);
+  },
+
+  // hideToast
+  hideToast(){
+    Toast.hide();
+  },
+
   noNextToast(info = '此功能暂未开放，开发者正在努力开发中-----'){
     Toast.info(info, 1);
   },
