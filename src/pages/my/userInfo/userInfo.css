@@ -10,6 +10,10 @@
     border-bottom: 1px solid #eee;
     background: #fff;
 }
+.uin_item_ti{
+    width: 1rem;
+    flex-shrink: 0;
+}
 .uni_item_more{
     display: flex;
     align-items: center;
@@ -23,6 +27,6 @@
     font-size: 0.32rem;
     margin-left: 0.2rem;
 }
-.uin_item_sign{
+.uni_signature{
     margin-top: 0.2rem;
 }

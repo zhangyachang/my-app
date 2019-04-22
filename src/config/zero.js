@@ -3,9 +3,18 @@
 // 减少引入体积的，最后再导入吧，看起来挺麻烦的
 import {Toast} from "antd-mobile";
 import url from 'url'
-
+// Modal const alert = Modal.alert;
 export default {
 
+  /*
+  // 记住密码
+  ALERT(title, info, ){
+    alert('记住密码', '该设备是否是你的手机或常用设备，是否要记住密码', [
+      { text: '取消', onPress: () => console.log('cancel'), style: 'default' },
+      { text: '记住密码', onPress: () => console.log('ok'), style: { fontWeight: 'bold' } },
+    ]);
+  },
+   */
   // 展示提示框，默认为 1s
   Toast(info, time=1){
     Toast.info(info, time);
@@ -23,6 +32,12 @@ export default {
 
   noNextToast(info = '此功能暂未开放，开发者正在努力开发中-----'){
     Toast.info(info, 1);
+  },
+
+  // 清除登录信息
+  clearLoginInfo(){
+    this.removeLocalStorageItem('user');
+    this.removeSessionStorage('user');
   },
 
   // 切割url传参的内容
@@ -141,5 +156,24 @@ export default {
   // 验证邮箱是否合法
   regEmail(email){
     return /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email);
-  }
+  },
+
+  // 登录历史记录的保存
+  getLoginHistory(name, value){
+    let result = this.getLocalStorageItem('loginHistory');
+    if(!result){
+      return []
+    }
+    return result;
+  },
+  setLoginHistory(user){
+    let arr = this.getLoginHistory('loginHistory');
+    if(!arr.includes(user)){
+      arr.push(user);
+      this.setLocaStorage({
+        loginHistory: arr
+      });
+    }
+  },
+
 }

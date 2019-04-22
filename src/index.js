@@ -4,6 +4,8 @@ import '../node_modules/antd-mobile/dist/antd-mobile.min.css'
 import './static/css/common.css'
 // import './static/css/iconfont.css'
 
+// 引入 redux 这里只是测试使用 现在还不用 等之后加上这个功能
+// import './redux/redux'
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';

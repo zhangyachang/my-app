@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import './login.css'
-import {Button} from "antd-mobile";
+import {Modal, Button} from "antd-mobile";
 import ZERO from '../../config/zero'
-// import {$axios} from '../../config/server'
+import {$axios} from '../../config/server'
+
+const alert = Modal.alert;
 
 class Login extends Component {
   constructor(props){
@@ -14,6 +16,7 @@ class Login extends Component {
         is: false, // 是否显示下拉内容
         icon: 'iconxialajiantou'  // 下拉图标className
       },
+      isLoginSuccess: false, // 登录成功
     }
   }
 
@@ -58,9 +61,29 @@ class Login extends Component {
     if(!this.state.password){
       return ZERO.Toast('密码不能为空');
     }
-    ZERO.setLocaStorage({user: this.state.user});
-    // 这里提交吧，等之后在写一下请求
-    this.props.history.push('/');
+    $axios({
+      url: '/bs/api/login',
+      method: 'POST',
+      data: {
+        user: this.state.user,
+        password: this.state.password,
+        type: 'password'
+      }
+    })
+      .then(res => {
+        if(res.status === 200){
+          // ZERO.Toast('登录成功');
+          ZERO.setLoginHistory(this.state.user);
+          this.shoeModel(res.data.uid);
+        }else if(res.status === 250){
+          ZERO.Toast('请检查用户名是否正确');
+        }else if(res.status === 400){
+          ZERO.Toast('用户名或密码错误');
+        }
+      })
+      .catch(err => {
+        ZERO.Toast('服务器繁忙，请稍后再试');
+      })
   };
 
   // 点击注册按钮
@@ -90,6 +113,24 @@ class Login extends Component {
     ZERO.noNextToast();
   };
 
+  shoeModel = (uid) => {
+    alert('记住密码', '该设备是否是你的手机或常用设备，是否要记住密码', [
+      { text: '取消', onPress: () => {this.notRememberPas(uid)} , style: 'default' },
+      { text: '记住密码', onPress: () => {this.rememberPas(uid)} , style: { fontWeight: 'bold' } },
+    ]);
+  };
+
+  // 记住密码
+  rememberPas = (uid) => {
+    ZERO.setLocaStorage({user: uid});
+    this.props.history.push('/');
+  };
+  // 取消记住密码
+  notRememberPas = (uid) => {
+    ZERO.setSessionStorage({user: uid});
+    this.props.history.push('/');
+  };
+
   loginWx = () => {
     console.log('通过微信登录');
     ZERO.noNextToast();
@@ -99,7 +140,6 @@ class Login extends Component {
     let state = this.state;
     return (
       <div className='login'>
-
         <div className={'lg_logo flex flex-center'}>
           <img src={require('../../static/img/logo/logo.png')} alt=""/>
         </div>
@@ -114,7 +154,7 @@ class Login extends Component {
             state.loginHistory.is &&
             <div className={'lg_history'}>
               {
-                ['937741304@qq.com', '15081166065'].map((item, index) => {
+                ZERO.getLoginHistory().map((item, index) => {
                   return <p key={index} onClick={this.chooseUser.bind(this, item)}>{item}</p>
                 })
               }
@@ -148,6 +188,7 @@ class Login extends Component {
           <i onClick={this.loginZfb} className={'iconfont iconzhifubao'} />
           <i onClick={this.loginWx} className={'iconfont iconweixin'} />
         </div>
+
       </div>
 
     );

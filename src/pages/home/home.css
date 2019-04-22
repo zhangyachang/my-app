@@ -35,6 +35,7 @@
 /*    background: #F4F4F8;*/
 /*}*/
 .ho_list{
+    padding-bottom: 1.1rem;
     background: #F4F4F8;
 }
 .ho_list .plan_item:nth-child(1){

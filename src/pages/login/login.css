@@ -37,8 +37,8 @@
     font-size: 0.36rem;
 }
 .lg_history{
+    transform: translateY(-0.3rem);
     margin-left: 0.8rem;
-    margin-top: -0.3rem;
     line-height: 0.8rem;
 }
 .lg_history p {

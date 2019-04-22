@@ -23,7 +23,6 @@ class TabBar extends Component {
           <span>我的</span>
         </NavLink>
 
-
       </div>
     );
   }

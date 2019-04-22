@@ -24,7 +24,8 @@ import UserSecurity from "../pages/setting/userSecurity"; // 设置 --> 账号�
 import LoginLogs from "../pages/setting/loginLogs"; // 登录设备历史
 import UserInfo from "../pages/my/userInfo"; // 我的 --> 点击顶部头像查看到的信息
 import ChatUserDetail from "../pages/chat/chatUserDetail"; // 聊天中点击用户头像的用户详细信息
-import AppPush from "../pages/appPush";  // 设置新密码
+import AppPush from "../pages/appPush";
+import ChangeUserInfo from "../pages/my/changeUserInfo";  // 设置新密码
 
 
 const routes = [
@@ -206,6 +207,13 @@ const routes = [
     component: UserInfo,
     meta: {
       title: '用户信息'
+    }
+  },
+  {
+    path: '/changeUserInfo',
+    component: ChangeUserInfo,
+    meta: {
+      title: '修改个人信息'
     }
   },
   {

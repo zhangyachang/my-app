@@ -37,7 +37,7 @@ class Setting extends Component {
 
   // 退出登录
   handleLogout = () => {
-    ZERO.removeLocalStorageItem('user');
+    ZERO.clearLoginInfo();
     this.props.history.push('/');
   };
 

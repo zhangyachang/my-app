@@ -8,7 +8,10 @@ const $axios = (obj) => {
     obj.method = obj.method?obj.method:'GET';
     obj.data = obj.data ? obj.data: {};
     obj.params = obj.params ?obj.params:{};
-    console.log(obj);
+    // 这里的是我的用户id
+    obj.data.openid = ZERO.getSessionStorage('user') || ZERO.getLocalStorageItem('user');
+
+    // console.log(obj);
     ZERO.Loadding('加载中...', 0);
     axios({
       url: config.url + obj.url,
@@ -17,18 +20,23 @@ const $axios = (obj) => {
       data: obj.data,
     })
       .then(res => {
-        console.log('执行到这里了吗');
         if(res.status === 200){
-          console.log('这个里面没有执行到吗111111111111');
           ZERO.hideToast();
           return resolve(res.data);
-        }else{
+        }else if(res.data.status === 50001){
+          ZERO.hideToast();
+          ZERO.Toast('登录信息已过期，请重新登录');
+          ZERO.removeSessionStorage('user');
+          ZERO.removeLocalStorageItem('user');
+        } else{
+          ZERO.hideToast();
+          ZERO.Toast('服务器繁忙，请稍后再试...');
           reject(res);
         }
       })
       .catch(err => {
         ZERO.hideToast();
-        ZERO.Toast('服务器繁忙，请稍后再试...');
+        ZERO.Toast('客户端错误，请稍后再试...');
         return reject(err);
       })
   });

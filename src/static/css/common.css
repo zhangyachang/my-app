@@ -205,7 +205,7 @@ html,body{
 body{
     position: relative;
     font-size: 0.28rem;
-    padding-bottom: 40px;
+    /*padding-bottom: 40px;*/
 }
 *{
     box-sizing: border-box;

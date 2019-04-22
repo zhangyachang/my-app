@@ -2,8 +2,21 @@ import React, {Component} from 'react';
 import './my.css'
 import TabBar from '../../components/tabBar/index'
 import ZERO from '../../config/zero'
+import {$axios} from "../../config/server";
+import config from '../../config/config'
+import {Redirect} from 'react-router-dom'
 
 class My extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      userInfo: {
+
+      }
+    }
+
+  }
 
   handleUserInfo = () => {
     this.props.history.push('/userInfo');
@@ -21,20 +34,48 @@ class My extends Component {
     this.props.history.push('/setting');
   };
 
+  searchUserInfoById = (uid) => {
+    $axios({
+      url: '/bs/api/user',
+      params: {
+        uid: uid
+      }
+    })
+      .then(res => {
+        if(res.data.length === 0){
+          // 清空登录信息 重定向到登录页面
+          ZERO.clearLoginInfo();
+          ZERO.Toast('登录信息过期，请重新登录');
+          return <Redirect to='/404'/>
+        }else{
+          this.setState({
+            userInfo: res.data[0]
+          })
+        }
+      })
+      .catch(() => {})
+  };
+
+  componentDidMount() {
+    let user = ZERO.getLocalStorageItem('user') || ZERO.getSessionStorage('user');
+    this.searchUserInfoById(user);
+  }
+
   render() {
+    const userInfo = this.state.userInfo;
     return (
       <div className={'my'}>
         <div className={'my_info'}>
 
           <div onClick={this.handleUserInfo} className={'my_info_top flex'}>
 
-            <div className={'my_info_top_avatar'}>
-              <img src={require('../../static/img/home/download.jpg')} alt=""/>
+            <div className={'my_info_top_avatar flex-shirink'}>
+              <img src={`${config.url}${userInfo.avatar}`} alt=""/>
             </div>
 
             <div className={'my_info_person flex'}>
-              <span className={'my_info_username'}>像风一样自由</span>
-              <p>id号 sdjkfjsdkfjskdjfksd</p>
+              <span className={'my_info_username'}>{userInfo.nick}</span>
+              <p>id号 {userInfo.uid}</p>
             </div>
 
           </div>

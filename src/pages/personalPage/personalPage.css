@@ -45,7 +45,9 @@
     padding: 0 0.3rem;
     color: #fff;
 }
-
+.plan_list{
+    padding-bottom: 0.4rem;
+}
 .plan_list .plan_item {
     margin-top: 0.2rem;
 }

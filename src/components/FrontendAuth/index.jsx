@@ -9,7 +9,7 @@ export class FrontendAuth extends React.Component {
 
     const {pathname} = location;
     // const isLogin = localStorage.getItem('__config_center_token');
-    const isLogin = ZERO.getLocalStorageItem('user');
+    const isLogin = ZERO.getLocalStorageItem('user') || ZERO.getSessionStorage('user');
 
     // 如果该路由不用进行权限校验，登录状态下登陆页除外
     // 因为登陆后，无法跳转到登陆页
@@ -17,9 +17,8 @@ export class FrontendAuth extends React.Component {
     const targetRouterConfig = config.find((v) => v.path === pathname);
     if (targetRouterConfig && !targetRouterConfig.auth && !isLogin) {
       const {component} = targetRouterConfig;
-
       document.title = targetRouterConfig.meta.title;
-
+      
       return <Route exact path={pathname} component={component}/>
     }
 
