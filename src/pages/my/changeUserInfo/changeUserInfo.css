@@ -1,0 +1,16 @@
+.change_user_info .btn{
+    width: 60%;
+    margin: 1rem auto 0 auto;
+}
+.cui_nick{
+    padding: 0 0.3rem;
+    width: 100%;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.32rem;
+}
+.cui_nick input{
+    width: 100%;
+    height: 100%;
+    text-indent: 0.2rem;
+}

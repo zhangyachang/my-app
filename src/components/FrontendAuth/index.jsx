@@ -18,7 +18,7 @@ export class FrontendAuth extends React.Component {
     if (targetRouterConfig && !targetRouterConfig.auth && !isLogin) {
       const {component} = targetRouterConfig;
       document.title = targetRouterConfig.meta.title;
-      
+
       return <Route exact path={pathname} component={component}/>
     }
 
@@ -41,7 +41,7 @@ export class FrontendAuth extends React.Component {
     } else {
       // 非登陆状态下，当路由合法时且需要权限校验时，跳转到登陆页面，要求登陆
       if (targetRouterConfig && targetRouterConfig.auth) {
-        ZERO.Toast('登录后体验更多权限！',1.5);
+        ZERO.Toast('登录后体验更多权限！',1);
         document.title = targetRouterConfig.meta.title;
         return <Redirect to='/login'/>
       } else {

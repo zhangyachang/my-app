@@ -14,11 +14,12 @@ class UserInfo extends Component {
   }
 
   handleGo = (name) => {
-    console.log(name);
-    console.log(this.state);
-    const value = this.state.userInfo.name;
+    const value = this.state.userInfo[name];
     this.props.history.push({
       pathname: `/changeUserInfo`,
+      query: {
+        type: name
+      },
       state: {
         [name]: value
       }
