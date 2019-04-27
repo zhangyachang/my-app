@@ -3,6 +3,7 @@ import './setNewPas.css'
 import TopTips from '../../components/topTips/index'
 import {Button} from "antd-mobile";
 import ZERO from '../../config/zero'
+import {$axios} from "../../config/server";
 
 class SetNewPas extends Component {
   constructor(props){
@@ -38,8 +39,32 @@ class SetNewPas extends Component {
 
   // 确认提交
   handleSubmit = () => {
-    ZERO.Toast('修改成功');
-    this.props.history.push('/login');
+    let pageData = this.props.history.location.state;
+    if(!pageData){
+      return ZERO.Toast('请从正常的渠道进入此页面');
+    }
+    const {user, type} = pageData;
+
+    $axios({
+      url: '/bs/api/password',
+      method: 'PUT',
+      data: {
+        user: user,
+        type: type,
+        password: this.state.password
+      }
+    })
+      .then(res => {
+        if(res.status === 200){
+          ZERO.Toast('修改成功');
+          this.props.history.push('/login');
+        }else if(res.status === 250){
+          ZERO.Toast('用户不存在，修改失败');
+        }else{
+          ZERO.Toast('服务器繁忙，修改失败，请稍后再试');
+        }
+      })
+      .catch(err => {});
   };
 
   render() {

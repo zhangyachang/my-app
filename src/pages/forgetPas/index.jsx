@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import './forgetPas.css'
 import Toptips from '../../components/topTips/index'
 import {Button} from "antd-mobile";
+import ZERO from '../../config/zero';
+import {$axios} from "../../config/server";
 
 class ForgetPas extends Component {
   constructor(props){
     super(props);
     this.state = {
-      user: '',
-      code: '',
-      type: '', // 这里的这个类型通过正则表达式判断修改
+      user: ''
     }
   }
 
@@ -27,13 +27,39 @@ class ForgetPas extends Component {
     })
   };
 
-
   // 下一步 1. 验证手机号和邮箱合法性  2. 验证验证码 3. 然后跳转
   handleNext = () => {
     console.log(`点击了下一步`);
     console.log(this.state);
-    let {user, type} = this.state;
-    this.props.history.push(`/getpasCheckType?user=${user}&type=${type}`)
+    let {user} = this.state;
+    let type = '';
+    if(ZERO.regPhone(this.state.user)){
+      type = 'phone';
+    }else if(ZERO.regEmail(this.state.user)){
+      type = 'email';
+    }else{
+      return ZERO.Toast('请输入正确的手机号或者邮箱');
+    }
+
+    $axios({
+      url: '/bs/api/email',
+      method: 'POST',
+      data: {
+        to: user,
+        type: type
+      }
+    })
+      .then(res => {
+        if(res.status === 200){
+          ZERO.Toast('验证码已发送至您的邮箱，请查看并填写');
+          this.props.history.push(`/getpasCheckType?user=${user}&type=${type}`)
+        }else{
+          ZERO.Toast('服务器繁忙，请稍后再试');
+        }
+      })
+      .catch(err => {});
+
+
   };
 
   render() {
@@ -44,10 +70,10 @@ class ForgetPas extends Component {
         <div className={'gp_item flex flex-item'}>
           <input type="text" placeholder={'请输入手机号或邮箱'} defaultValue={this.state.user} onChange={this.handleChange} />
         </div>
-        <div className={'gp_item flex flex-item'}>
-          <input type="text" placeholder={'点击图片可更换'} defaultValue={this.state.code} onChange={this.handleCheck} />
-          <img src={require('../../static/img/getpassword/checkcode.png')} alt=""/>
-        </div>
+        {/*<div className={'gp_item flex flex-item'}>*/}
+        {/*  <input type="text" placeholder={'点击图片可更换'} defaultValue={this.state.code} onChange={this.handleCheck} />*/}
+        {/*  <img src={require('../../static/img/getpassword/checkcode.png')} alt=""/>*/}
+        {/*</div>*/}
 
         <Button className="btn" type="primary" onClick={this.handleNext}>下一步</Button>
       </div>
