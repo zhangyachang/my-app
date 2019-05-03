@@ -2,8 +2,11 @@
 // https://www.npmjs.com/package/babel-plugin-import
 // 减少引入体积的，最后再导入吧，看起来挺麻烦的
 import {Toast} from "antd-mobile";
+import {Redirect} from 'react-router-dom'
 import url from 'url'
+import * as React from "react";
 // Modal const alert = Modal.alert;
+
 export default {
 
   /*
@@ -174,6 +177,15 @@ export default {
         loginHistory: arr
       });
     }
+  },
+
+  // 获取用户 uid
+  getUid(){
+    let user = this.getLocalStorageItem('user') || this.getSessionStorage('user');
+    if(!user){
+      return <Redirect to='/404'/>
+    }
+    return user;
   },
 
 }

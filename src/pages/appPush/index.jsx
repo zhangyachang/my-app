@@ -27,7 +27,7 @@ class AppPush extends Component {
               <span>跑步</span>
             </div>
             <div className={'apppi_item'}>
-              <p className={''}>所花时间</p>
+              <p className={''}>所花时间</p>法萨芬
               <span>30分</span>
             </div>
             <div className={'apppi_item'}>

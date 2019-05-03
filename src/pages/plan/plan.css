@@ -1,0 +1,80 @@
+.plan1{
+
+}
+
+/* 导航栏 */
+.plan1_navbar{
+    align-items: center;
+    height: 0.6rem;
+    padding: 0 0.12rem;
+    line-height: 0.4rem;
+    background: #EEE;
+}
+.plan1_navbar_item{
+    padding: 0 0.2rem;
+    border-radius: 0.2rem;
+}
+.plan1_navbar_item_active{
+
+    background: #fff;
+}
+
+
+/* 列表 */
+.plan1_list{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 0 0.3rem;
+}
+.plan1_list_item{
+    width: 25%;
+    height: 2rem;
+    margin: 0.2rem 0.28rem;
+    box-shadow: 0 2px 5px 0 #bbb;
+    border-radius: 0.08rem;
+    text-align: center;
+}
+.plan1_list_item .iconfont{
+    line-height: 1.1rem;
+    font-size: 0.8rem;
+    color: #FEE632;
+}
+.plan1_list_item img{
+    width: 0.8rem;
+    height: 0.8rem;
+}
+.plan1_list_item .iconwancheng2{
+    color: #FFF;
+}
+.plan1_list_item .iconweiwancheng1{
+    color: #FFF;
+}
+.plan1_list_item_success{
+    background: #9BBEFE;
+}
+.plan1_list_item_nodone{
+    /*background: #FB928E;*/
+    background: #4DE3CA;
+}
+.plan1_list_item_title{
+    font-weight: bold;
+}
+.plan1_list_item_time{
+    margin-top: 0.1rem;
+    font-size: 0.24rem;
+    color: #999;
+}
+
+
+.plan1_add_plan{
+    position: fixed;
+    right: 0.4rem;
+    bottom: 2rem;
+}
+.plan1_add_plan img{
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+

@@ -77,7 +77,7 @@ class UserInfo extends Component {
         <div onClick={this.handleGo.bind(this, 'sex')} className={'uin_item'}>
           <p className={'uin_item_ti'}>性别</p>
           <div className={'uni_item_more'}>
-            <p>{userInfo.sex?'男':'女'}</p>
+            <p>{userInfo.sex === undefined?'':(userInfo.sex?'男':'女')}</p>
             <i className={'iconfont iconiconfonticonfonti2copycopy'} />
           </div>
         </div>

@@ -8,14 +8,14 @@ const $axios = (obj) => {
     obj.method = obj.method?obj.method:'GET';
     obj.data = obj.data ? obj.data: {};
     obj.params = obj.params ?obj.params:{};
+    obj.headers = obj.headers?obj.headers:'application/json;charset=utf-8';
     // 这里的是我的用户id
     obj.data.openid = ZERO.getSessionStorage('user') || ZERO.getLocalStorageItem('user');
-
-    // console.log(obj);
     ZERO.Loadding('加载中...', 0);
     axios({
       url: config.url + obj.url,
       method: obj.method,
+      header: obj.header,
       params: obj.params,
       data: obj.data,
     })

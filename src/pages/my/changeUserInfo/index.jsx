@@ -3,14 +3,17 @@ import './changeUserInfo.css'
 import {Button} from "antd-mobile";
 import ZERO from '../../../config/zero'
 import {$axios} from "../../../config/server";
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
+import {changeUserAvatar} from "../../../config/utils";
 
 class ChangeUserInfo extends Component {
   constructor(props){
     super(props);
     this.state = {
       type: '', // 通过type来显示不同的信息
-      value: ''
+      value: '',
+      avatarImgUrl: '', // 这个里面存放的是选择头像暂时存放的文件
+      files: [], // 这个里面存放的是真实的文件
     }
   }
 
@@ -59,7 +62,7 @@ class ChangeUserInfo extends Component {
   };
 
   // 确认修改
-  handleSubmit = () => {
+  handleSubmit = async () => {
     const uid = ZERO.getSessionStorage('user') || ZERO.getLocalStorageItem('user');
 
     if(this.state.type){
@@ -82,7 +85,18 @@ class ChangeUserInfo extends Component {
           })
           .catch(err => {})
       }else{
-        console.log('修改用户头像');
+        let uid = ZERO.getUid();
+        if(this.state.files.length === 0){
+          return ZERO.Toast('请选择头像');
+        }
+        let result = await changeUserAvatar({uid, avatar: this.state.files[0]});
+        console.log(result);
+        if(result.status === 200){
+          ZERO.Toast('头像修改成功');
+          this.props.history.goBack();
+        }else{
+          ZERO.Toast('服务器繁忙，头像修改失败，请稍后再试');
+        }
       }
     }else{
       ZERO.Toast('请重新进入此页面进行修改');
@@ -90,9 +104,42 @@ class ChangeUserInfo extends Component {
   };
 
   // 修改头像 选择图片
-  selectImg = () => {
-    console.log('修改头像,选择图片');
+  selectImg = (e) => {
+    let fileImg = e.target.files[0];
+    this.setState({
+      files: [fileImg]
+    });
+    let blogUrl = this.createObject(fileImg);
+    this.setState({
+      avatarImgUrl: blogUrl
+    });
+  };
 
+  // 删除选择的头像
+  deleteAvatar = () => {
+    this.setState({
+      avatarImgUrl: ''
+    });
+    this.setState({
+      files: []
+    });
+  };
+
+  /**
+   * 将文件生成 Blob 地址
+   * @params {Object} 文件  e.target.files[0]
+   *
+   * @return {String} blob:http://localhost:8080/71661062-2241-4c50-a7d2-7bddf17b5788
+   *  一种地址，可以放到图片的src上
+   */
+  createObject = (blob) => {
+    if (window.URL) {
+      return window.URL.createObjectURL(blob);
+    } else if (window.webkitURL) {
+      return window.webkitURL.createObjectURL(blob);
+    } else {
+      return null;
+    }
   };
 
   // 处理 input框的变化
@@ -147,7 +194,12 @@ class ChangeUserInfo extends Component {
 
         {
           type === 'avatar' && <div>
-            <input className="vq_fileInput" type="file" onChange={this.selectImg} accept="image/*" />
+            <div className={'cui_upload_avatar'}>
+              <img src={this.state.avatarImgUrl? this.state.avatarImgUrl:require('../../../static/img/user/upload.png')} alt=""/>
+              <input className="vq_fileInput" type="file" onChange={this.selectImg} accept="image/*" />
+              {this.state.avatarImgUrl && <i onClick={this.deleteAvatar} className={'iconfont iconfork'} />}
+            </div>
+
           </div>
         }
 

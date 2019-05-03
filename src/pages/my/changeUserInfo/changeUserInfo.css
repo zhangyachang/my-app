@@ -19,6 +19,34 @@
     height: 1.2rem;
     border: none;
 }
+.cui_upload_avatar{
+    position: relative;
+    width: 4.5rem;
+    height: 4.5rem;
+    padding-top: 0.4rem;
+    margin: auto;
+}
+.cui_upload_avatar img{
+    width: 100%;
+    height: 100%;
+}
+.vq_fileInput{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+.cui_upload_avatar .iconfork{
+    position: absolute;
+    right: -0.24rem;
+    top: 0.2rem;
+    border-radius: 50%;
+    font-size: 0.4rem;
+    background: rgba(0,0,0,.5);
+    color: #fff;
+}
 .cui_sex{
     padding: 0.4rem 0.3rem 0 0.3rem;
 }

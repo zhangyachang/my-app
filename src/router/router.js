@@ -10,7 +10,7 @@ import GetpasCheckType from "../pages/getpasCheckType"; // 获取验证码
 import SetNewPas from "../pages/setNewPas"; // 设置新密码
 import Hot from "../pages/hot"; // 搜索历史
 import PersonalPage from "../pages/personalPage"; // 个人主页
-import AddNewPlan from "../pages/addNewPlan"; // 添加新计划
+import AddNewPlan from "../pages/addNewPlan/index"; // 添加新计划
 import DayPlan from "../pages/planType/dayPlan"; // 日计划
 import PlanLogs from "../pages/planLogs";  // 记录历史
 import PlanDetail from "../pages/planDetail";
@@ -25,7 +25,8 @@ import LoginLogs from "../pages/setting/loginLogs"; // 登录设备历史
 import UserInfo from "../pages/my/userInfo"; // 我的 --> 点击顶部头像查看到的信息
 import ChatUserDetail from "../pages/chat/chatUserDetail"; // 聊天中点击用户头像的用户详细信息
 import AppPush from "../pages/appPush";
-import ChangeUserInfo from "../pages/my/changeUserInfo";  // 设置新密码
+import ChangeUserInfo from "../pages/my/changeUserInfo";
+import Plan from "../pages/plan";  // 计划Tab
 
 
 const routes = [
@@ -51,6 +52,13 @@ const routes = [
     auth: true,
     meta: {
       title: '消息'
+    }
+  },
+  {
+    path: '/plan',
+    component: Plan,
+    meta: {
+      title: '计划'
     }
   },
   {

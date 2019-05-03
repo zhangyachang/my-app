@@ -10,7 +10,7 @@ class TabBar extends Component {
           <i className={'iconfont iconshouyex'}></i>
           <span>首页</span>
         </NavLink>
-        <NavLink to={'/addNewPlan'}>
+        <NavLink to={'/plan'}>
           <i className={'iconfont iconfaxian1'}></i>
           <span>计划</span>
         </NavLink>

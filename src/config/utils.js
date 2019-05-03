@@ -1,5 +1,4 @@
 import {$axios} from "./server";
-import config from './config'
 
 /*
  前端全局错误码
@@ -33,8 +32,39 @@ const sendAuthCode = ({type, to}) => {
 };
 
 
+// 修改用户头像接口
+/**
+ * @params {String} uid
+ * @params {String} avatar 文件信息数据
+ *
+ * @return PromiseFn
+ */
+const changeUserAvatar = ({uid, avatar}) => {
+  return new Promise((resolve, reject) => {
+    const formData = new FormData();
+    formData.append('avatar', avatar);
+    $axios({
+      url: '/bs/api/avatar',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+      params: {
+        uid: uid,
+      },
+      data: formData
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
 
-export {sendAuthCode};
+
+export {sendAuthCode, changeUserAvatar};
 
 
 

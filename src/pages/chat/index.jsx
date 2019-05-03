@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './chat.css'
+import './chatUserDetail.css'
 import ZERO from '../../config/zero'
 
 class Chat extends Component {
