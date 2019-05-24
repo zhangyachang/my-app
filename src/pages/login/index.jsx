@@ -175,7 +175,8 @@ class Login extends Component {
           <p onClick={this.handleForgetPass}>忘记密码</p>
         </div>
 
-        <div className={'lg_login_tips flex flex-item'}>
+        {/* 其他登录方式暂时注释掉 */}
+        {/* <div className={'lg_login_tips flex flex-item'}>
           <p></p>
           <div>其他登录方式</div>
           <p></p>
@@ -187,13 +188,13 @@ class Login extends Component {
           <i onClick={this.loginQQ} className={'iconfont iconQQ'} />
           <i onClick={this.loginZfb} className={'iconfont iconzhifubao'} />
           <i onClick={this.loginWx} className={'iconfont iconweixin'} />
-        </div>
+        </div> */}
+        {/* 其他登录方式暂时注释掉 */}
 
       </div>
 
     );
   }
-
 }
 
 export default Login;

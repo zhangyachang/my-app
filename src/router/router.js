@@ -27,6 +27,12 @@ import ChatUserDetail from "../pages/chat/chatUserDetail"; // 聊天中点击用
 import AppPush from "../pages/appPush";
 import ChangeUserInfo from "../pages/my/changeUserInfo";
 import Plan from "../pages/plan";  // 计划Tab
+import OperatorLogs from '../pages/my/operatorLogs'; // 个人操作记录
+
+import Ss from '../pages/ss';
+import AppPushDetail from '../pages/appPushDetail';  //查看推送详情
+import MyPlanLogs from '../pages/my/myPlanLogs';
+import MySsLogs from '../pages/my/mySsLogs';
 
 
 const routes = [
@@ -57,6 +63,7 @@ const routes = [
   {
     path: '/plan',
     component: Plan,
+    auth: true,
     meta: {
       title: '计划'
     }
@@ -175,6 +182,14 @@ const routes = [
     }
   },
   {
+    path: '/operatorLogs',
+    component: OperatorLogs,
+    auth: true,
+    meta: {
+      title: '操作记录'
+    }
+  },
+  {
     path: '/chat',
     component: Chat,
     auth: true,
@@ -186,7 +201,7 @@ const routes = [
     path: '/chatUserDetail',
     component: ChatUserDetail,
     meta: {
-      title: '某个人的名字+'
+      title: '某个人的名字'
     }
   },
   {
@@ -227,8 +242,41 @@ const routes = [
   {
     path: '/appPush',
     component: AppPush,
+    auth: true,
     meta: {
-      title: '管理助手'
+      title: '推送消息'
+    }
+  },
+  {
+    path: '/appPushDetail',
+    component: AppPushDetail,
+    auth: true,
+    meta: {
+      title: '推送详情'
+    }
+  },
+  {
+    path: '/ss',
+    component: Ss,
+    auth: true,
+    meta: {
+      title: '发心情'
+    }
+  },
+  {
+    path: '/myPlanLogs',
+    component: MyPlanLogs,
+    auth: true,
+    meta: {
+      title: '我的计划'
+    }
+  },
+  {
+    path: '/mySsLogs',
+    component: MySsLogs,
+    auth: true,
+    meta: {
+      title: '我的说说'
     }
   },
   {

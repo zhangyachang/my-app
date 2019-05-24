@@ -11,7 +11,7 @@ const $axios = (obj) => {
     obj.headers = obj.headers?obj.headers:'application/json;charset=utf-8';
     // 这里的是我的用户id
     obj.data.openid = ZERO.getSessionStorage('user') || ZERO.getLocalStorageItem('user');
-    ZERO.Loadding('加载中...', 0);
+    ZERO.Loadding('加载中', 0);
     axios({
       url: config.url + obj.url,
       method: obj.method,
@@ -28,10 +28,11 @@ const $axios = (obj) => {
           ZERO.Toast('登录信息已过期，请重新登录');
           ZERO.removeSessionStorage('user');
           ZERO.removeLocalStorageItem('user');
+          return reject(res);
         } else{
           ZERO.hideToast();
           ZERO.Toast('服务器繁忙，请稍后再试...');
-          reject(res);
+          return reject(res);
         }
       })
       .catch(err => {

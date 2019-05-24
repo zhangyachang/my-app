@@ -25,6 +25,19 @@
     font-size: 0.32rem;
     font-weight: bold;
 }
+.my_info_person_id{
+    display: flex;
+}
+.my_info_person_iddes{
+    flex-shrink: 0;
+    display: block;
+    color: #666;
+}
+.my_info_person_idval{
+    display: block;
+    width: 5rem;
+    margin-left: 0.2rem;
+}
 .my_info_list{
     display: flex;
     justify-content: space-around;
@@ -62,7 +75,9 @@
 .my_item .iconcaogaoxiang{
     color: #4EB575;
 }
-
+.my_item .icondengyu{
+    color: #24C3FF;
+}
 .my_item_con{
     font-size: 0.32rem;
     margin-left: 0.3rem;

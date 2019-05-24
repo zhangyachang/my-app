@@ -144,6 +144,34 @@ export default {
     window.sessionStorage.clear();
   },
 
+  /**
+   * 格式化日期
+   * @params date {String} Tue May 14 2019 10:25:22 GMT+0800 (中国标准时间)
+   * @return 2019-5-14 10:26:11
+   */
+  formatDate(date){
+    return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  },
+
+  /**
+   * 格式化日期 startDate
+   * 返回今天的  00:00:00
+   */
+  formatStartDate(date){
+    return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} 00:00:00`;
+  },
+  /**
+   * 格式化日期
+   * 返回今天的 23:59:59
+   */
+  formatEndtDate(date){
+    return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} 23:59:59`;
+  },
+
+  formatWantTime(date){
+    return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+  },
+
   // 验证身份证号码
   regIdCard(idCard){
     return /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(

@@ -2,31 +2,44 @@ import React, {Component} from 'react';
 import './my.css'
 import TabBar from '../../components/tabBar/index'
 import ZERO from '../../config/zero'
-import {$axios} from "../../config/server";
 import config from '../../config/config'
 import {Redirect} from 'react-router-dom'
+import {getUserInfoByUid, getUserPlanNumAndMore} from '../../config/utils'
 
 class My extends Component {
   constructor(props){
     super(props);
-
     this.state = {
       userInfo: {
-
+      },
+      planInfo: {
+        planNum: '',
+        ssNum: '',
+        friendNum: '',
+        fansNum: '',
       }
     }
-
   }
 
   handleUserInfo = () => {
     this.props.history.push('/userInfo');
   };
 
-
   // 点击上面四个tabbar
-  handleList = () => {
-    console.log('1111');
-    ZERO.noNextToast();
+  handleList = (type) => {
+    if(type === 'plan'){
+      this.props.history.push('/myPlanLogs');
+    }else if(type === 'ss'){
+      this.props.history.push('/mySsLogs');
+    }else{
+      ZERO.noNextToast();
+    }
+  };
+
+  // 点击成长记录
+  handleGoLogs = () => {
+    console.log(`111`);
+    this.props.history.push('/operatorLogs');
   };
 
   // 点击设置
@@ -34,14 +47,11 @@ class My extends Component {
     this.props.history.push('/setting');
   };
 
+  // 查询用户信息 byId
   searchUserInfoById = (uid) => {
-    $axios({
-      url: '/bs/api/user',
-      params: {
-        uid: uid
-      }
-    })
+    getUserInfoByUid(uid)
       .then(res => {
+        ZERO.hideToast();
         if(res.data.length === 0){
           // 清空登录信息 重定向到登录页面
           ZERO.clearLoginInfo();
@@ -50,10 +60,41 @@ class My extends Component {
         }else{
           this.setState({
             userInfo: res.data[0]
-          })
+          });
+          this.getMyPlanInfo(uid);
         }
       })
-      .catch(() => {})
+      .catch((e) => {
+        console.log(e);
+      })
+  };
+
+  // 查询个人发表计划和说说和好友的数量
+  getMyPlanInfo = (user) => {
+    getUserPlanNumAndMore(user)
+    .then(res => {
+      ZERO.hideToast();
+      if(res.status === 200){
+        return this.setState({
+          planInfo: {
+            planNum: res.data.plan_num,
+            ssNum:  res.data.ss_num,
+            friendNum: 0,
+            fansNum: 0
+          }
+        });
+      }
+      if(res.status === 400){
+        ZERO.Toast('获取用户计划数量等信息失败');
+      }
+      if(res.status === 500){
+        ZERO.Toast('服务器繁忙，请稍后再试');
+      }
+    })
+    .catch(err => {
+      console.log(`报错信息`);
+      console.log(err);
+    })
   };
 
   componentDidMount() {
@@ -63,6 +104,7 @@ class My extends Component {
 
   render() {
     const userInfo = this.state.userInfo;
+    const planInfo = this.state.planInfo;
     return (
       <div className={'my'}>
         <div className={'my_info'}>
@@ -75,26 +117,29 @@ class My extends Component {
 
             <div className={'my_info_person flex'}>
               <span className={'my_info_username'}>{userInfo.nick}</span>
-              <p>id号 {userInfo.uid}</p>
+              <p className='my_info_person_id'>
+                <span className='my_info_person_iddes'>id号 </span> 
+                <span className='my_info_person_idval ellipse'> {userInfo.uid}</span>
+              </p>
             </div>
 
           </div>
 
           <div className={'my_info_list'}>
             <div onClick={this.handleList.bind(this, 'plan')} className={'my_info_list_item'}>
-              <span>1</span>
+              <span>{planInfo.planNum}</span>
               <p>计划</p>
             </div>
-            <div onClick={this.handleList.bind(this, 'hero')} className={'my_info_list_item'}>
-              <span>1</span>
-              <p>关注</p>
+            <div onClick={this.handleList.bind(this, 'ss')} className={'my_info_list_item'}>
+              <span>{planInfo.ssNum}</span>
+              <p>说说</p>
             </div>
             <div onClick={this.handleList.bind(this, 'friend')} className={'my_info_list_item'}>
-              <span>1</span>
+              <span>{planInfo.friendNum}</span>
               <p>好友</p>
             </div>
             <div onClick={this.handleList.bind(this, 'fans')} className={'my_info_list_item'}>
-              <span>0</span>
+              <span> {planInfo.fansNum}</span>
               <p>粉丝</p>
             </div>
 
@@ -104,6 +149,11 @@ class My extends Component {
         <div className={'my_item'}>
           <i className={'iconfont iconcaogaoxiang'} />
           <span className={'my_item_con'}>草稿箱</span>
+        </div>
+
+        <div onClick={this.handleGoLogs} className={'my_item'}>
+          <i className={'iconfont icondengyu'} />
+          <span className={'my_item_con'}>成长记录</span>
         </div>
 
         <div onClick={this.handleGoSetting} className={'my_item'}>

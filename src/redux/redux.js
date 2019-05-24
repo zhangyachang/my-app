@@ -43,5 +43,3 @@ store.dispatch({
   type: 'reduce',
   fileter: 'Show_AA'
 });
-
-

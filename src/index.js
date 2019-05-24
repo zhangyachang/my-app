@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../node_modules/antd-mobile/dist/antd-mobile.min.css'
 import './static/css/common.css'
-// import './static/css/iconfont.css'
+import './config/io'
 
 // 引入 redux 这里只是测试使用 现在还不用 等之后加上这个功能
 // import './redux/redux'

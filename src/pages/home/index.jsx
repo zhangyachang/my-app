@@ -12,7 +12,10 @@ class Home extends Component {
     this.props.history.push('/hot');
   };
 
-
+  // 添加说说  
+  addSS = () => {
+    this.props.history.push('/ss');
+  };
 
   render() {
     return (
@@ -23,6 +26,7 @@ class Home extends Component {
             <img src={require('../../static/img/logo/logo.png')} alt=""/>
           </div>
           <HotSearch onFocus={this.handleOnFocus} />
+          <i onClick={this.addSS} className={'iconfont iconjiahao'}></i>
 
           {/*<div className={'ho_input_wrap flex-one flex flex-item'}>*/}
           {/*  <input className={'flex-one'} onFocus={this.handleOnFocus} type="text" placeholder={'您要搜索的内容'}/>*/}

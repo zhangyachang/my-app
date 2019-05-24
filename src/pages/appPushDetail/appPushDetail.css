@@ -1,0 +1,43 @@
+.app_push_detail{
+
+}
+.apd_header{
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.3rem;
+  text-align: center;
+}
+.apd_header img{
+  width: 1.4rem;
+  height: 1.4rem;
+  margin: 0.2rem auto 0 auto;
+}
+.apd_header_title{
+  font-size: 0.36rem;
+  font-weight: bold;
+}
+.apd_header_pushtime{
+  padding-top: 0.2rem;
+  font-size: 0.28rem;
+  color: #666;
+}
+.apd_detail{
+  padding: 0.6rem 0.6rem 0 0.6rem;
+}
+.apd_detail_item{
+  display: flex;
+  align-items: center;
+  line-height: 0.5rem;
+  color: #000;
+}
+.apd_detail_item_des{
+  width: 1.6rem;
+  color: #666;
+  flex-shrink: 0;
+}
+
+
+
+
+
+

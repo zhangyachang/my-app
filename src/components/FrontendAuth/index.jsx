@@ -41,11 +41,11 @@ export class FrontendAuth extends React.Component {
     } else {
       // 非登陆状态下，当路由合法时且需要权限校验时，跳转到登陆页面，要求登陆
       if (targetRouterConfig && targetRouterConfig.auth) {
-        ZERO.Toast('登录后体验更多权限！',1);
         document.title = targetRouterConfig.meta.title;
+        ZERO.Toast('登录后体验更多权限!');
         return <Redirect to='/login'/>
       } else {
-        document.title = targetRouterConfig.meta.title;
+        // document.title = targetRouterConfig.meta.title;
         // 非登陆状态下，路由不合法时，重定向至 404
         return <Redirect to='/404'/>
       }
