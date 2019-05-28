@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './my.css'
 import TabBar from '../../components/tabBar/index'
 import ZERO from '../../config/zero'
 import config from '../../config/config'
-import {Redirect} from 'react-router-dom'
-import {getUserInfoByUid, getUserPlanNumAndMore} from '../../config/utils'
+import { Redirect } from 'react-router-dom'
+import { getUserInfoByUid, getUserPlanNumAndMore } from '../../config/utils'
 
 class My extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       userInfo: {
@@ -27,11 +27,11 @@ class My extends Component {
 
   // 点击上面四个tabbar
   handleList = (type) => {
-    if(type === 'plan'){
+    if (type === 'plan') {
       this.props.history.push('/myPlanLogs');
-    }else if(type === 'ss'){
+    } else if (type === 'ss') {
       this.props.history.push('/mySsLogs');
-    }else{
+    } else {
       ZERO.noNextToast();
     }
   };
@@ -52,16 +52,15 @@ class My extends Component {
     getUserInfoByUid(uid)
       .then(res => {
         ZERO.hideToast();
-        if(res.data.length === 0){
+        if (res.data.length === 0) {
           // 清空登录信息 重定向到登录页面
           ZERO.clearLoginInfo();
           ZERO.Toast('登录信息过期，请重新登录');
-          return <Redirect to='/404'/>
-        }else{
+          return <Redirect to='/404' />
+        } else {
           this.setState({
             userInfo: res.data[0]
           });
-          this.getMyPlanInfo(uid);
         }
       })
       .catch((e) => {
@@ -69,37 +68,47 @@ class My extends Component {
       })
   };
 
+  // 检测是否可以实现手机震动
+  handleShake = () => {
+    if (navigator.vibrate) {
+      navigator.vibrate(300);
+    } else if (navigator.webkitVibrate) {
+      navigator.webkitVibrate(300);
+    }
+  };
+
   // 查询个人发表计划和说说和好友的数量
   getMyPlanInfo = (user) => {
     getUserPlanNumAndMore(user)
-    .then(res => {
-      ZERO.hideToast();
-      if(res.status === 200){
-        return this.setState({
-          planInfo: {
-            planNum: res.data.plan_num,
-            ssNum:  res.data.ss_num,
-            friendNum: 0,
-            fansNum: 0
-          }
-        });
-      }
-      if(res.status === 400){
-        ZERO.Toast('获取用户计划数量等信息失败');
-      }
-      if(res.status === 500){
-        ZERO.Toast('服务器繁忙，请稍后再试');
-      }
-    })
-    .catch(err => {
-      console.log(`报错信息`);
-      console.log(err);
-    })
+      .then(res => {
+        ZERO.hideToast();
+        if (res.status === 200) {
+          return this.setState({
+            planInfo: {
+              planNum: res.data.plan_num,
+              ssNum: res.data.ss_num,
+              friendNum: 0,
+              fansNum: 0
+            }
+          });
+        }
+        if (res.status === 400) {
+          ZERO.Toast('获取用户计划数量等信息失败');
+        }
+        if (res.status === 500) {
+          ZERO.Toast('服务器繁忙，请稍后再试');
+        }
+      })
+      .catch(err => {
+        console.log(`报错信息`);
+        console.log(err);
+      })
   };
 
   componentDidMount() {
     let user = ZERO.getLocalStorageItem('user') || ZERO.getSessionStorage('user');
     this.searchUserInfoById(user);
+    this.getMyPlanInfo(user);
   }
 
   render() {
@@ -112,13 +121,13 @@ class My extends Component {
           <div onClick={this.handleUserInfo} className={'my_info_top flex'}>
 
             <div className={'my_info_top_avatar flex-shirink'}>
-              <img src={`${config.url}${userInfo.avatar}`} alt=""/>
+              <img src={`${config.url}${userInfo.avatar}`} alt="" />
             </div>
 
             <div className={'my_info_person flex'}>
               <span className={'my_info_username'}>{userInfo.nick}</span>
               <p className='my_info_person_id'>
-                <span className='my_info_person_iddes'>id号 </span> 
+                <span className='my_info_person_iddes'>id号 </span>
                 <span className='my_info_person_idval ellipse'> {userInfo.uid}</span>
               </p>
             </div>
@@ -146,7 +155,7 @@ class My extends Component {
           </div>
         </div>
 
-        <div className={'my_item'}>
+        <div onClick={this.handleShake} className={'my_item'}>
           <i className={'iconfont iconcaogaoxiang'} />
           <span className={'my_item_con'}>草稿箱</span>
         </div>

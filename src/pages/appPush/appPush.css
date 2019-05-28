@@ -80,4 +80,8 @@
 .app_push_more .iconfont{
     font-size: 0.32rem;
 }
+.app_push_load_more{
+    padding-top: 0.3rem;
+    text-align: center;
+}
 

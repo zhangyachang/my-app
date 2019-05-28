@@ -1,7 +1,3 @@
-.plan1{
-
-}
-
 /* 导航栏 */
 .plan1_navbar{
     align-items: center;
@@ -15,10 +11,11 @@
     border-radius: 0.2rem;
 }
 .plan1_navbar_item_active{
-
     background: #fff;
 }
-
+.plan1_navbar_item_active_date{
+    margin-left: 0.3rem;
+}
 
 /* 列表 */
 .plan1_list{
@@ -65,8 +62,6 @@
     font-size: 0.24rem;
     color: #999;
 }
-
-
 .plan1_add_plan{
     position: fixed;
     right: 0.4rem;
@@ -76,5 +71,7 @@
     width: 0.8rem;
     height: 0.8rem;
 }
-
-
+.plan_no_plan_tips{
+    text-align: center;
+    padding-top: 0.4rem;
+}

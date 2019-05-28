@@ -11,7 +11,7 @@ const $axios = (obj) => {
     obj.headers = obj.headers?obj.headers:'application/json;charset=utf-8';
     // 这里的是我的用户id
     obj.data.openid = ZERO.getSessionStorage('user') || ZERO.getLocalStorageItem('user');
-    ZERO.Loadding('加载中', 0);
+    obj.noLoadding || ZERO.Loadding('加载中', 0);
     axios({
       url: config.url + obj.url,
       method: obj.method,

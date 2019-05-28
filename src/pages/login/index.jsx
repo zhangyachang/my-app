@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './login.css'
-import {Modal, Button} from "antd-mobile";
+import { Modal, Button } from "antd-mobile";
 import ZERO from '../../config/zero'
-import {$axios} from '../../config/server'
+import { $axios } from '../../config/server'
 
 const alert = Modal.alert;
 
 class Login extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       user: '',
@@ -21,9 +21,9 @@ class Login extends Component {
   }
 
   // 切换下拉列表
-  showLoginUser = () =>{
+  showLoginUser = () => {
     let is = this.state.loginHistory.is;
-    let icon = is?'iconxialajiantou':'iconjiantouxiangshang';
+    let icon = is ? 'iconxialajiantou' : 'iconjiantouxiangshang';
     this.setState({
       loginHistory: {
         is: !is,
@@ -55,10 +55,10 @@ class Login extends Component {
   // 提交用户名密码
   handleSubmit = () => {
     console.log('点击了登录按钮');
-    if(!this.state.user){
+    if (!this.state.user) {
       return ZERO.Toast('用户名不能为空');
     }
-    if(!this.state.password){
+    if (!this.state.password) {
       return ZERO.Toast('密码不能为空');
     }
     $axios({
@@ -71,13 +71,13 @@ class Login extends Component {
       }
     })
       .then(res => {
-        if(res.status === 200){
+        if (res.status === 200) {
           // ZERO.Toast('登录成功');
           ZERO.setLoginHistory(this.state.user);
           this.shoeModel(res.data.uid);
-        }else if(res.status === 250){
+        } else if (res.status === 250) {
           ZERO.Toast('请检查用户名是否正确');
-        }else if(res.status === 400){
+        } else if (res.status === 400) {
           ZERO.Toast('用户名或密码错误');
         }
       })
@@ -115,19 +115,19 @@ class Login extends Component {
 
   shoeModel = (uid) => {
     alert('记住密码', '该设备是否是你的手机或常用设备，是否要记住密码', [
-      { text: '取消', onPress: () => {this.notRememberPas(uid)} , style: 'default' },
-      { text: '记住密码', onPress: () => {this.rememberPas(uid)} , style: { fontWeight: 'bold' } },
+      { text: '取消', onPress: () => { this.notRememberPas(uid) }, style: 'default' },
+      { text: '记住密码', onPress: () => { this.rememberPas(uid) }, style: { fontWeight: 'bold' } },
     ]);
   };
 
   // 记住密码
   rememberPas = (uid) => {
-    ZERO.setLocaStorage({user: uid});
+    ZERO.setLocaStorage({ user: uid });
     this.props.history.push('/');
   };
   // 取消记住密码
   notRememberPas = (uid) => {
-    ZERO.setSessionStorage({user: uid});
+    ZERO.setSessionStorage({ user: uid });
     this.props.history.push('/');
   };
 
@@ -141,12 +141,12 @@ class Login extends Component {
     return (
       <div className='login'>
         <div className={'lg_logo flex flex-center'}>
-          <img src={require('../../static/img/logo/logo.png')} alt=""/>
+          <img src={require('../../static/img/logo/logo.png')} alt="" />
         </div>
         <div className={'lg_wrap'}>
           <div className={'lg_inputwrap lg_user'}>
             <i className={'iconfont iconyonghu'} />
-            <input value={state.user} type="text" onChange={this.handleUserInp} placeholder={'请输入用户名'}/>
+            <input value={state.user} type="text" onChange={this.handleUserInp} placeholder={'请输入用户名'} />
             <i className={'lg_downup iconfont ' + state.loginHistory.icon} onClick={this.showLoginUser} />
           </div>
 

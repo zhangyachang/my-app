@@ -207,6 +207,15 @@ export default {
     }
   },
 
+  // 震动手机
+  shakePhone(){
+    if (navigator.vibrate) {
+      navigator.vibrate(300);
+    } else if (navigator.webkitVibrate) {
+      navigator.webkitVibrate(300);
+    }
+  },
+
   // 获取用户 uid
   getUid(){
     let user = this.getLocalStorageItem('user') || this.getSessionStorage('user');

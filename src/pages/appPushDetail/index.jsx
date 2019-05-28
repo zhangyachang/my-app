@@ -17,9 +17,13 @@ class AppPushDetail extends Component {
         console.log(`拿取数据成`);
         console.log(res);
         if (res.status === 200) {
-          this.setState({
-            pushDetail: res.data[0]
-          })
+          if(res.data[0]){
+            this.setState({
+              pushDetail: res.data[0]
+            })
+          }else{
+            ZERO.Toast('详情查询失败，请稍后再试');
+          }
         } else if (res.status === 400) {
           ZERO.Toast('获取推送消息详情失败，请稍后再试');
         } else if (res.status === 500) {

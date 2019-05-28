@@ -183,6 +183,7 @@ const getUserPlanNumAndMore = (uid) => {
     $axios({
       url: '/bs/api/myInfo',
       method: 'GET',
+      noLoadding: true,
       params: {
         uid: uid
       }
@@ -242,6 +243,30 @@ const getPlanDetail = (planId) => {
   });
 };
 
+/**
+ * 根据日期和用户id查询用户当日计划的完成情况
+ * @params uid {String} 用户id
+ * @params date {String} 2019-5-27
+ */
+const getPlanByDate = (uid, date) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/planByDate',
+      method: 'GET',
+      params: {
+        uid,
+        date,
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+};
+
 
 export {
   sendAuthCode, // 
@@ -254,5 +279,6 @@ export {
   getUserPlanNumAndMore, // 查询用户的计划、关注、好友、粉丝信息
   getAppPushLogs, // 查询用户的历史推送记录
   getPlanDetail, // 根据计划 id 获取计划详情
+  getPlanByDate, // 根据日期和用户id查询用户当日计划的完成情况
 };
 

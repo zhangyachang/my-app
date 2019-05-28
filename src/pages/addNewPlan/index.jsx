@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import './addNewPlan.css';
 import Toptips from '../../components/topTips/index';
-import {Button, DatePicker, List} from 'antd-mobile';
-import {$axios} from '../../config/server'
+import { Button, DatePicker, List } from 'antd-mobile';
 import ZERO from '../../config/zero';
 
-import {addPlan} from '../../config/utils'
+import { addPlan } from '../../config/utils'
 
 const nowTimeStamp = Date.now();
 const now = new Date(nowTimeStamp);
 
 class AddNewPlan extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       // cover: false, // 遮罩层是否显示
@@ -35,17 +34,18 @@ class AddNewPlan extends Component {
   // 点击制定计划
   submitPlan = async () => {
     console.log(this.state);
-    const {title, con, date, endDate, wantStartTime} = this.state;
+    const { title, con, date, endDate, wantStartTime } = this.state;
     // 标题 内容 开始日期 结束日期 想要开始的时间
     console.log(title, con, date, endDate, wantStartTime);
-    console.log(1);
     
+    if(endDate.getTime() < date.getTime()){
+      return ZERO.Toast('结束日期不能小于开始日期');
+    }
     let uid = ZERO.getUid();
-
-    if(!title){
+    if (!title) {
       return ZERO.Toast('标题不能为空');
     }
-    
+
     let result = await addPlan({
       uid: uid,
       title: title,
@@ -54,19 +54,18 @@ class AddNewPlan extends Component {
       startDate: ZERO.formatStartDate(date),
       endDate: ZERO.formatEndtDate(endDate)
     });
-    console.log(`返回值`);
 
-    if(result.status === 200){
+    if (result.status === 200) {
       ZERO.Toast('计划制定成功');
       return this.props.history.goBack();
     }
-    if(result.status === 201){
+    if (result.status === 201) {
       return ZERO.Toast('开始时间格式不正确');
     }
-    if(result.status === 400){
+    if (result.status === 400) {
       return ZERO.Toast('计划制定失败');
     }
-    if(result.status === 500){
+    if (result.status === 500) {
       ZERO.Toast('服务器繁忙，请稍后再试');
     }
   };
@@ -85,7 +84,7 @@ class AddNewPlan extends Component {
   //     cover: true
   //   });
   // };
-  
+
   // // 阻止事件冒泡
   // preventDetault = (e) => {
   //   e.stopPropagation();
@@ -119,7 +118,7 @@ class AddNewPlan extends Component {
   //     return '低';
   //   }
   // };
-  
+
   // ******** 优先级的一些事件 end
 
 
@@ -135,13 +134,13 @@ class AddNewPlan extends Component {
               <p className='anp_tab_item_tips'>预估完成时长</p>
               <p>10分钟</p> */}
 
-              {/* <p>
+        {/* <p>
                 <span>难度</span>
                 {
                   <i className='iconfont iconxingxing'></i>
                 }
               </p> */}
-            {/* </div>
+        {/* </div>
             <div className='anp_tab_item_arrow'>
               <i className='iconfont iconyoujiantou1'></i>
             </div>
@@ -160,7 +159,7 @@ class AddNewPlan extends Component {
             </div>
           </div>
         </div> */}
-        
+
         {/* 加入一下选择时间的 start */}
 
         <DatePicker
@@ -200,12 +199,12 @@ class AddNewPlan extends Component {
           // minDate={this.state.minDate}
           // maxDate={this.state.maxDate}
           value={new Date(Date.now())}
-          onChange={time => this.setState({ wantStartTime:time })}
+          onChange={time => this.setState({ wantStartTime: time })}
         >
           <List.Item arrow="horizontal">预估开始时间</List.Item>
         </DatePicker>
 
-        
+
         {/* 加入一下选择时间的 end */}
 
         <div className='anp_con'>
@@ -219,7 +218,7 @@ class AddNewPlan extends Component {
             </textarea>
           </div>
         </div>
-        
+
         <Button onClick={this.submitPlan} className="anp_submit" type="primary">制定计划</Button>
 
         {/* 选择优先级遮罩层 */}
