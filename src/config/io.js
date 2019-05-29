@@ -20,13 +20,13 @@ socket.on('connect', () => {
 const uid = ZERO.getUid();
 
 if(uid){
-  console.log(`存在用户id吗`);
+  // console.log(`存在用户id吗`);
   socket.emit('userId', uid);
 }
 
 socket.on('aa', (...msg) => {
-  console.log(`接收到后台的消息`);
-  console.log(msg);
+  // console.log(`接收到后台的消息`);
+  // console.log(msg);
 });
 
 export default socket;

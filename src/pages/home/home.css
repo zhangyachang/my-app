@@ -32,7 +32,7 @@
     color: #FFF;
 }
 .ho_list{
-    padding-bottom: 1.1rem;
+    padding-bottom: 1.3rem;
     background: #F4F4F8;
 }
 .ho_list .plan_item:nth-child(1){
@@ -41,4 +41,3 @@
 .ho_list .plan_item{
     margin-top: 0.2rem;
 }
-

@@ -149,7 +149,6 @@ class ChangeUserInfo extends Component {
     });
   };
 
-
   componentDidMount() {
     if(this.props.location.query){
       let {type} = this.props.location.query;

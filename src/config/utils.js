@@ -1,4 +1,4 @@
-import {$axios} from "./server";
+import { $axios } from "./server";
 
 /*
  前端全局错误码
@@ -6,10 +6,10 @@ import {$axios} from "./server";
 */
 
 // 发送邮件的接口
-const sendAuthCode = ({type, to}) => {
+const sendAuthCode = ({ type, to }) => {
   return new Promise((resolve, reject) => {
-    if(!type || !to){
-      reject({status: 60000, data: '必填信息为空'});
+    if (!type || !to) {
+      reject({ status: 60000, data: '必填信息为空' });
     }
     $axios({
       url: '/bs/api/email',
@@ -36,7 +36,7 @@ const sendAuthCode = ({type, to}) => {
  *
  * @return PromiseFn
  */
-const changeUserAvatar = ({uid, avatar}) => {
+const changeUserAvatar = ({ uid, avatar }) => {
   return new Promise((resolve, reject) => {
     const formData = new FormData();
     formData.append('avatar', avatar);
@@ -267,9 +267,121 @@ const getPlanByDate = (uid, date) => {
   });
 };
 
+/**
+ * 查询用户发表的说说
+ * @params page {Nubmer} 第几页
+ */
+const getSs = (page) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/ss',
+      method: 'GET',
+      params: {
+        page: page
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+};
+
+/**
+ * 用户登录之后查询首页
+ * @params page {String} 页码
+ * @params uid {String} 用户id
+ */
+const getSsLogin = (page, uid) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/ssLogin',
+      method: 'GET',
+      params: {
+        page: page,
+        uid: uid
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+};
+
+/**
+ * 用户对说说进行点赞
+ * @params uid {String} 用户 uuid
+ * @params ssid {String} 说说 uuid
+ */
+const postSsLike = (uid, ssid) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/ssLike',
+      method: 'POST',
+      data: {
+        uid: uid,
+        ssId: ssid
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+};
+
+/**
+ * 用户对说说取消点赞
+ */
+const deleteSsLike = (ssLikeId) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/ssLike',
+      method: 'DELETE',
+      data: {
+        ssLikeId: ssLikeId
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+};
+
+/**
+ * 发表说说
+ * 以form表单的形式发送
+ */
+const postSs = (formData) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/ss',
+      method: 'POST',
+      headers: {'Content': 'multipart/form-data'},
+      data: formData
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+};
+
 
 export {
-  sendAuthCode, // 
+  sendAuthCode, // 发送验证码
   changeUserAvatar, // 修改用户头像
   addPlan,  // 添加计划
   searchPlanToday, // 查询用户今日计划
@@ -280,5 +392,9 @@ export {
   getAppPushLogs, // 查询用户的历史推送记录
   getPlanDetail, // 根据计划 id 获取计划详情
   getPlanByDate, // 根据日期和用户id查询用户当日计划的完成情况
+  getSs, // 首页查看用户发表说说
+  getSsLogin, // 登录之后查询说说的数量
+  postSsLike, // 用户对说说进行点赞
+  deleteSsLike, // 用户对说说取消点赞
+  postSs, // 发表说说
 };
-

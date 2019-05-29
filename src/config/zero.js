@@ -220,7 +220,7 @@ export default {
   getUid(){
     let user = this.getLocalStorageItem('user') || this.getSessionStorage('user');
     if(!user){
-      return <Redirect to='/404'/>
+      return false;
     }
     return user;
   },
