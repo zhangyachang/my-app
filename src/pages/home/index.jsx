@@ -14,7 +14,8 @@ class Home extends Component {
       ssList: [],
       page: 1,
       isLoadMoreShow: false, // 是否显示loadMore
-      loadTips: '点击加载更多'
+      loadTips: '点击加载更多',
+      isMore: true, // 是否还有更多
     }
   }
 
@@ -34,6 +35,9 @@ class Home extends Component {
    */
   getSsList = async (page, uid) => {
     let result;
+    if(!this.state.isMore){
+      return ;
+    }
     if (uid) {
       result = await getSsLogin(page, uid);
     } else {
@@ -43,7 +47,8 @@ class Home extends Component {
       if (result.data.length === 0) {
         this.setState({
           isLoadMoreShow: true,
-          loadTips: '没有更多数据了'
+          loadTips: '没有更多数据了',
+          isMore: false
         });
       } else {
         var c = this.state.ssList.concat(result.data);
@@ -70,14 +75,10 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    console.log('查询用户说说的发表');
     let uid = ZERO.getUid();
-    console.log(uid);
     if (uid) {
-      console.log('用户id存在');
       this.getSsList(1, uid);
     } else {
-      console.log('用户id不存在');
       this.getSsList(1); // 获取页面中的数据
     }
   }

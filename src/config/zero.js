@@ -2,9 +2,9 @@
 // https://www.npmjs.com/package/babel-plugin-import
 // 减少引入体积的，最后再导入吧，看起来挺麻烦的
 import {Toast} from "antd-mobile";
-import {Redirect} from 'react-router-dom'
+// import {Redirect} from 'react-router-dom'
 import url from 'url'
-import * as React from "react";
+// import * as React from "react";
 // Modal const alert = Modal.alert;
 
 export default {

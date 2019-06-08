@@ -124,7 +124,7 @@ class GetpasCheckType extends Component {
             this.state.time > 0 &&<span className={'gt_time'}>{this.state.time} S</span>
           }
           {
-            this.state.time == 0 && <span className={'gt_getcode'} onClick={this.handleGetCode}>点击获取验证码</span>
+            this.state.time === 0 && <span className={'gt_getcode'} onClick={this.handleGetCode}>点击获取验证码</span>
           }
 
         </div>

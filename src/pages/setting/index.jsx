@@ -29,7 +29,7 @@ class Setting extends Component {
     console.log(name);
     if(name === 'userManage'){
       return this.props.history.push('/accountManage');
-    }else if(name == 'userSecurity'){
+    }else if(name === 'userSecurity'){
       return this.props.history.push('/userSecurity');
     }
     ZERO.Toast('该权限暂时还未开放，请等待版本更新通知', 1.5);

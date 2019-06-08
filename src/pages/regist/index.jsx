@@ -84,9 +84,12 @@ class Regist extends Component {
   // 点击是否可以显示密码
   handleShowPas = (index) => {
     // console.log(index);
-    this.state.passShow[index] = !this.state.passShow[index] ;
+    // 使用下面的方法替换了直接改变 state 的内容，如果报注释下面两行换回来
+    let obj = this.state.passShow;
+    obj[index] = !obj[index]
+    // this.state.passShow[index] = !this.state.passShow[index];
     this.setState({
-      passShow: this.state.passShow
+      passShow: obj
     });
   };
 

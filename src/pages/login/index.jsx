@@ -146,7 +146,7 @@ class Login extends Component {
         <div className={'lg_wrap'}>
           <div className={'lg_inputwrap lg_user'}>
             <i className={'iconfont iconyonghu'} />
-            <input value={state.user} type="text" onChange={this.handleUserInp} placeholder={'请输入用户名'} />
+            <input value={state.user} type="text" onChange={this.handleUserInp} placeholder={'请输入邮箱或手机号'} />
             <i className={'lg_downup iconfont ' + state.loginHistory.icon} onClick={this.showLoginUser} />
           </div>
 

@@ -379,6 +379,49 @@ const postSs = (formData) => {
   });
 };
 
+/**
+ * 获取一个人的计划记录
+ */
+const getAllPlan =  (uid, page) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/plan',
+      params: {
+        uid: uid,
+        page: page
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  })
+};
+
+/**
+ * 获取一个用户的所有说说记录
+ */
+const getAllSs = (uid, page) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/ssListByUid',
+      method: 'GET',
+      params: {
+        uid: uid,
+        page: page
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  })
+};
+
 
 export {
   sendAuthCode, // 发送验证码
@@ -397,4 +440,6 @@ export {
   postSsLike, // 用户对说说进行点赞
   deleteSsLike, // 用户对说说取消点赞
   postSs, // 发表说说
+  getAllPlan, // 查询一个用户的计划
+  getAllSs, // 查询一个用户所有的说说
 };
