@@ -13,7 +13,7 @@ class MySsLogs extends Component {
       pageIndex: 1,
       planList: [],
       isShowLoadMoreTips: false,
-      Tips: '点击加载跟多',
+      Tips: '点击加载更多',
       isMore: true, // 是否还有更多
     }
   }
@@ -64,7 +64,6 @@ class MySsLogs extends Component {
     }
     this.getUserAllSs(this.state.pageIndex);
   }
-
 
   render() {
     return (

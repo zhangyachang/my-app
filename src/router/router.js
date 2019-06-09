@@ -28,11 +28,13 @@ import AppPush from "../pages/appPush";
 import ChangeUserInfo from "../pages/my/changeUserInfo";
 import Plan from "../pages/plan";  // 计划Tab
 import OperatorLogs from '../pages/my/operatorLogs'; // 个人操作记录
+import Charts from '../pages/my/charts'; // 折线图表
 
 import Ss from '../pages/ss';
 import AppPushDetail from '../pages/appPushDetail';  //查看推送详情
 import MyPlanLogs from '../pages/my/myPlanLogs';
 import MySsLogs from '../pages/my/mySsLogs';
+
 
 
 const routes = [
@@ -187,6 +189,14 @@ const routes = [
     auth: true,
     meta: {
       title: '操作记录'
+    }
+  },
+  {
+    path: '/charts',
+    component: Charts,
+    auth: true,
+    meta: {
+      title: '成长轨迹'
     }
   },
   {

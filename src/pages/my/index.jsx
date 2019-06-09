@@ -39,7 +39,8 @@ class My extends Component {
   // 点击成长记录
   handleGoLogs = () => {
     console.log(`111`);
-    this.props.history.push('/operatorLogs');
+    // this.props.history.push('/operatorLogs');
+    this.props.history.push('/charts');
   };
 
   // 点击设置

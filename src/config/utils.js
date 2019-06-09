@@ -367,7 +367,7 @@ const postSs = (formData) => {
     $axios({
       url: '/bs/api/ss',
       method: 'POST',
-      headers: {'Content': 'multipart/form-data'},
+      headers: { 'Content': 'multipart/form-data' },
       data: formData
     })
       .then(res => {
@@ -382,7 +382,7 @@ const postSs = (formData) => {
 /**
  * 获取一个人的计划记录
  */
-const getAllPlan =  (uid, page) => {
+const getAllPlan = (uid, page) => {
   return new Promise((resolve, reject) => {
     $axios({
       url: '/bs/api/plan',
@@ -422,6 +422,136 @@ const getAllSs = (uid, page) => {
   })
 };
 
+/**
+ * 获取用户正在进行的计划列表
+ * @params uid {String} 用户id
+ * @params page {String} 页码
+ */
+const onPlan = (uid, page) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/onPlan',
+      method: 'GET',
+      params: {
+        uid: uid,
+        page: page
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  })
+};
+
+/**
+ * 获取用户已经完成的计划列表
+ * @params uid {String} 用户id
+ * @params page {String} 页码
+ */
+const achievePlan = (uid, page) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/achievePlan',
+      method: 'GET',
+      params: {
+        uid: uid,
+        page: page
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  })
+};
+
+/**
+ * 获取用户还未开始的计划列表
+ * @params uid {String} 用户id
+ * @params page {String} 页码
+ */
+const offNoneDonePlan = (uid, page) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/noDone',
+      method: 'GET',
+      params: {
+        uid: uid,
+        page: page
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  })
+};
+
+/**
+ * 获取用户 id
+ */
+const getPlanByPid = (pid) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/planDetailByPid',
+      method: 'GET',
+      params: {
+        pid: pid
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  })
+};
+
+/**
+ * 修改计划
+ */
+const updatePlanById = (obj) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/plan1',
+      method: 'PUT',
+      data: obj
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
+/**
+ * 请求一段时间内的成长数据
+ */
+const getChartsData = () => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/plan1',
+      method: 'PUT',
+      data: obj
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
 
 export {
   sendAuthCode, // 发送验证码
@@ -442,4 +572,11 @@ export {
   postSs, // 发表说说
   getAllPlan, // 查询一个用户的计划
   getAllSs, // 查询一个用户所有的说说
+  onPlan, // 返回用户正在进行的计划
+  achievePlan, // 已经完成的计划
+  offNoneDonePlan, //还未开始的计划
+  getPlanByPid, // 通过计划 id 查询计划
+  updatePlanById, // 更新计划
+  getChartsData, // 请求一段时间内的成长数据
+  
 };

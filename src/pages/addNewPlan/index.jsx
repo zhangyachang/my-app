@@ -4,7 +4,7 @@ import Toptips from '../../components/topTips/index';
 import { Button, DatePicker, List } from 'antd-mobile';
 import ZERO from '../../config/zero';
 
-import { addPlan } from '../../config/utils'
+import { addPlan, getPlanByPid, updatePlanById } from '../../config/utils'
 
 const nowTimeStamp = Date.now();
 const now = new Date(nowTimeStamp);
@@ -20,6 +20,7 @@ class AddNewPlan extends Component {
       date: now, // 开始时间
       endDate: now, // 结束日期
       wantStartTime: now, // 想要开始时间
+      isAdd: true,
       // minDate: new Date(Date.now() - 1e7), // 预估开始的最少时间
       // maxDate: new Date(Date.now() + 1e7), // 预估开始的最大时间
 
@@ -37,8 +38,8 @@ class AddNewPlan extends Component {
     const { title, con, date, endDate, wantStartTime } = this.state;
     // 标题 内容 开始日期 结束日期 想要开始的时间
     console.log(title, con, date, endDate, wantStartTime);
-    
-    if(endDate.getTime() < date.getTime()){
+
+    if (endDate.getTime() < date.getTime()) {
       return ZERO.Toast('结束日期不能小于开始日期');
     }
     let uid = ZERO.getUid();
@@ -46,29 +47,56 @@ class AddNewPlan extends Component {
       return ZERO.Toast('标题不能为空');
     }
 
-    let result = await addPlan({
-      uid: uid,
-      title: title,
-      con,
-      planTime: ZERO.formatWantTime(wantStartTime),
-      startDate: ZERO.formatStartDate(date),
-      endDate: ZERO.formatEndtDate(endDate)
-    });
+    if(this.state.isAdd){
+      // 添加
+      let result = await addPlan({
+        uid: uid,
+        title: title,
+        con,
+        planTime: ZERO.formatWantTime(wantStartTime),
+        startDate: ZERO.formatStartDate(date),
+        endDate: ZERO.formatEndtDate(endDate)
+      });
+  
+      if (result.status === 200) {
+        ZERO.Toast('计划制定成功');
+        return this.props.history.goBack();
+      }
+      if (result.status === 201) {
+        return ZERO.Toast('开始时间格式不正确');
+      }
+      if (result.status === 400) {
+        return ZERO.Toast('计划制定失败');
+      }
+      if (result.status === 500) {
+        ZERO.Toast('服务器繁忙，请稍后再试');
+      }
+    }else{
+      // 修改
+      let search = this.props.history.location.search;
+      let { changePlanId } = ZERO.parseUrl(search)
 
-    if (result.status === 200) {
-      ZERO.Toast('计划制定成功');
-      return this.props.history.goBack();
-    }
-    if (result.status === 201) {
-      return ZERO.Toast('开始时间格式不正确');
-    }
-    if (result.status === 400) {
-      return ZERO.Toast('计划制定失败');
-    }
-    if (result.status === 500) {
-      ZERO.Toast('服务器繁忙，请稍后再试');
+      let resut = await updatePlanById({
+        uid: uid, 
+        title: this.state.title,
+        con: this.state.con,
+        planTime: ZERO.formatWantTime(wantStartTime),
+        startDate: ZERO.formatStartDate(date),
+        endDate: ZERO.formatEndtDate(endDate),
+        pid: changePlanId
+      });
+      if(resut.status === 200){
+        ZERO.Toast('修改成功');
+        return this.props.history.goBack();
+      }else if(resut.status === 400){
+        return ZERO.Toast('计划修改失败');
+      }else if(resut.status === 500){
+        ZERO.Toast('服务器繁忙，请稍后再试');
+      }
     }
   };
+
+  
 
   // 控制改变
   handleChange = (e) => {
@@ -76,6 +104,54 @@ class AddNewPlan extends Component {
       [e.target.name]: e.target.value
     });
   };
+
+
+  // 通过计划 id 查询计划
+  searchPlanByPid = async (pid) => {
+    let result = await getPlanByPid(pid);
+    console.log('获取到的结果');
+    console.log(result);
+    // 把时间化为时间戳
+    let reqObj = result.data[0];
+    // 处理请求到的结果中的时间
+    let now = new Date();
+    const [year, month, day] = [now.getFullYear(), now.getMonth() + 1, now.getDate()]
+    console.log(year, month, day);
+
+    // 处理计划时间
+    let [plan_time_hours, plan_time_minutes] = reqObj.plan_time.split(':');
+    reqObj.plan_time = new Date(`${year} ${month} ${day} ${plan_time_hours}:${plan_time_minutes}`);
+
+    // 处理开始时间
+    let [start_date_year, start_date_month, start_data_day] = reqObj.p_start_date.split(' ')[0].split('-');
+    reqObj.p_start_date = new Date(`${start_date_year} ${start_date_month} ${start_data_day} 00:00:00`);
+    // 处理结束时间
+    let [end_date_year, end_date_month, end_date_day] = reqObj.p_end_date.split(' ')[0].split('-');
+    reqObj.p_end_date = new Date(`${end_date_year} ${end_date_month} ${end_date_day} 23:59:59`);
+
+    console.log(reqObj);
+
+    this.setState({
+      title: reqObj.p_title,
+      con: reqObj.p_con,
+      wantStartTime: reqObj.plan_time,
+      date: reqObj.p_start_date, // 开始时间
+      endDate: reqObj.p_end_date
+    });
+    
+  };
+
+  componentDidMount() {
+    let search = this.props.history.location.search;
+    let { changePlanId } = ZERO.parseUrl(search)
+    if (changePlanId) {
+      this.searchPlanByPid(changePlanId);
+      this.setState({
+        isAdd: false
+      })
+    }
+  }
+
 
   // ****** 优先级的一些事件 start
   // 点击选择优先级
@@ -166,6 +242,7 @@ class AddNewPlan extends Component {
           mode="date"
           title="开始日期"
           extra="Optional"
+          disabled={this.state.isAdd?false:true}
           minDate={new Date(Date.now())}
           value={this.state.date}
           onChange={date => this.setState({ date })}
@@ -198,7 +275,7 @@ class AddNewPlan extends Component {
           title="预估开始时间"
           // minDate={this.state.minDate}
           // maxDate={this.state.maxDate}
-          value={new Date(Date.now())}
+          value={this.state.isAdd?new Date(Date.now()):this.state.wantStartTime}
           onChange={time => this.setState({ wantStartTime: time })}
         >
           <List.Item arrow="horizontal">预估开始时间</List.Item>
@@ -214,12 +291,16 @@ class AddNewPlan extends Component {
           </div>
 
           <div className='anp_con_con'>
-            <textarea name='con' defaultValue={this.state.con} onChange={this.handleChange} className='anp_con_con_textarea' cols="30" rows="10" placeholder='请输入正文描述'>
+            <textarea name='con' value={this.state.con} onChange={this.handleChange} className='anp_con_con_textarea' cols="30" rows="10" placeholder='请输入正文描述'>
             </textarea>
           </div>
         </div>
 
-        <Button onClick={this.submitPlan} className="anp_submit" type="primary">制定计划</Button>
+        <Button onClick={this.submitPlan} className="anp_submit" type="primary">
+          {
+            this.state.isAdd ? '制定计划' : '确认修改'
+          }
+        </Button>
 
         {/* 选择优先级遮罩层 */}
         {/* {
