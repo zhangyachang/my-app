@@ -1,0 +1,58 @@
+.ss_detail{
+  padding-bottom: 0.8rem;
+}
+.ss_detail_com_header{
+  font-weight: bold;
+  padding: 0 0.3rem;
+}
+.ss_detail_comment{
+  padding-top: 0.2rem;
+}
+.sdc_item{
+  padding: 0.1rem 0;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.sdc_item_wrap{
+  align-items: center;
+}
+.sdc_item_avatar{
+  flex-shrink: 0;
+  overflow: hidden;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+}
+.sdc_item_avatar img{
+  width: 100%;
+  height: 100%;
+}
+.sdc_item_name{
+  color: #D77729;
+}
+.sdc_time{
+  text-indent: 0.8rem;
+}
+
+.sdc_cominput{
+  position: fixed;
+  bottom: 0.1rem;
+  left: 0;
+  width: 100%;
+}
+.sdc_cominput input{
+  width: 100%;
+  margin-left: 0.1rem;
+}
+.sdc_cominput_btn{
+  width: 0.9rem;
+  margin: 0 0.2rem;
+  align-self: flex-end;
+  padding: 0.14rem 0.1rem;
+  border-radius: 0.08rem;
+  font-size: 0.24rem;
+  color: #fff;
+  background: #07C160;
+  transition: color 0.1s;
+}

@@ -23,14 +23,14 @@
     align-items: center;
     color: #999;
 }
-.tabbar .appPush::after{
+/* .tabbar .appPush::after{
     content: "";
     position: absolute;
     right: 0.44rem;
     top: 0.1rem;
     border: 0.08rem solid red;
     border-radius: 50%;
-}
+} */
 .tabbar .iconfont{
     font-size: 0.46rem;
 }

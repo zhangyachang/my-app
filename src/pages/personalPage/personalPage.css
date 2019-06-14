@@ -1,5 +1,6 @@
 .personal_page{
     position: relative;
+    padding-bottom: 0.4rem;
 }
 .pp_header{
     height: 4rem;
@@ -44,9 +45,6 @@
     margin-top: 0.1rem;
     padding: 0 0.3rem;
     color: #fff;
-}
-.plan_list{
-    padding-bottom: 0.4rem;
 }
 .plan_list .plan_item {
     margin-top: 0.2rem;

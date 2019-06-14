@@ -29,11 +29,11 @@ class Message extends Component {
               <p className={'me_user_info_name'}>助手群聊</p>
               <span>15:43</span>
             </div>
-            <p className={'me_user_info_con ellipse'}>你还在吗？？</p>
+            <p className={'me_user_info_con ellipse'}>此功能仅供交流使用</p>
           </div>
         </div>
 
-        <div onClick={this.handleChat.bind(this, '用户的id')} className={'me_item flex'}>
+        {/* <div onClick={this.handleChat.bind(this, '用户的id')} className={'me_item flex'}>
           <div className={'me_avatar flex-shirink'}>
             <img src={require('../../static/img/home/download.jpg')} alt=""/>
           </div>
@@ -45,7 +45,7 @@ class Message extends Component {
             </div>
             <p className={'me_user_info_con ellipse'}>你还在吗？？</p>
           </div>
-        </div>
+        </div> */}
 
 
         {/* <div onClick={this.handleAppPush} className={'me_item flex'}>

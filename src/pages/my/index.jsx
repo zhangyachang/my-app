@@ -163,7 +163,7 @@ class My extends Component {
 
         <div onClick={this.handleGoLogs} className={'my_item'}>
           <i className={'iconfont icondengyu'} />
-          <span className={'my_item_con'}>成长记录</span>
+          <span className={'my_item_con'}>成长曲线</span>
         </div>
 
         <div onClick={this.handleGoSetting} className={'my_item'}>

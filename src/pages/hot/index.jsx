@@ -7,13 +7,14 @@ class Hot extends Component {
   constructor(props){
     super(props);
     this.state = {
-      searchValue: ''
+      searchValue: '',
+      searchHistory: ZERO.getLocalStorageItem('searchHistory')
     };
   }
 
   // 子组件获取焦点触发
   handleOnFocus = () => {
-    console.log('获取焦点事件触发');
+    // console.log('获取焦点事件触发');
   };
 
   // 子组件input值改变触发
@@ -24,14 +25,39 @@ class Hot extends Component {
     });
   };
 
+  // 点击删除搜索历史
+  handleDeleteSearchHistory = () => {
+    ZERO.removeLocalStorageItem('searchHistory');
+    this.setState({
+      searchHistory: ZERO.getLocalStorageItem('searchHistory')
+    });
+  };
+
+  // 点击关键字信息进行搜索
+  searchSsByKeyword = (keyword) => {
+    console.log();
+    this.props.history.push(`/?search=${keyword.trim()}`);
+  };
+
   // 点击搜索按钮
   handleSubmit = () => {
-    if(!this.state.searchValue){
+    if(!this.state.searchValue.trim()){
       ZERO.Toast('请输入值再点击搜索哦！');
       return ;
     }
-    console.log('点击了搜索按钮');
-    console.log(this.state.searchValue);
+    // 本地存储搜索历史
+    let searchArr = ZERO.getLocalStorageItem('searchHistory');
+    if(searchArr){
+      searchArr.push(this.state.searchValue);
+    }else{
+      searchArr = [this.state.searchValue];
+    }
+    // console.log(searchArr);
+    searchArr = [...new Set([...searchArr])];
+    ZERO.setLocaStorage({
+      searchHistory: searchArr
+    });
+    this.props.history.push(`/?search=${this.state.searchValue.trim()}`);
   };
 
   render() {
@@ -47,16 +73,23 @@ class Hot extends Component {
         <div className={'hs_title'}>
           <p className={'hs_title_title flex'}>
             <span>历史搜索</span>
-            <i className={'iconfont iconziyuan'} />
+            <i onClick={this.handleDeleteSearchHistory} className={'iconfont iconziyuan'} />
           </p>
         </div>
 
         <div className={'hs_history flex'}>
-          <p>科比</p>
+          {
+            this.state.searchHistory &&  this.state.searchHistory.map((item, index) => {
+              return (<p key={index} onClick={this.searchSsByKeyword.bind(this, item)}>
+                {item}
+              </p>)
+            })
+          }
+          {/* <p>科比</p>
           <p>张亚昌</p>
           <p>成功</p>
           <p>目标</p>
-          <p>javaScript设计模式</p>
+          <p>javaScript设计模式</p> */}
         </div>
 
         <div className={'hs_title'}>

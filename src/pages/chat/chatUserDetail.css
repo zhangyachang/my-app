@@ -3,8 +3,11 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    padding-bottom: 1.2rem;
 }
-
+.chat_room_tips{
+    padding: 0 0.3rem;
+}
 .cr_list{
     padding: 0 0.3rem;
     overflow: scroll;

@@ -14,10 +14,15 @@ class SearchInp extends Component {
     this.props.onChange && this.props.onChange(e);
   };
 
+  // 失去焦点事件
+  handleOnBlur = () => {
+    this.props.onBlur && this.props.onBlur();
+  };
+
   render() {
     return (
       <div className={'ho_input_wrap flex-one flex flex-item'}>
-        <input className={'flex-one'} onFocus={this.handleOnFocus} onChange={this.handleChange} defaultValue={this.props.searchValue} type="text" placeholder={'您要搜索的内容'}/>
+        <input className={'flex-one'} onFocus={this.handleOnFocus} onBlur={this.handleOnBlur} onChange={this.handleChange} defaultValue={this.props.searchValue} type="text" placeholder={'您要搜索的内容'}/>
         <i className={'p_icon iconfont iconsousuo'}></i>
     </div>
     );

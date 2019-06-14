@@ -30,10 +30,11 @@ import Plan from "../pages/plan";  // 计划Tab
 import OperatorLogs from '../pages/my/operatorLogs'; // 个人操作记录
 import Charts from '../pages/my/charts'; // 折线图表
 
-import Ss from '../pages/ss';
+import Ss from '../pages/ss'; // 说说
 import AppPushDetail from '../pages/appPushDetail';  //查看推送详情
 import MyPlanLogs from '../pages/my/myPlanLogs';
 import MySsLogs from '../pages/my/mySsLogs';
+import SsDetail from '../pages/ssDetail'; // 说说详情
 
 
 
@@ -76,6 +77,14 @@ const routes = [
     auth: true,
     meta: {
       title: '个人中心'
+    }
+  },
+  {
+    path: '/ssDetail',
+    component: SsDetail,
+    auth: true,
+    meta: {
+      title: '说说详情'
     }
   },
   {
@@ -132,7 +141,7 @@ const routes = [
     component: PersonalPage,
     auth: true,
     meta: {
-      title: '一个人的名字，进去的时候改一下的个人主页'
+      title: '个人主页'
     }
   },
   {
@@ -204,7 +213,7 @@ const routes = [
     component: Chat,
     auth: true,
     meta: {
-      title: '进入的时候修改这个标题'
+      title: '助手群聊'
     }
   },
   {

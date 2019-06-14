@@ -130,6 +130,7 @@ class Plan extends Component {
   // 页面加载完成
   async componentDidMount() {
     this.searchTodayPlan();
+    console.log(ZERO.regPhone(15566666661));
   }
 
   // 点击改变状态

@@ -15,15 +15,16 @@ class PlanItem extends Component {
 
   // 跳转到一个人的个人主页
   goPersonalPage = (userId) => {
-    if (this.props.history.location.pathname === '/personalPage') {
-      console.log('不要跳转');
-      return;
-    }
+    // if (this.props.history.location.pathname === '/personalPage') {
+    //   this.props.history.push(`/personalPage?userId=${userId}`);
+    // }
     this.props.history.push(`/personalPage?userId=${userId}`);
+
   };
 
-  handleComment = () => {
+  handleComment = (ssId) => {
     console.log('评论了');
+    this.props.history.push(`/ssDetail?ssId=${ssId}`);
   };
 
   /**
@@ -97,10 +98,11 @@ class PlanItem extends Component {
 
   render() {
     const itemData = this.state.itemData;
+
     return (
       <div className={'plan_item'}>
-        <div onClick={this.goPersonalPage.bind(this, 'useId')} className={'pi_header flex'}>
-          <div className={'pi_header_avatar'}>
+        <div className={'pi_header flex'}>
+          <div onClick={this.goPersonalPage.bind(this, itemData.uid)} className={'pi_header_avatar'}>
             <img src={config.url + itemData.avatar} alt="" />
           </div>
           <div className={'pi_timewrap'}>
@@ -139,7 +141,7 @@ class PlanItem extends Component {
             <i className={'iconfont iconyanjing3'} />
             <span>{itemData.read_count}</span>
           </div>
-          <div className={'pi_support_item'} onClick={this.handleComment.bind()}>
+          <div className={'pi_support_item'} onClick={this.handleComment.bind(this, itemData.s_uid)}>
             <i className={'iconfont iconpinglun'} />
             <span>{itemData.com_count}</span>
           </div>

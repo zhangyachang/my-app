@@ -293,8 +293,9 @@ const getSs = (page) => {
  * 用户登录之后查询首页
  * @params page {String} 页码
  * @params uid {String} 用户id
+ * @params flag 是否允许loadding
  */
-const getSsLogin = (page, uid) => {
+const getSsLogin = (page, uid, flag = false) => {
   return new Promise((resolve, reject) => {
     $axios({
       url: '/bs/api/ssLogin',
@@ -302,7 +303,8 @@ const getSsLogin = (page, uid) => {
       params: {
         page: page,
         uid: uid
-      }
+      },
+      noLoadding: flag
     })
       .then(res => {
         resolve(res);
@@ -403,7 +405,7 @@ const getAllPlan = (uid, page) => {
 /**
  * 获取一个用户的所有说说记录
  */
-const getAllSs = (uid, page) => {
+const getAllSs = (uid, page, flag = false) => {
   return new Promise((resolve, reject) => {
     $axios({
       url: '/bs/api/ssListByUid',
@@ -411,7 +413,8 @@ const getAllSs = (uid, page) => {
       params: {
         uid: uid,
         page: page
-      }
+      },
+      noLoadding: flag
     })
       .then(res => {
         resolve(res);
@@ -535,14 +538,16 @@ const updatePlanById = (obj) => {
 };
 
 /**
- * 请求一段时间内的成长数据
+ * 请求周成长数据
  */
-const getChartsData = () => {
+const getChartsData = (uid) => {
   return new Promise((resolve, reject) => {
     $axios({
-      url: '/bs/api/plan1',
-      method: 'PUT',
-      data: obj
+      url: '/bs/api/chartsWeek',
+      method: 'GET',
+      params: {
+        uid: uid
+      }
     })
       .then(res => {
         resolve(res);
@@ -552,6 +557,160 @@ const getChartsData = () => {
       });
   });
 };
+
+/**
+ * 通过关键字对说说进行搜索 未登录
+ * @params search {String} 关键字
+ * @params page {int} 页码
+ */
+const getSsSearchAll = (search, page) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/ssSearchAll',
+      method: 'GET',
+      params: {
+        page: page,
+        search: search
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+};
+
+/**
+ * 通过关键字对说说进行搜索 已登录
+ * @params obj 
+ *  obj.search {String} 关键字
+ *  obj.page {int} 页码
+ *  obj.uid {String} 用户 id
+ */
+const getSsSearchAllLogin = (obj) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/ssSearchAllLogin',
+      method: 'GET',
+      params: {
+        page: obj.page,
+        search: obj.search,
+        uid: obj.uid
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+};
+
+/**
+ * 关键字搜索一个用户的说说
+  * @params obj 
+ *  obj.search {String} 关键字
+ *  obj.page {int} 页码
+ *  obj.uid {String} 用户 id
+ */
+const getSsSearchUser = (obj) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/ssSearchUser',
+      method: 'GET',
+      params: {
+        page: obj.page,
+        search: obj.search,
+        uid: obj.uid
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+};
+
+/**
+ * 获取说说的详情
+ * @params ssId {String} 说说id
+ */
+const getSsDetailById = (ssId) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/ssDetail',
+      method: 'GET',
+      params: {
+        ssId: ssId
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+};
+
+/**
+ * 获取说说的评论
+ * @params ssId {String} 说说 uid
+ * @parmas page {Int} 页码
+ * @params loadding {Boolean} 是否加载 loadding 框
+ */
+const getSsComments = (ssId, page, isloadding = false) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/ssComment',
+      method: 'GET',
+      params: {
+        ssId: ssId,
+        page: page
+      },
+      noLoadding: isloadding
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+};
+
+/**
+ * 用户对说说进行评论
+ * @params obj {Object} 
+ *  obj.uid {String} 用户id
+ *  obj.ssId {String} 说说id
+ *  obj.content {String} 评论内容
+ */
+const userComSs = (obj) => {
+  return new Promise((resolve, reject) => {
+    $axios({
+      url: '/bs/api/ssComment',
+      method: 'POST',
+      data: {
+        uid: obj.uid,
+        ssId: obj.ssId,
+        content: obj.content
+      }
+    })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+}
+
 
 export {
   sendAuthCode, // 发送验证码
@@ -564,7 +723,7 @@ export {
   getUserPlanNumAndMore, // 查询用户的计划、关注、好友、粉丝信息
   getAppPushLogs, // 查询用户的历史推送记录
   getPlanDetail, // 根据计划 id 获取计划详情
-  getPlanByDate, // 根据日期和用户id查询用户当日计划的完成情况
+  getPlanByDate, // 根据日期和用户 id 查询用户当日计划的完成情况
   getSs, // 首页查看用户发表说说
   getSsLogin, // 登录之后查询说说的数量
   postSsLike, // 用户对说说进行点赞
@@ -578,5 +737,10 @@ export {
   getPlanByPid, // 通过计划 id 查询计划
   updatePlanById, // 更新计划
   getChartsData, // 请求一段时间内的成长数据
-  
+  getSsSearchAll, // 通过关键字对说说进行搜索 未登录
+  getSsSearchAllLogin, // 通过关键字对说说进行搜索 已登录
+  getSsSearchUser, // 通过关键字搜索一个用户的一些说说
+  getSsDetailById, // 通过说说id获取说说详情
+  getSsComments, // 查看说说的评论
+  userComSs, // 用户评论说说
 };
