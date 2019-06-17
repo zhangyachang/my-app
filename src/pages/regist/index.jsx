@@ -115,7 +115,7 @@ class Regist extends Component {
   sendEmail = (email) => {
     $axios({
       url: '/bs/api/email',
-      method: 'POST',
+      method: 'POST', 
       data: {
         to: email,
         type: 1
