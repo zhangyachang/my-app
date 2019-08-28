@@ -5,10 +5,10 @@ import ZERO from "./zero";
 
 const $axios = (obj) => {
   return new Promise((resolve, reject) => {
-    obj.method = obj.method?obj.method:'GET';
-    obj.data = obj.data ? obj.data: {};
-    obj.params = obj.params ?obj.params:{};
-    obj.headers = obj.headers?obj.headers:'application/json;charset=utf-8';
+    obj.method = obj.method ? obj.method : 'GET';
+    obj.data = obj.data ? obj.data : {};
+    obj.params = obj.params ? obj.params : {};
+    obj.headers = obj.headers ? obj.headers : 'application/json;charset=utf-8';
     // 这里的是我的用户id
     obj.data.openid = ZERO.getSessionStorage('user') || ZERO.getLocalStorageItem('user');
     obj.noLoadding || ZERO.Loadding('加载中', 0);
@@ -20,16 +20,16 @@ const $axios = (obj) => {
       data: obj.data,
     })
       .then(res => {
-        if(res.status === 200){
+        if (res.status === 200) {
           ZERO.hideToast();
           return resolve(res.data);
-        }else if(res.data.status === 50001){
+        } else if (res.data.status === 50001) {
           ZERO.hideToast();
           ZERO.Toast('登录信息已过期，请重新登录');
           ZERO.removeSessionStorage('user');
           ZERO.removeLocalStorageItem('user');
           return reject(res);
-        } else{
+        } else {
           ZERO.hideToast();
           ZERO.Toast('服务器繁忙，请稍后再试...');
           return reject(res);
@@ -47,6 +47,6 @@ const server = {
   axios: $axios
 };
 
-export {$axios};
+export { $axios };
 
 export default server;

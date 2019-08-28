@@ -82,7 +82,7 @@ class Plan extends Component {
         this.setState({
           isShowNoPlan: false
         });
-        
+
         // 这里的路由要修改一下
         // console.log('执行了吗');
         // console.log(this.props.history);
