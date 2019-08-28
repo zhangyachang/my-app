@@ -2,7 +2,7 @@
 
 
 
-本项目可以查看在线连接地址 bs.xiaoye121.com
+本项目可以查看在线连接地址 [bs.xiaoye121.com](http://bs.xiaoye121.com)
 
 
 
