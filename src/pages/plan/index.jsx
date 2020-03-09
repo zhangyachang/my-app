@@ -3,7 +3,7 @@ import './plan.css'
 import TabBar from '../../components/tabBar/index';
 import ZERO from '../../config/zero';
 import { searchPlanToday, putPlanStatus, yesterdayPlan, getPlanByDate } from '../../config/utils';
-import { Modal, Calendar } from 'antd-mobile';
+import { Modal, Calendar, Toast } from 'antd-mobile';
 const alert = Modal.alert;
 
 
@@ -39,10 +39,10 @@ class Plan extends Component {
     // console.log(`今日计划`);
     // console.log(result);
     if (result.status === 400) {
-      return ZERO.Toast('查询失败，请稍后再试');
+      return Toast.info('查询失败，请稍后再试');
     }
     if (result.status === 500) {
-      return ZERO.Toast('服务器繁忙，请稍后再试');
+      return Toast.info('服务器繁忙，请稍后再试');
     }
     if (result.status === 200) {
       this.setState({
@@ -59,7 +59,7 @@ class Plan extends Component {
         });
       }
     } else {
-      return ZERO.Toast('服务器繁忙，请稍后再试');
+      return Toast.info('服务器繁忙，请稍后再试');
     }
   };
 
@@ -90,10 +90,10 @@ class Plan extends Component {
       }
     }
     if (result.status === 400) {
-      return ZERO.Toast('查询失败');
+      return Toast.info('查询失败');
     }
     if (result.statsu === 500) {
-      return ZERO.Toast('服务器繁忙，请稍后再试');
+      return Toast.info('服务器繁忙，请稍后再试');
     }
   };
 
@@ -120,10 +120,10 @@ class Plan extends Component {
       }
     }
     if (result.status === 400) {
-      return ZERO.Toast('查询失败');
+      return Toast.info('查询失败');
     }
     if (result.statsu === 500) {
-      return ZERO.Toast('服务器繁忙，请稍后再试');
+      return Toast.info('服务器繁忙，请稍后再试');
     }
   };
 
@@ -169,7 +169,7 @@ class Plan extends Component {
     } else if (obj.status === 1) {
       type = 'success';
     } else {
-      return ZERO.Toast('状态错误,无法开始');
+      return Toast.info('状态错误,无法开始');
     }
     console.log(obj);
     let result = await putPlanStatus({
@@ -183,20 +183,20 @@ class Plan extends Component {
       // window.history.go(0);
       this.searchTodayPlan();
       // ZERO.shakePhone();
-      return ZERO.Toast('计划完成,有一条新的推送消息');
+      return Toast.info('计划完成,有一条新的推送消息');
     }
     if (result.status === 250) {
-      return ZERO.Toast('type类型错误');
+      return Toast.info('type类型错误');
     }
     if (result.status === 251) {
-      return ZERO.Toast('不可以修改非本日期的计划');
+      return Toast.info('不可以修改非本日期的计划');
     }
 
     if (result.status === 400) {
-      return ZERO.Toast('修改失败');
+      return Toast.info('修改失败');
     }
     if (result.status === 500) {
-      return ZERO.Toast('服务器繁忙，请稍后再试');
+      return Toast.info('服务器繁忙，请稍后再试');
     }
   }
 

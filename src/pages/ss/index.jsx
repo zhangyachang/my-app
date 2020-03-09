@@ -3,6 +3,7 @@ import './ss.css'
 import { Button } from 'antd-mobile'
 import ZERO from '../../config/zero'
 import {postSs} from '../../config/utils'
+import { Toast } from "antd-mobile";
 
 class Ss extends Component {
   constructor(props) {
@@ -19,12 +20,12 @@ class Ss extends Component {
   addSs = async () => {
     let uid = ZERO.getUid();
     if(!uid){
-      return ZERO.Toast('登录信息过期，请重新登录');
+      return Toast.info('登录信息过期，请重新登录');
       
     }
     let content = this.state.textareaValue;
     if(!content){
-      return ZERO.Toast('内容不能为空');
+      return Toast.info('内容不能为空');
     }
     
     let formData = new FormData();
@@ -40,16 +41,16 @@ class Ss extends Component {
     console.log('请求结果');
     console.log(result);
     if(result.status === 200){
-      ZERO.Toast('发表成功');
+      Toast.info('发表成功');
       return this.props.history.goBack();
     }
     if(result.status === 400){
-      return ZERO.Toast('发表失败');
+      return Toast.info('发表失败');
     }
     if(result.status === 500){
-      return ZERO.Toast('服务器繁忙，请稍后再试');
+      return Toast.info('服务器繁忙，请稍后再试');
     }
-    ZERO.Toast('发表失败');
+    Toast.info('发表失败');
   };
 
   handleOnchange = (e) => {

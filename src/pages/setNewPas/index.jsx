@@ -1,12 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './setNewPas.css'
 import TopTips from '../../components/topTips/index'
-import {Button} from "antd-mobile";
-import ZERO from '../../config/zero'
-import {$axios} from "../../config/server";
+import { Button, Toast } from "antd-mobile";
+import { $axios } from "../../config/server";
 
 class SetNewPas extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       password: '',
@@ -28,7 +27,7 @@ class SetNewPas extends Component {
   changeIcon = () => {
     console.log('是否可以改变密码');
     const isSHow = this.state.eye.isShow;
-    const icon = isSHow?'iconbiyan1':'iconyanjing3';
+    const icon = isSHow ? 'iconbiyan1' : 'iconyanjing3';
     this.setState({
       eye: {
         isShow: !isSHow,
@@ -40,10 +39,10 @@ class SetNewPas extends Component {
   // 确认提交
   handleSubmit = () => {
     let pageData = this.props.history.location.state;
-    if(!pageData){
-      return ZERO.Toast('请从正常的渠道进入此页面');
+    if (!pageData) {
+      return Toast.info('请从正常的渠道进入此页面');
     }
-    const {user, type} = pageData;
+    const { user, type } = pageData;
 
     $axios({
       url: '/bs/api/password',
@@ -55,16 +54,16 @@ class SetNewPas extends Component {
       }
     })
       .then(res => {
-        if(res.status === 200){
-          ZERO.Toast('修改成功');
+        if (res.status === 200) {
+          Toast.info('修改成功');
           this.props.history.push('/login');
-        }else if(res.status === 250){
-          ZERO.Toast('用户不存在，修改失败');
-        }else{
-          ZERO.Toast('服务器繁忙，修改失败，请稍后再试');
+        } else if (res.status === 250) {
+          Toast.info('用户不存在，修改失败');
+        } else {
+          Toast.info('服务器繁忙，修改失败，请稍后再试');
         }
       })
-      .catch(err => {});
+      .catch(err => { });
   };
 
   render() {
@@ -73,7 +72,7 @@ class SetNewPas extends Component {
         <TopTips tips={'设置新密码'} />
 
         <div className={'gp_item flex flex-item'}>
-          <input className='flex-one' type={this.state.eye.isShow?'text':'password'} defaultValue={this.state.password} onChange={this.handleChange} placeholder={'8-16位，至少数字/字母/字符2种组合'} />
+          <input className='flex-one' type={this.state.eye.isShow ? 'text' : 'password'} defaultValue={this.state.password} onChange={this.handleChange} placeholder={'8-16位，至少数字/字母/字符2种组合'} />
           <i className={'p_icon iconfont ' + this.state.eye.icon} onClick={this.changeIcon}></i>
         </div>
 

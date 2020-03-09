@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';  // 吊啊 这个方法可以在�
 import config from '../../config/config'
 import ZERO from '../../config/zero';
 import { postSsLike, deleteSsLike } from '../../config/utils'
+import {Toast} from 'antd-mobile'
 
 class PlanItem extends Component {
   constructor(props) {
@@ -35,7 +36,8 @@ class PlanItem extends Component {
   handleLike = (likeStatus, ssUid) => {
     let uid = ZERO.getUid();
     if (!uid) {
-      ZERO.Toast('请登录后再对文章进行点赞');
+      Toast.info('登录后体验更多权限', 1);
+
       return this.props.history.push('/login');
     }
 
@@ -56,7 +58,7 @@ class PlanItem extends Component {
     let result = await deleteSsLike(ssId);
     console.log(result);
     if (result.status === 200) {
-      ZERO.Toast('取消点赞成功');
+      Toast.info('取消点赞成功', 1);
       var itemData = this.state.itemData;
       itemData.is_ss_like = 0;
       itemData.like_num = itemData.like_num - 1;
@@ -64,11 +66,11 @@ class PlanItem extends Component {
         itemData: itemData
       });
     } else if (result.status === 251) {
-      ZERO.Toast('服务错误，刷新页面再次尝试');
+      Toast.info('服务错误，刷新页面再次尝试', 1);
     } else if (result.status === 400) {
-      ZERO.Toast('取消点赞失败');
+      Toast.info('取消点赞失败', 1);
     } else if (result.status === 500) {
-      ZERO.Toast('服务器繁忙，请稍后再试');
+      Toast.info('服务器繁忙，请稍后再试', 1);
     }
   };
 
@@ -80,7 +82,7 @@ class PlanItem extends Component {
     let result = await postSsLike(uid, ssuid);
     console.log(result);
     if (result.status === 200) {
-      ZERO.Toast('点赞成功');
+      Toast.info('点赞成功', 1);
       let itemData = this.state.itemData;
       itemData.is_ss_like = result.data.id;
       itemData.like_num = itemData.like_num + 1;
@@ -88,11 +90,11 @@ class PlanItem extends Component {
         itemData: itemData
       });
     } else if (result.status === 250) {
-      ZERO.Toast('请勿重复点赞');
+      Toast.info('请勿重复点赞', 1);
     } else if (result.status === 400) {
-      ZERO.Toast('点赞失败');
+      Toast.info('点赞失败', 1);
     } else if (result.status === 500) {
-      ZERO.Toast('服务器繁忙，请稍后再试');
+      Toast.info('服务器繁忙，请稍后再试', 1);
     }
   };
 

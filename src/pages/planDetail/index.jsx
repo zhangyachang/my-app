@@ -3,6 +3,7 @@ import './planDetail.css'
 import config from '../../config/config'
 import {$axios} from "../../config/server";
 import ZERO from '../../config/zero'
+import {Toast} from 'antd-mobile'
 
 class PlanDetail extends Component {
   constructor(props) {
@@ -31,11 +32,11 @@ class PlanDetail extends Component {
               planDetail: res.data[0]
             })
           } else {
-            ZERO.Toast('服务器繁忙，请稍后再试');
+            Toast.info('服务器繁忙，请稍后再试');
           }
         })
     } else {
-      ZERO.Toast('缺少查询详情所必需的的参数，请从正常途径进入此页面');
+      Toast.info('缺少查询详情所必需的的参数，请从正常途径进入此页面');
     }
   }
 

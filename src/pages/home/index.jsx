@@ -6,6 +6,8 @@ import TabBar from '../../components/tabBar/index'
 import { getSs, getSsLogin, getSsSearchAll, getSsSearchAllLogin } from '../../config/utils'
 import LoadMore from '../../components/loadMore/index.jsx'
 import ZERO from '../../config/zero';
+import {Toast} from 'antd-mobile'
+
 
 class Home extends Component {
   constructor(props) {
@@ -39,25 +41,25 @@ class Home extends Component {
       return;
     }
     let searchUrl = this.props.history.location.search;
-    const {search} = ZERO.parseUrl(searchUrl);
-    if(search){
-      if(uid){
+    const { search } = ZERO.parseUrl(searchUrl);
+    if (search) {
+      if (uid) {
         result = await getSsSearchAllLogin({
           search: search,
           page: this.state.page,
           uid: uid
         });
-      }else{
+      } else {
         result = await getSsSearchAll(search, this.state.page);
       }
-    }else{
+    } else {
       if (uid) {
         result = await getSsLogin(page, uid);
       } else {
         result = await getSs(page);
       }
     }
-    
+
     if (result.status === 200) {
       if (result.data.length === 0) {
         this.setState({
@@ -76,10 +78,10 @@ class Home extends Component {
     };
 
     if (result.status === 400) {
-      return ZERO.Toast('获取说说列表失败');
+      return Toast.info('获取说说列表失败');
     }
     if (result.status === 500) {
-      return ZERO.Toast('服务器繁忙，请稍后再试');
+      return Toast.info('服务器繁忙，请稍后再试');
     }
   }
 
@@ -93,10 +95,10 @@ class Home extends Component {
 
   handleLoadMore = () => {
     let uid = ZERO.getUid();
-    if(uid){
+    if (uid) {
       this.getSsList(this.state.page, uid);
-    }else{
-      ZERO.Toast('用户信息过期，请重新登录');
+    } else {
+      Toast.info('用户信息过期，请重新登录');
     }
   };
 

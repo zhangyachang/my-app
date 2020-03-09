@@ -1,7 +1,7 @@
 import axios from 'axios'
 import config from './config'
 import ZERO from "./zero";
-
+import { Toast } from 'antd-mobile'
 
 const $axios = (obj) => {
   return new Promise((resolve, reject) => {
@@ -11,7 +11,7 @@ const $axios = (obj) => {
     obj.headers = obj.headers ? obj.headers : 'application/json;charset=utf-8';
     // 这里的是我的用户id
     obj.data.openid = ZERO.getSessionStorage('user') || ZERO.getLocalStorageItem('user');
-    obj.noLoadding || ZERO.Loadding('加载中', 0);
+    obj.noLoadding || Toast.loading('加载中', 0);  // ZERO.Loadding('加载中', 0);
     axios({
       url: config.url + obj.url,
       method: obj.method,
@@ -20,24 +20,22 @@ const $axios = (obj) => {
       data: obj.data,
     })
       .then(res => {
+        Toast.hide();
         if (res.status === 200) {
-          ZERO.hideToast();
           return resolve(res.data);
         } else if (res.data.status === 50001) {
-          ZERO.hideToast();
-          ZERO.Toast('登录信息已过期，请重新登录');
+          Toast.info('登录信息已过期，请重新登录', 1);
           ZERO.removeSessionStorage('user');
           ZERO.removeLocalStorageItem('user');
           return reject(res);
         } else {
-          ZERO.hideToast();
-          ZERO.Toast('服务器繁忙，请稍后再试...');
+          Toast.info('服务器繁忙，请稍后再试...', 1);
           return reject(res);
         }
       })
       .catch(err => {
-        ZERO.hideToast();
-        ZERO.Toast('客户端错误，请稍后再试...');
+        Toast.hide();
+        Toast.info('客户端错误，请稍后再试...', 1);
         return reject(err);
       })
   });

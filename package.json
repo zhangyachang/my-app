@@ -17,9 +17,9 @@
     "socket.io-client": "^2.2.0"
   },
   "scripts": {
-    "start": "set PORT=8080 && react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "set PORT=8080 && react-app-rewired start",
+    "build": "react-app-rewired  build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -30,5 +30,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "babel-plugin-import": "^1.13.0",
+    "customize-cra": "^0.9.1",
+    "react-app-rewired": "^2.1.5"
+  }
 }

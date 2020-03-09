@@ -3,6 +3,7 @@ import './myPlanLogs.css'
 import ZERO from '../../../config/zero'
 import { onPlan, achievePlan, offNoneDonePlan } from '../../../config/utils'
 import LoadMore from '../../../components/loadMore'
+import {Toast} from 'antd-mobile'
 
 class MyPlanLogs extends Component {
   constructor(props) {
@@ -72,7 +73,7 @@ class MyPlanLogs extends Component {
   getUserAllPlan = async () => {
     let uid = ZERO.getUid();
     if (!uid) {
-      return ZERO.Toast('用户登录信息过期，请重新登录');
+      return Toast.info('用户登录信息过期，请重新登录');
     }
 
     let result = await onPlan(uid, this.state.onPlanList.page);
@@ -93,9 +94,9 @@ class MyPlanLogs extends Component {
         onPlanList: obj
       });
     } else if (result.status === 400) {
-      ZERO.Toast('计划列表获取失败，请稍后再试');
+      Toast.info('计划列表获取失败，请稍后再试');
     } else if (result.status === 500) {
-      ZERO.Toast('服务器繁忙，请稍后再试');
+      Toast.info('服务器繁忙，请稍后再试');
     }
   }
 
@@ -105,7 +106,7 @@ class MyPlanLogs extends Component {
   getUserAchievePlan = async () => {
     let uid = ZERO.getUid();
     if (!uid) {
-      return ZERO.Toast('用户登录信息过期，请重新登录');
+      return Toast.info('用户登录信息过期，请重新登录');
     }
 
     let result = await achievePlan(uid, this.state.achievePlanList.page);
@@ -124,9 +125,9 @@ class MyPlanLogs extends Component {
         achievePlanList: obj
       });
     } else if (result.status === 400) {
-      ZERO.Toast('计划列表获取失败，请稍后再试');
+      Toast.info('计划列表获取失败，请稍后再试');
     } else if (result.status === 500) {
-      ZERO.Toast('服务器繁忙，请稍后再试');
+      Toast.info('服务器繁忙，请稍后再试');
     }
   };
 
@@ -136,7 +137,7 @@ class MyPlanLogs extends Component {
   getNoDonePlanList = async () => {
     let uid = ZERO.getUid();
     if (!uid) {
-      return ZERO.Toast('用户登录信息过期，请重新登录');
+      return Toast.info('用户登录信息过期，请重新登录');
     }
     let result = await offNoneDonePlan(uid, this.state.noDonePlanList.page);
     if (result.status === 200) {
@@ -154,9 +155,9 @@ class MyPlanLogs extends Component {
         noDonePlanList: obj
       });
     } else if (result.status === 400) {
-      ZERO.Toast('计划列表获取失败，请稍后再试');
+      Toast.info('计划列表获取失败，请稍后再试');
     } else if (result.status === 500) {
-      ZERO.Toast('服务器繁忙，请稍后再试');
+      Toast.info('服务器繁忙，请稍后再试');
     }
   };
 

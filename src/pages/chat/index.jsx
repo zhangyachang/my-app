@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './chatUserDetail.css'
 import ZERO from '../../config/zero'
 import socket from '../../config/io.js'
-import {getUserInfoByUid} from '../../config/utils'
+import { getUserInfoByUid } from '../../config/utils'
 import config from '../../config/config'
+import { Toast } from 'antd-mobile'
 
 class Chat extends Component {
   constructor(props) {
@@ -38,20 +39,20 @@ class Chat extends Component {
 
   searchUserInfo = async () => {
     let uid = ZERO.getUid();
-    if(!uid){
-      return ZERO.Toast('用户信息过期，请重新登录');
+    if (!uid) {
+      Toast.info('用户信息过期，请重新登录', 1);
     }
     let result = await getUserInfoByUid(uid);
     console.log('获取的用户信息');
     console.log(result);
-    if(result.status === 200){
+    if (result.status === 200) {
       this.setState({
         avatar: result.data[0].avatar
       });
-    }else if(result.status === 400){
-      ZERO.Toast('用户信息获取失败');
-    }else if(result.status === 500){
-      ZERO.Toast('服务器繁忙，请稍后再试');
+    } else if (result.status === 400) {
+      Toast.info('用户信息获取失败', 1);
+    } else if (result.status === 500) {
+      Toast.info('服务器繁忙，请稍后再试', 1);
     }
   };
 
@@ -88,10 +89,10 @@ class Chat extends Component {
   handleSeeFriendMessage = (id) => {
     console.log('查看好友的详细信息');
     console.log(id);
-    if(id){
+    if (id) {
       return this.props.history.push(`/chatUserDetail?userId=${id}`);
     }
-    ZERO.noNextToast();
+    Toast.info('此功能暂未开放，开发者正在努力开发中-----', 1);
   };
 
   // 清空输入框
@@ -109,7 +110,7 @@ class Chat extends Component {
     const target = this.elInp.current;
     target.style.height = 'auto';
     //如果高度不够，再重新设置
-    if(target.scrollHeight >= target.offsetHeight){
+    if (target.scrollHeight >= target.offsetHeight) {
       target.style.height = target.scrollHeight + 'px';
       // console.log('这里也成立了？');
     }
@@ -118,8 +119,8 @@ class Chat extends Component {
   // handleTime 处理时间戳
   handleTime = (time) => {
     let nowTime = new Date(time);
-    let [year, month, day, hours, minute, second] = [nowTime.getFullYear(), nowTime.getMonth()+1, 
-      nowTime.getDate(), nowTime.getHours(), nowTime.getMinutes(), nowTime.getSeconds()];
+    let [year, month, day, hours, minute, second] = [nowTime.getFullYear(), nowTime.getMonth() + 1,
+    nowTime.getDate(), nowTime.getHours(), nowTime.getMinutes(), nowTime.getSeconds()];
     // console.log(`${year}-${month}-${day} ${hours}:${minute}:${second}`);
     return `${year}-${month}-${day} ${hours}:${minute}:${second}`;
   };
@@ -139,7 +140,7 @@ class Chat extends Component {
     // 获取用户信息
     this.searchUserInfo();
   }
-  
+
 
   render() {
     return (
@@ -149,11 +150,11 @@ class Chat extends Component {
           {
             this.state.msgLog.map((item, index) => {
               return (
-                <div key={item.time} className={ item.who === 'self'?' cr_list_item_self':' cr_list_friend'}>
+                <div key={item.time} className={item.who === 'self' ? ' cr_list_item_self' : ' cr_list_friend'}>
                   <div className={'cr_list_item_time'}>{this.handleTime(item.time)}</div>
                   <div className={'cr_list_item_info'}>
                     <div onClick={this.handleSeeFriendMessage.bind(this, item.id)} className={'cr_list_item_avatar flex-shirink'}>
-                      <img src={config.url + item.avatar} alt=""/>
+                      <img src={config.url + item.avatar} alt="" />
                     </div>
                     <div className={'cr_content'}>
                       {item.con}

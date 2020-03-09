@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './userSecurity.css'
-import ZERO from '../../../config/zero'
+import {Toast} from 'antd-mobile'
 
 class UserSecurity extends Component {
   constructor(props){
@@ -27,7 +27,7 @@ class UserSecurity extends Component {
     if(id === 'logHistory'){
       return this.props.history.push('/loginLogs');
     }
-    ZERO.noNextToast();
+    Toast.info('此功能暂未开放，等待开发者开发---');
   };
 
   render() {

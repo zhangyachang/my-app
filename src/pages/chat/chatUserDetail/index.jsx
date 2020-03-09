@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './chatUserDetail.css'
-import ZERO from '../../../config/zero'
+import { Toast } from 'antd-mobile'
 
 class ChatUserDetail extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       top: false,
@@ -12,7 +12,7 @@ class ChatUserDetail extends Component {
   }
 
   handleSeeUser = () => {
-    ZERO.Toast('暂时还未开放查看用户信息功能，开发者正在努力,等候版本通知');
+    Toast.info('暂时还未开放查看用户信息功能，开发者正在努力,等候版本通知');
   };
 
   // 切换选项
@@ -32,7 +32,7 @@ class ChatUserDetail extends Component {
         <div onClick={this.handleSeeUser} className={'cud_header'}>
           <div className={'cud_header_avatar'}>
             <div className={'cud_h_avatar'}>
-              <img src={require('../../../static/img/home/download.jpg')} alt=""/>
+              <img src={require('../../../static/img/home/download.jpg')} alt="" />
             </div>
             <div className={'cud_h_info'}>
               <p className={'cud_h_info_name'}>风一样自由</p>
@@ -48,7 +48,7 @@ class ChatUserDetail extends Component {
             <div className={'cud_config_item_con'}>
               <p>置顶聊天</p>
               <i onClick={this.toggleItem.bind(this, 'top')}
-                 className={this.state.top?'iconfont iconkaiguan4':'iconfont iconkaiguan3'}
+                className={this.state.top ? 'iconfont iconkaiguan4' : 'iconfont iconkaiguan3'}
               />
             </div>
           </div>
@@ -60,7 +60,7 @@ class ChatUserDetail extends Component {
                 <div className={'cud_config_item_tips'}>开启后将不再接收他的消息和计划</div>
               </div>
               <i onClick={this.toggleItem.bind(this, 'ignore')}
-                 className={this.state.ignore?'iconfont iconkaiguan4':'iconfont iconkaiguan3'}
+                className={this.state.ignore ? 'iconfont iconkaiguan4' : 'iconfont iconkaiguan3'}
               />
             </div>
           </div>

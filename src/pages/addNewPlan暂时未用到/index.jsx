@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './addNewPlan.css'
 import PlanTabBar from '../../components/planTabBar/index'
-import ZERO from '../../config/zero'
+import { Toast } from 'antd-mobile';
 
 class AddNewPlan extends Component {
 
@@ -14,7 +14,7 @@ class AddNewPlan extends Component {
 
   noDone = () => {
     console.log('点击了没有开发的功能');
-    ZERO.noNextToast();
+    Toast.info('此功能暂未开放，开发者正在努力开发中-----', 1);
   };
 
   render() {

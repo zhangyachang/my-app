@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './addNewPlan.css';
 import Toptips from '../../components/topTips/index';
-import { Button, DatePicker, List } from 'antd-mobile';
+import { Button, DatePicker, List, Toast } from 'antd-mobile';
 import ZERO from '../../config/zero';
 
 import { addPlan, getPlanByPid, updatePlanById } from '../../config/utils'
@@ -40,14 +40,15 @@ class AddNewPlan extends Component {
     console.log(title, con, date, endDate, wantStartTime);
 
     if (endDate.getTime() < date.getTime()) {
-      return ZERO.Toast('结束日期不能小于开始日期');
+      return Toast.info('结束日期不能小于开始日期', 1);
+
     }
     let uid = ZERO.getUid();
     if (!title) {
-      return ZERO.Toast('标题不能为空');
+      return Toast.info('标题不能为空', 1);
     }
 
-    if(this.state.isAdd){
+    if (this.state.isAdd) {
       // 添加
       let result = await addPlan({
         uid: uid,
@@ -57,27 +58,27 @@ class AddNewPlan extends Component {
         startDate: ZERO.formatStartDate(date),
         endDate: ZERO.formatEndtDate(endDate)
       });
-  
+
       if (result.status === 200) {
-        ZERO.Toast('计划制定成功');
+        Toast.info('计划制定成功', 1);
         return this.props.history.goBack();
       }
       if (result.status === 201) {
-        return ZERO.Toast('开始时间格式不正确');
+        return Toast.info('开始时间格式不正确', 1);
       }
       if (result.status === 400) {
-        return ZERO.Toast('计划制定失败');
+        return Toast.info('计划制定失败', 1);
       }
       if (result.status === 500) {
-        ZERO.Toast('服务器繁忙，请稍后再试');
+        return Toast.info('服务器繁忙，请稍后再试', 1);
       }
-    }else{
+    } else {
       // 修改
       let search = this.props.history.location.search;
       let { changePlanId } = ZERO.parseUrl(search)
 
       let resut = await updatePlanById({
-        uid: uid, 
+        uid: uid,
         title: this.state.title,
         con: this.state.con,
         planTime: ZERO.formatWantTime(wantStartTime),
@@ -85,18 +86,18 @@ class AddNewPlan extends Component {
         endDate: ZERO.formatEndtDate(endDate),
         pid: changePlanId
       });
-      if(resut.status === 200){
-        ZERO.Toast('修改成功');
+      if (resut.status === 200) {
+        Toast.info('修改成功', 1);
         return this.props.history.goBack();
-      }else if(resut.status === 400){
-        return ZERO.Toast('计划修改失败');
-      }else if(resut.status === 500){
-        ZERO.Toast('服务器繁忙，请稍后再试');
+      } else if (resut.status === 400) {
+        return Toast.info('计划修改失败', 1);
+      } else if (resut.status === 500) {
+        Toast.info('服务器繁忙，请稍后再试', 1);
       }
     }
   };
 
-  
+
 
   // 控制改变
   handleChange = (e) => {
@@ -138,7 +139,7 @@ class AddNewPlan extends Component {
       date: reqObj.p_start_date, // 开始时间
       endDate: reqObj.p_end_date
     });
-    
+
   };
 
   componentDidMount() {
@@ -242,7 +243,7 @@ class AddNewPlan extends Component {
           mode="date"
           title="开始日期"
           extra="Optional"
-          disabled={this.state.isAdd?false:true}
+          disabled={this.state.isAdd ? false : true}
           minDate={new Date(Date.now())}
           value={this.state.date}
           onChange={date => this.setState({ date })}
@@ -275,7 +276,7 @@ class AddNewPlan extends Component {
           title="预估开始时间"
           // minDate={this.state.minDate}
           // maxDate={this.state.maxDate}
-          value={this.state.isAdd?new Date(Date.now()):this.state.wantStartTime}
+          value={this.state.isAdd ? new Date(Date.now()) : this.state.wantStartTime}
           onChange={time => this.setState({ wantStartTime: time })}
         >
           <List.Item arrow="horizontal">预估开始时间</List.Item>

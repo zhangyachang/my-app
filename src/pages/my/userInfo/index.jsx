@@ -4,6 +4,7 @@ import ZERO from '../../../config/zero'
 import {$axios} from "../../../config/server";
 import config from '../../../config/config'
 import {Redirect} from 'react-router-dom'
+import {Toast} from 'antd-mobile'
 
 class UserInfo extends Component {
   constructor(props){
@@ -37,7 +38,7 @@ class UserInfo extends Component {
         if(res.data.length === 0){
           // 清空登录信息 重定向到登录页面
           ZERO.clearLoginInfo();
-          ZERO.Toast('登录信息过期，请重新登录');
+          Toast.info('登录信息过期，请重新登录');
           return <Redirect to='/404'/>
         }else{
           this.setState({

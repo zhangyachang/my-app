@@ -5,6 +5,7 @@ import ZERO from '../../config/zero'
 import config from '../../config/config'
 import { Redirect } from 'react-router-dom'
 import { getUserInfoByUid, getUserPlanNumAndMore } from '../../config/utils'
+import {Toast} from 'antd-mobile'
 
 class My extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class My extends Component {
     } else if (type === 'ss') {
       this.props.history.push('/mySsLogs');
     } else {
-      ZERO.noNextToast();
+      Toast.info('此功能暂时未开放，请等待开发者开发---', 1);
     }
   };
 
@@ -52,11 +53,11 @@ class My extends Component {
   searchUserInfoById = (uid) => {
     getUserInfoByUid(uid)
       .then(res => {
-        ZERO.hideToast();
+        Toast.hide();
         if (res.data.length === 0) {
           // 清空登录信息 重定向到登录页面
           ZERO.clearLoginInfo();
-          ZERO.Toast('登录信息过期，请重新登录');
+          Toast.info('登录信息过期，请重新登录', 1);
           return <Redirect to='/404' />
         } else {
           this.setState({
@@ -82,7 +83,7 @@ class My extends Component {
   getMyPlanInfo = (user) => {
     getUserPlanNumAndMore(user)
       .then(res => {
-        ZERO.hideToast();
+        Toast.hide();
         if (res.status === 200) {
           return this.setState({
             planInfo: {
@@ -94,10 +95,10 @@ class My extends Component {
           });
         }
         if (res.status === 400) {
-          ZERO.Toast('获取用户计划数量等信息失败');
+          Toast.info('获取用户计划数量等信息失败', 1);
         }
         if (res.status === 500) {
-          ZERO.Toast('服务器繁忙，请稍后再试');
+          Toast.info('服务器繁忙，请稍后再试', 1);
         }
       })
       .catch(err => {

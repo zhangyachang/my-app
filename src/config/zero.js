@@ -1,11 +1,7 @@
 // 初始化 js 封装一些东西
 // https://www.npmjs.com/package/babel-plugin-import
 // 减少引入体积的，最后再导入吧，看起来挺麻烦的
-import {Toast} from "antd-mobile";
-// import {Redirect} from 'react-router-dom'
 import url from 'url'
-// import * as React from "react";
-// Modal const alert = Modal.alert;
 
 export default {
 
@@ -19,23 +15,23 @@ export default {
   },
    */
   // 展示提示框，默认为 1s
-  Toast(info, time=1){
-    Toast.info(info, time);
-  },
+  // Toast(info, time=1){
+  //   Toast.info(info, time);
+  // },
 
   // 加载中
-  Loadding(info, time = 1){
-    Toast.loading(info, time);
-  },
+  // Loadding(info, time = 1){
+  //   Toast.loading(info, time);
+  // },
 
   // hideToast
-  hideToast(){
-    Toast.hide();
-  },
+  // hideToast(){
+  //   Toast.hide();
+  // },
 
-  noNextToast(info = '此功能暂未开放，开发者正在努力开发中-----'){
-    Toast.info(info, 1);
-  },
+  // noNextToast(info = '此功能暂未开放，开发者正在努力开发中-----'){
+  //   Toast.info(info, 1);
+  // },
 
   // 清除登录信息
   clearLoginInfo(){

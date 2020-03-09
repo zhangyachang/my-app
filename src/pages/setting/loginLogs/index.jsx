@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import './loginLogs.css'
-import ZERO from '../../../config/zero'
+import {Toast} from 'antd-mobile'
 
 class LoginLogs extends Component {
 
 
   handleLogout = () => {
     console.log('退出用户');
-    ZERO.noNextToast();
+    Toast.info('此功能暂时未开发，请等待开发者开发---');
   };
 
 

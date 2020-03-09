@@ -6,6 +6,7 @@ import LoadMore from '../../components/loadMore/index'
 import { getUserInfoByUid, getAllSs, getSsSearchUser } from '../../config/utils'
 import ZERO from '../../config/zero'
 import config from '../../config/config'
+import {Toast} from 'antd-mobile'
 
 class PersonalPage extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class PersonalPage extends Component {
   searchUserInfo = async () => {
     let { userId } = ZERO.parseUrl(this.props.location.search);
     if (!userId) {
-      return ZERO.Toast('请输入正确的网址');
+      return Toast.info('请输入正确的网址');
     }
     console.log(userId);
     let result = await getUserInfoByUid(userId);
@@ -56,9 +57,9 @@ class PersonalPage extends Component {
         userInfo: result.data[0]
       });
     } else if (result.status === 400) {
-      ZERO.Toast('查询用户信息失败');
+      Toast.info('查询用户信息失败');
     } else if (result.status === 500) {
-      return ZERO.Toast('服务器繁忙，获取用户信息失败');
+      return Toast.info('服务器繁忙，获取用户信息失败');
     }
   };
 
@@ -66,7 +67,7 @@ class PersonalPage extends Component {
   searchSsList = async () => {
     let { userId } = ZERO.parseUrl(this.props.location.search);
     if (!userId) {
-      return ZERO.Toast('请输入正确的网址');
+      return Toast.info('请输入正确的网址');
     }
     if(!this.state.isMore){
       return ;
@@ -86,9 +87,9 @@ class PersonalPage extends Component {
         pageIndex: this.state.pageIndex + 1
       });
     } else if (result.status === 400) {
-      return ZERO.Toast('查询说说列表失败');
+      return Toast.info('查询说说列表失败');
     } else if (result.status === 500) {
-      return ZERO.Toast('服务器繁忙，获取说说列表失败');
+      return Toast.info('服务器繁忙，获取说说列表失败');
     }
   };
 
@@ -101,10 +102,10 @@ class PersonalPage extends Component {
   searchUserSsByKeyword = async () => {
     let uid = ZERO.getUid();
     if(!uid){
-      return ZERO.Toast('用户信息过期，请重新登录');
+      return Toast.info('用户信息过期，请重新登录');
     }
     if(!this.state.searchValue.trim()){
-      return ZERO.Toast('搜索内容不能为空');
+      return Toast.info('搜索内容不能为空');
     }
     let result = await getSsSearchUser({
       search: this.state.searchValue,
@@ -116,9 +117,9 @@ class PersonalPage extends Component {
     if(result.status === 200){
 
     }else if(result.status === 400){
-      ZERO.Toast('搜索失败请稍后再试');
+      Toast.info('搜索失败请稍后再试');
     }else if(result.status === 500){
-      ZERO.Toast('服务器繁忙，请稍后再试');
+      Toast.info('服务器繁忙，请稍后再试');
     }
     
   };

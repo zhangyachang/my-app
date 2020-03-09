@@ -4,6 +4,7 @@ import Toptips from '../../components/topTips/index'
 import {Button} from "antd-mobile";
 import ZERO from '../../config/zero';
 import {$axios} from "../../config/server";
+import {Toast} from 'antd-mobile'
 
 class ForgetPas extends Component {
   constructor(props){
@@ -38,7 +39,7 @@ class ForgetPas extends Component {
     }else if(ZERO.regEmail(this.state.user)){
       type = 'email';
     }else{
-      return ZERO.Toast('请输入正确的手机号或者邮箱');
+      return Toast.info('请输入正确的手机号或者邮箱');
     }
 
     $axios({
@@ -51,10 +52,10 @@ class ForgetPas extends Component {
     })
       .then(res => {
         if(res.status === 200){
-          ZERO.Toast('验证码已发送至您的邮箱，请查看并填写');
+          Toast.info('验证码已发送至您的邮箱，请查看并填写');
           this.props.history.push(`/getpasCheckType?user=${user}&type=${type}`)
         }else{
-          ZERO.Toast('服务器繁忙，请稍后再试');
+          Toast.info('服务器繁忙，请稍后再试');
         }
       })
       .catch(err => {});

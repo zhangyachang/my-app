@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './hot.css';
 import HotInput from '../../components/searchInput/index'
 import ZERO from '../../config/zero'
+import {Toast} from 'antd-mobile'
 
 class Hot extends Component {
   constructor(props){
@@ -42,7 +43,7 @@ class Hot extends Component {
   // 点击搜索按钮
   handleSubmit = () => {
     if(!this.state.searchValue.trim()){
-      ZERO.Toast('请输入值再点击搜索哦！');
+      Toast.info('请输入值再点击搜索哦！');
       return ;
     }
     // 本地存储搜索历史

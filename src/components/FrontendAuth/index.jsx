@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Route,Redirect, withRouter } from 'react-router-dom';
 import ZERO from '../../config/zero'
+import {Toast} from 'antd-mobile'
 
 export class FrontendAuth extends React.Component {
   render() {
@@ -42,7 +43,7 @@ export class FrontendAuth extends React.Component {
       // 非登陆状态下，当路由合法时且需要权限校验时，跳转到登陆页面，要求登陆
       if (targetRouterConfig && targetRouterConfig.auth) {
         document.title = targetRouterConfig.meta.title;
-        ZERO.Toast('登录后体验更多权限!');
+        Toast.info('登录后体验更多权限', 1);
         return <Redirect to='/login'/>
       } else {
         // document.title = targetRouterConfig.meta.title;

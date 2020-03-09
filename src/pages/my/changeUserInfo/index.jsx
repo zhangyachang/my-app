@@ -5,6 +5,7 @@ import ZERO from '../../../config/zero'
 import {$axios} from "../../../config/server";
 import {Redirect} from 'react-router-dom';
 import {changeUserAvatar} from "../../../config/utils";
+import {Toast} from 'antd-mobile'
 
 class ChangeUserInfo extends Component {
   constructor(props){
@@ -34,11 +35,11 @@ class ChangeUserInfo extends Component {
     }else if(this.state.value === 1) {
       changeResult = 0;
     }else {
-      ZERO.Toast('请从正常渠道修改');
+      Toast.info('请从正常渠道修改');
     }
     const uid = ZERO.getLocalStorageItem('user') || ZERO.getSessionStorage('user');
     if(!uid){
-      ZERO.Toast('登录信息过期，请重新登录');
+      Toast.info('登录信息过期，请重新登录');
       return <Redirect to='/404'/>;
     }
 
@@ -52,10 +53,10 @@ class ChangeUserInfo extends Component {
     })
       .then(res => {
         if(res.status === 200){
-          ZERO.Toast('修改成功');
+          Toast.info('修改成功');
           this.props.history.goBack();
         }else{
-          ZERO.Toast('服务器繁忙，请稍后再试');
+          Toast.info('服务器繁忙，请稍后再试');
         }
       })
       .catch(err => {})
@@ -77,29 +78,29 @@ class ChangeUserInfo extends Component {
         })
           .then(res => {
             if(res.status === 200){
-              ZERO.Toast('修改成功');
+              Toast.info('修改成功');
               this.props.history.goBack();
             }else{
-              ZERO.Toast('服务器繁忙，请稍后再试');
+              Toast.info('服务器繁忙，请稍后再试');
             }
           })
           .catch(err => {})
       }else{
         let uid = ZERO.getUid();
         if(this.state.files.length === 0){
-          return ZERO.Toast('请选择头像');
+          return Toast.info('请选择头像');
         }
         let result = await changeUserAvatar({uid, avatar: this.state.files[0]});
         console.log(result);
         if(result.status === 200){
-          ZERO.Toast('头像修改成功');
+          Toast.info('头像修改成功');
           this.props.history.goBack();
         }else{
-          ZERO.Toast('服务器繁忙，头像修改失败，请稍后再试');
+          Toast.info('服务器繁忙，头像修改失败，请稍后再试');
         }
       }
     }else{
-      ZERO.Toast('请重新进入此页面进行修改');
+      Toast.info('请重新进入此页面进行修改');
     }
   };
 
@@ -161,7 +162,7 @@ class ChangeUserInfo extends Component {
         value: value
       });
     }else{
-      ZERO.Toast('请个人信息详情页面进入此页面');
+      Toast.info('请个人信息详情页面进入此页面');
     }
     console.log(this.props);
   }

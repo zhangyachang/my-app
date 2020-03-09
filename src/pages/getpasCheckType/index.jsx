@@ -5,6 +5,7 @@ import TopTips from '../../components/topTips/index'
 import {Button} from "antd-mobile";
 import {$axios} from "../../config/server";
 import {sendAuthCode} from '../../config/utils'
+import {Toast} from 'antd-mobile'
 
 class GetpasCheckType extends Component {
   constructor(props){
@@ -46,19 +47,19 @@ class GetpasCheckType extends Component {
     const {user, type} = this.state.query;
 
     if(!user || !type){
-      return ZERO.Toast('请从正常的渠道进入此页面');
+      return Toast.info('请从正常的渠道进入此页面');
     }
 
     let result = await sendAuthCode({to: user, type});
     console.log(result);
     if(result.status === 200){
-      ZERO.Toast('邮件发送成功');
+      Toast.info('邮件发送成功');
       this.setState({
         time: 10
       });
       this.handleTimeChange();
     }else{
-      ZERO.Toast('服务器繁忙，请稍后再试');
+      Toast.info('服务器繁忙，请稍后再试');
     }
   };
 
@@ -76,12 +77,12 @@ class GetpasCheckType extends Component {
     console.log('点击下一步');
     const {user, type} = ZERO.parseUrl(this.props.location.search);
     if(!user){
-      return ZERO.Toast('请从正常的渠道进入此页面');
+      return Toast.info('请从正常的渠道进入此页面');
     }else if(!type){
-      return ZERO.Toast('请从正常的渠道进入此页面');
+      return Toast.info('请从正常的渠道进入此页面');
     }
     if(!this.state.authCode || this.state.authCode.length !== 4){
-      return ZERO.Toast('请输入正确的验证码');
+      return Toast.info('请输入正确的验证码');
     }
 
     $axios({
@@ -102,7 +103,7 @@ class GetpasCheckType extends Component {
             }
           });
         }else{
-          return ZERO.Toast('验证失败，请输入正确的验证码');
+          return Toast.info('验证失败，请输入正确的验证码');
         }
       })
       .catch(err => {});

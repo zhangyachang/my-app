@@ -4,6 +4,7 @@ import PlanTabBar from '../../components/planTabBar/index'
 import ZERO from '../../config/zero'
 import {$axios} from "../../config/server";
 import config from '../../config/config'
+import {Toast} from 'antd-mobile'
 
 class PlanLogs extends Component {
   constructor(props){
@@ -32,7 +33,7 @@ class PlanLogs extends Component {
             planLogs: res.data
           });
         }else{
-          ZERO.Toast('服务器繁忙，请稍后再试');
+          Toast.info('服务器繁忙，请稍后再试');
         }
       })
       .catch(() => {});

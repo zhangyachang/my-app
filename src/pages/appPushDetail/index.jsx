@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './appPushDetail.css'
 import ZERO from '../../config/zero'
 import { getPlanDetail } from '../../config/utils'
+import { Toast } from 'antd-mobile';
 
 class AppPushDetail extends Component {
   constructor(props) {
@@ -14,7 +15,6 @@ class AppPushDetail extends Component {
   searchDetailByPlanId = (planId) => {
     getPlanDetail(planId)
       .then(res => {
-        console.log(`拿取数据成`);
         console.log(res);
         if (res.status === 200) {
           if(res.data[0]){
@@ -22,16 +22,16 @@ class AppPushDetail extends Component {
               pushDetail: res.data[0]
             })
           }else{
-            ZERO.Toast('详情查询失败，请稍后再试');
+            Toast.info('详情查询失败，请稍后再试', 1);
           }
         } else if (res.status === 400) {
-          ZERO.Toast('获取推送消息详情失败，请稍后再试');
+          Toast.info('获取推送消息详情失败，请稍后再试', 1);
         } else if (res.status === 500) {
-          ZERO.Toast('服务器繁忙，请稍后再试');
+          Toast.info('服务器繁忙，请稍后再试', 1);
         }
       })
       .catch(err => {
-        ZERO.Toast('获取推送消息详情失败，请稍后再试');
+        Toast.info('获取推送消息详情失败，请稍后再试', 1);
       })
   };
 
@@ -40,7 +40,7 @@ class AppPushDetail extends Component {
     if (planId) {
       this.searchDetailByPlanId(planId);
     } else {
-      ZERO.Toast('请从正常的渠道进入此页面');
+      Toast.info('请从正常的渠道进入此页面', 1);
     }
   }
 
@@ -111,10 +111,6 @@ class AppPushDetail extends Component {
             <p className='apd_detail_item_des'>助手评价</p>
             <span>{pushDetail.push_con}</span>
           </div>
-
-
-
-
 
         </div>
 

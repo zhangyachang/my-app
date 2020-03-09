@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import './regist.css'
 import url from 'url'
 import TopTips from '../../components/topTips/index'
-import { Button } from "antd-mobile";
+import { Button, Toast } from "antd-mobile";
 import ZERO from '../../config/zero'
 import { $axios } from '../../config/server'
+
 
 
 class Regist extends Component {
@@ -41,7 +42,7 @@ class Regist extends Component {
   passpowd1Blur = () => {
     // console.log('失去焦点');
     if (this.state.password !== this.state.password1) {
-      ZERO.Toast('两次密码输入不一致，请重新输入');
+      Toast.info('两次密码输入不一致，请重新输入');
     }
   };
 
@@ -64,19 +65,19 @@ class Regist extends Component {
         .then(res => {
           // console.log(res);
           if (res.status === 200) {
-            ZERO.Toast('注册成功');
+            Toast.info('注册成功');
             window.history.go(-2);
           } else if (res.status === 251) {
-            ZERO.Toast('验证码错误，请输入正确的验证码', 1.5);
+            Toast.info('验证码错误，请输入正确的验证码', 1.5);
           } else if (res.status === 300) {
-            ZERO.Toast('用户名已被注册，请填写未被注册的用户名', 1.5);
+            Toast.info('用户名已被注册，请填写未被注册的用户名', 1.5);
           } else {
-            ZERO.Toast('服务器繁忙，请稍后再试', 1.5);
+            Toast.info('服务器繁忙，请稍后再试', 1.5);
           }
         })
         .catch(err => {
           // console.log(err);
-          ZERO.Toast('服务器繁忙，请稍后再试', 1.5);
+          Toast.info('服务器繁忙，请稍后再试', 1.5);
         });
     }
   };
@@ -101,13 +102,13 @@ class Regist extends Component {
         // 正确的邮箱
         return this.sendEmail(this.state.user);
       }
-      ZERO.Toast('请输入正确的邮箱');
+      Toast.info('请输入正确的邮箱');
     } else if (this.state.type === 'phone') {
       if (ZERO.regPhone(this.state.user)) {
         // 正确的手机号码
         return;
       }
-      ZERO.Toast('请输入正确的手机号码');
+      Toast.info('请输入正确的手机号码');
     }
   };
 
@@ -123,9 +124,9 @@ class Regist extends Component {
     })
       .then(res => {
         if (res.status === 200) {
-          ZERO.Toast('邮件已发送至您的邮箱，请查收验证码', 2);
+          Toast.info('邮件已发送至您的邮箱，请查收验证码', 2);
         } else if (res.status === 400) {
-          ZERO.Toast('邮件发送失败，请稍后再试', 2);
+          Toast.info('邮件发送失败，请稍后再试', 2);
         }
       })
       .catch(err => {
@@ -140,19 +141,19 @@ class Regist extends Component {
     const state = this.state;
     if (!(this.state.type === 'email' || this.state.type === 'phone')) {
       // 这里是从不合法的地方过来的
-      return ZERO.Toast('当前网址路径异常!!!请输入正确的网址');
+      return Toast.info('当前网址路径异常!!!请输入正确的网址');
     }
     if (!state.user) {
-      return ZERO.Toast('请输入正确的邮箱或手机号码');
+      return Toast.info('请输入正确的邮箱或手机号码');
     }
     if (!state.password) {
-      return ZERO.Toast('密码不能为空');
+      return Toast.info('密码不能为空');
     }
     if (state.password !== state.password1) {
-      return ZERO.Toast('两次密码不一致');
+      return Toast.info('两次密码不一致');
     }
     if (!state.checkCode) {
-      return ZERO.Toast('验证码不能为空');
+      return Toast.info('验证码不能为空');
     }
     return true;
   };

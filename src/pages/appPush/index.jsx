@@ -3,6 +3,7 @@ import './appPush.css';
 import TabBar from '../../components/tabBar/index';
 import { getAppPushLogs } from '../../config/utils'
 import ZERO from '../../config/zero';
+import { Toast } from 'antd-mobile'
 
 class AppPush extends Component {
   constructor(props) {
@@ -40,14 +41,14 @@ class AppPush extends Component {
             pushArr: res.data
           });
         } else if (res.status === 400) {
-          ZERO.Toast('查询失败');
+          Toast.info('查询失败', 1);
         } else if (res.status === 500) {
-          ZERO.Toast('服务器繁忙，请稍后再试');
+          Toast.info('服务器繁忙，请稍后再试', 1);
         }
       })
       .catch(err => {
         console.log(err);
-        ZERO.Toast('客户端错误，请稍后再试');
+        Toast.info('客户端错误，请稍后再试', 1);
       })
   };
 
@@ -59,8 +60,8 @@ class AppPush extends Component {
 
   // 点击加载更多
   handleLoadMore = () => {
-    if(!this.state.isLoadMore || this.state.isLoadMore === 2){
-      return ;
+    if (!this.state.isLoadMore || this.state.isLoadMore === 2) {
+      return;
     }
 
     let user = ZERO.getUid();
@@ -72,7 +73,7 @@ class AppPush extends Component {
               loadMoreTips: '没有更多数据了',
               isLoadMore: 2
             });
-          }else{
+          } else {
             this.setState({
               page: this.state.page + 1
             });
@@ -82,14 +83,14 @@ class AppPush extends Component {
             pushArr: c
           });
         } else if (res.status === 400) {
-          ZERO.Toast('查询失败');
+          Toast.info('查询失败', 1);
         } else if (res.status === 500) {
-          ZERO.Toast('服务器繁忙，请稍后再试');
+          Toast.info('服务器繁忙，请稍后再试', 1);
         }
       })
       .catch(err => {
         console.log(err);
-        ZERO.Toast('客户端错误，请稍后再试');
+        Toast.info('客户端错误，请稍后再试', 1);
       });
   };
 

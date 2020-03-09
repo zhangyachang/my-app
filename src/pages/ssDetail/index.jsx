@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './ssDetail.css'
-import PlanItem from '../../components/planItem'
+// import PlanItem from '../../components/planItem'
 import ZERO from '../../config/zero'
 import { getSsDetailById, getSsComments, userComSs } from '../../config/utils'
 import config from '../../config/config'
+import { Toast } from "antd-mobile";
 
 class SsDetail extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class SsDetail extends Component {
     // console.log(this.props.location.search);
     let { ssId } = ZERO.parseUrl(this.props.location.search);
     if (!ssId) {
-      return ZERO.Toast('无法查询说说详情，请输入正确的网址');
+      return Toast.info('无法查询说说详情，请输入正确的网址');
     }
     let result = await getSsDetailById(ssId);
     console.log('查询结果');
@@ -32,9 +33,9 @@ class SsDetail extends Component {
         ssData: result.data[0]
       })
     } else if (result.status === 400) {
-      return ZERO.Toast('说说详情查询失败，请稍后再试');
+      return Toast.info('说说详情查询失败，请稍后再试');
     } else if (result.status === 500) {
-      return ZERO.Toast('服务器繁忙，请稍后再试');
+      return Toast.info('服务器繁忙，请稍后再试');
     }
   };
 
@@ -42,7 +43,7 @@ class SsDetail extends Component {
   searchCommentsList = async () => {
     let { ssId } = ZERO.parseUrl(this.props.location.search);
     if (!ssId) {
-      return ZERO.Toast('无法查询说说详情，请输入正确的网址');
+      return Toast.info('无法查询说说详情，请输入正确的网址');
     }
     let result = await getSsComments(ssId, this.state.comPage, true);
     console.log('显示评论内容');
@@ -53,9 +54,9 @@ class SsDetail extends Component {
         comContent: result.data
       });
     }else if(result.status === 400){
-      ZERO.Toast('查询评论内容失败');
+      Toast.info('查询评论内容失败');
     }else if(result.status === 500){
-      ZERO.Toast('服务器繁忙，请稍后再试');
+      Toast.info('服务器繁忙，请稍后再试');
     }
 
   };
@@ -70,14 +71,14 @@ class SsDetail extends Component {
     let comValue = this.state.comValue.trim();
     let { ssId } = ZERO.parseUrl(this.props.location.search);
     if (!ssId) {
-      return ZERO.Toast('无法查询说说详情，请输入正确的网址');
+      return Toast.info('无法查询说说详情，请输入正确的网址');
     }
     if(!comValue){
-      return ZERO.Toast('请输入内容后评价');
+      return Toast.info('请输入内容后评价');
     }
     let uid = ZERO.getUid();
     if(!uid){
-      return ZERO.Toast('用户信息过期，请重新登录');
+      return Toast.info('用户信息过期，请重新登录');
     }
     console.log(ssId, comValue, uid)
     console.log('点击确认评论');
@@ -87,15 +88,15 @@ class SsDetail extends Component {
       content: comValue
     });
     if(result.status === 200){
-      ZERO.Toast('评论成功');
+      Toast.info('评论成功');
       this.setState({
         comValue: ''
       });
       this.searchCommentsList();
     }else if(result.status === 400){
-      ZERO.Toast('评论失败,请稍后再试');
+      Toast.info('评论失败,请稍后再试');
     }else if(result.status === 500){
-      ZERO.Toast('服务器繁忙，请稍后再试');
+      Toast.info('服务器繁忙，请稍后再试');
     }
   };
 

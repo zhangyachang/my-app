@@ -5,6 +5,7 @@ import { getChartsData } from '../../../config/utils'
 import ZERO from '../../../config/zero'
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
+import {Toast} from 'antd-mobile'
 
 // import echarts from 'echarts';
 console.log(echarts);
@@ -15,7 +16,7 @@ class Charts extends Component {
   getDataToCharts = async () => {
     let uid = ZERO.getUid();
     if (!uid) {
-      return ZERO.Toast('登录信息过期，请重新登录');
+      return Toast.info('登录信息过期，请重新登录');
     }
 
     let result = await getChartsData(uid);
@@ -26,9 +27,9 @@ class Charts extends Component {
       console.log(myChart);
       myChart.setOption(result.data);
     }else if(result.status === 400){
-      ZERO.Toast('请求失败, 请稍后再试');
+      Toast.info('请求失败, 请稍后再试');
     }else if(result.status === 200){
-      ZERO.Toast('服务器繁忙，请稍后再试');
+      Toast.info('服务器繁忙，请稍后再试');
     }
     
   }

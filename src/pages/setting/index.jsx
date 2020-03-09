@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './setting.css'
 import SettingList from '../../components/settingList/index'
+import { Toast } from "antd-mobile";
 
 import ZERO from '../../config/zero'
 
@@ -9,17 +10,17 @@ class Setting extends Component {
     super(props);
     this.state = {
       list1: [
-        {name: '账号管理', id: 'userManage'},
-        {name: '账号与安全', id: 'userSecurity'}
+        { name: '账号管理', id: 'userManage' },
+        { name: '账号与安全', id: 'userSecurity' }
       ],
       list2: [
-        {name: '推送通知管理', id: 'sPush'},
-        {name: '屏蔽设置', id: 'sIgnore'},
-        {name: '隐私设置', id: 'sSelf'},
-        {name: '通用设置', id: 'sCommon'},
+        { name: '推送通知管理', id: 'sPush' },
+        { name: '屏蔽设置', id: 'sIgnore' },
+        { name: '隐私设置', id: 'sSelf' },
+        { name: '通用设置', id: 'sCommon' },
       ],
       list3: [
-        {name: '退出登录', id: 'logout'},
+        { name: '退出登录', id: 'logout' },
       ]
     }
   }
@@ -27,12 +28,12 @@ class Setting extends Component {
   // 处理按钮的点击
   handlePostMsg = (name) => {
     console.log(name);
-    if(name === 'userManage'){
+    if (name === 'userManage') {
       return this.props.history.push('/accountManage');
-    }else if(name === 'userSecurity'){
+    } else if (name === 'userSecurity') {
       return this.props.history.push('/userSecurity');
     }
-    ZERO.Toast('该权限暂时还未开放，请等待版本更新通知', 1.5);
+    Toast.info('该权限暂时还未开放，请等待版本更新通知', 1.5);
   };
 
   // 退出登录

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../node_modules/antd-mobile/dist/antd-mobile.min.css'
+// import '../node_modules/antd-mobile/dist/antd-mobile.min.css'
 import './static/css/common.css'
 import './config/io'
 

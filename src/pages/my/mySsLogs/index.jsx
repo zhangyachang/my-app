@@ -4,6 +4,7 @@ import ZERO from '../../../config/zero'
 import { getAllSs } from '../../../config/utils'
 import PlanItem from '../../../components/planItem'
 import LoadMore from '../../../components/loadMore/index.jsx'
+import {Toast} from 'antd-mobile'
 
 class MySsLogs extends Component {
 
@@ -26,7 +27,7 @@ class MySsLogs extends Component {
   getUserAllSs = async (pageIndex) => {
     let uid = ZERO.getUid();
     if (!uid) {
-      return ZERO.Toast('用户登录信息过期，请重新登录');
+      return Toast.info('用户登录信息过期，请重新登录');
     }
     let result = await getAllSs(uid, pageIndex);
     if (result.status === 200) {
@@ -46,9 +47,9 @@ class MySsLogs extends Component {
         })
       }
     } else if (result.status === 400) {
-      ZERO.Toast('获取说说列表失败，请稍后再试');
+      Toast.info('获取说说列表失败，请稍后再试');
     } else if (result.status === 500) {
-      ZERO.Toast('服务器繁忙，请稍后再试');
+      Toast.info('服务器繁忙，请稍后再试');
     }
   }
 

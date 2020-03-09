@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './login.css'
-import { Modal, Button } from "antd-mobile";
+import { Modal, Button, Toast } from "antd-mobile";
 import ZERO from '../../config/zero'
 import { $axios } from '../../config/server'
 
@@ -10,8 +10,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: '',
-      password: '',
+      user: '937741304@qq.com',
+      password: '111',
       loginHistory: {
         is: false, // 是否显示下拉内容
         icon: 'iconxialajiantou'  // 下拉图标className
@@ -56,10 +56,10 @@ class Login extends Component {
   handleSubmit = () => {
     console.log('点击了登录按钮');
     if (!this.state.user) {
-      return ZERO.Toast('用户名不能为空');
+      return Toast.info('用户名不能为空', 1);
     }
     if (!this.state.password) {
-      return ZERO.Toast('密码不能为空');
+      return Toast.info('密码不能为空', 1);
     }
     $axios({
       url: '/bs/api/login',
@@ -72,17 +72,16 @@ class Login extends Component {
     })
       .then(res => {
         if (res.status === 200) {
-          // ZERO.Toast('登录成功');
           ZERO.setLoginHistory(this.state.user);
           this.shoeModel(res.data.uid);
         } else if (res.status === 250) {
-          ZERO.Toast('请检查用户名是否正确');
+          Toast.info('请检查用户名是否正确', 1);
         } else if (res.status === 400) {
-          ZERO.Toast('用户名或密码错误');
+          Toast.info('用户名或密码错误', 1);
         }
       })
       .catch(err => {
-        ZERO.Toast('服务器繁忙，请稍后再试');
+        Toast.info('服务器繁忙，请稍后再试', 1);
       })
   };
 
@@ -105,12 +104,12 @@ class Login extends Component {
 
   loginQQ = () => {
     console.log('通过qq登录');
-    ZERO.noNextToast();
+    Toast.info('此功能暂未开放，等待开发者开发---');
   };
 
   loginZfb = () => {
     console.log('通过支付宝登录');
-    ZERO.noNextToast();
+    Toast.info('此功能暂未开放，等待开发者开发---');
   };
 
   shoeModel = (uid) => {
@@ -133,7 +132,7 @@ class Login extends Component {
 
   loginWx = () => {
     console.log('通过微信登录');
-    ZERO.noNextToast();
+    Toast.info('此功能暂未开放，等待开发者开发---');
   };
 
   render() {
