@@ -1,41 +1,39 @@
 // import {HashRouter as Router , Route, Link} from 'react-router-dom'
-
-import Home from '../pages/home/index'; // 首页
-import Login from "../pages/login"; //登录页面
-import registType from "../pages/registType"; // 注册方式
-import Regist from "../pages/regist";  // 注册页面
-import NotFind404 from "../pages/404"; // 404
-import ForgetPas from "../pages/forgetPas"; // 忘记密码
-import GetpasCheckType from "../pages/getpasCheckType"; // 获取验证码
-import SetNewPas from "../pages/setNewPas"; // 设置新密码
-import Hot from "../pages/hot"; // 搜索历史
-import PersonalPage from "../pages/personalPage"; // 个人主页
-import AddNewPlan from "../pages/addNewPlan/index"; // 添加新计划
-import DayPlan from "../pages/planType/dayPlan"; // 日计划
-import PlanLogs from "../pages/planLogs";  // 记录历史
-import PlanDetail from "../pages/planDetail";
-import My from "../pages/my"; // 我的
-import Message from "../pages/message"; // 消息
-import Find from "../pages/find"; // 发现
-import Setting from "../pages/setting"; // 设置
-import AccountManage from "../pages/accountManage"; // 账号管理 添加新账号
-import Chat from "../pages/chat"; // 聊天
-import UserSecurity from "../pages/setting/userSecurity"; // 设置 --> 账号与安全
-import LoginLogs from "../pages/setting/loginLogs"; // 登录设备历史
-import UserInfo from "../pages/my/userInfo"; // 我的 --> 点击顶部头像查看到的信息
-import ChatUserDetail from "../pages/chat/chatUserDetail"; // 聊天中点击用户头像的用户详细信息
-import AppPush from "../pages/appPush";
-import ChangeUserInfo from "../pages/my/changeUserInfo";
-import Plan from "../pages/plan";  // 计划Tab
-import OperatorLogs from '../pages/my/operatorLogs'; // 个人操作记录
-import Charts from '../pages/my/charts'; // 折线图表
-
-import Ss from '../pages/ss'; // 说说
-import AppPushDetail from '../pages/appPushDetail';  //查看推送详情
-import MyPlanLogs from '../pages/my/myPlanLogs';
-import MySsLogs from '../pages/my/mySsLogs';
-import SsDetail from '../pages/ssDetail'; // 说说详情
-
+import { lazy } from "react";
+const Home = lazy(() => import('../pages/home/index')); // 首页
+const Login = lazy(() => import('../pages/login')); // 登录页面
+const registType = lazy(() => import('../pages/registType')); // 登录页面
+const Regist = lazy(() => import("../pages/regist"));  // 注册页面
+const NotFind404 = lazy(() => import("../pages/404")); // 404
+const ForgetPas = lazy(() => import("../pages/forgetPas")); // 忘记密码
+const GetpasCheckType = lazy(() => import("../pages/getpasCheckType")); // 获取验证码
+const SetNewPas = lazy(() => import("../pages/setNewPas")); // 设置新密码
+const Hot = lazy(() => import("../pages/hot")); // 搜索历史
+const PersonalPage = lazy(() => import("../pages/personalPage")); // 个人主页
+const AddNewPlan = lazy(() => import("../pages/addNewPlan/index")); // 添加新计划
+const DayPlan = lazy(() => import("../pages/planType/dayPlan")); // 日计划
+const PlanLogs = lazy(() => import("../pages/planLogs")); // 记录历史
+const PlanDetail = lazy(() => import("../pages/planDetail")); // 计划详情
+const My = lazy(() => import("../pages/my")); // 我的
+const Message = lazy(() => import("../pages/message")); // 消息
+const Find = lazy(() => import("../pages/find")); // 发现
+const Setting = lazy(() => import("../pages/setting")); // 设置
+const AccountManage = lazy(() => import("../pages/accountManage")); // 账号管理 添加新账号
+const Chat = lazy(() => import("../pages/chat")); // 聊天
+const UserSecurity = lazy(() => import("../pages/setting/userSecurity")); // 设置 --> 账号与安全
+const LoginLogs = lazy(() => import("../pages/setting/loginLogs")); // 登录设备历史
+const UserInfo = lazy(() => import("../pages/my/userInfo")); // 我的 --> 点击顶部头像查看到的信息
+const ChatUserDetail = lazy(() => import("../pages/chat/chatUserDetail")); //  聊天中点击用户头像的用户详细信息
+const AppPush = lazy(() => import("../pages/appPush")); // 我的 --> 点击顶部头像查看到的信息
+const ChangeUserInfo = lazy(() => import("../pages/my/changeUserInfo")); // 我的 --> 点击顶部头像查看到的信息
+const Plan = lazy(() => import("../pages/plan")); // 计划Tab
+const OperatorLogs = lazy(() => import("../pages/my/operatorLogs")); // 个人操作记录
+const Charts = lazy(() => import("../pages/my/charts")); // 折线图表
+const Ss = lazy(() => import("../pages/ss")); // 说说
+const AppPushDetail = lazy(() => import("../pages/appPushDetail")); // 查看推送详情
+const MyPlanLogs = lazy(() => import("../pages/my/myPlanLogs"));
+const MySsLogs = lazy(() => import("../pages/my/mySsLogs"));
+const SsDetail = lazy(() => import("../pages/ssDetail")); // 说说详情
 
 
 const routes = [

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {HashRouter as Router} from 'react-router-dom'; //Switch, Route,
+import React, { Component, Suspense } from 'react';
+import { HashRouter as Router } from 'react-router-dom'; //Switch, Route,
 
 import routes from './router/router'
 import FrontendAuth from './components/FrontendAuth/index'
@@ -8,8 +8,10 @@ class App extends Component {
   render() {
     return (
       <Router>
-        {/*加入路由导航守卫*/}
-        <FrontendAuth config={routes} />
+        <Suspense fallback={<div>Loading...</div>}>
+          {/*加入路由导航守卫*/}
+          <FrontendAuth config={routes} />
+        </Suspense>
       </Router>
     );
   }
