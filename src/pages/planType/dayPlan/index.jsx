@@ -3,6 +3,7 @@ import './dayPlan.css'
 import {Button} from "antd-mobile";
 import ZERO from '../../../config/zero'
 import {$axios} from "../../../config/server";
+import {Toast} from 'antd-mobile'
 
 class DayPlan extends Component {
   constructor(props) {
@@ -46,19 +47,19 @@ class DayPlan extends Component {
         .then(res => {
           console.log(res);
           if(res.status === 400){
-            ZERO.Toast('执行计划错误，请稍后再试');
+            Toast.info('执行计划错误，请稍后再试');
           }else if(res.status === 500){
-            ZERO.Toast('服务器繁忙，请稍后再试');
+            Toast.info('服务器繁忙，请稍后再试');
           }else if(res.status === 200){
-            ZERO.Toast('计划指定成功');
+            Toast.info('计划指定成功');
             this.props.history.goBack();
           }else{
-            ZERO.Toast('服务器繁忙，请稍后再试');
+            Toast.info('服务器繁忙，请稍后再试');
           }
         })
         .catch(err => {})
     }else{
-      ZERO.Toast('计划类型错误，请返回上一个页面重新来制定计划');
+      Toast.info('计划类型错误，请返回上一个页面重新来制定计划');
     }
   };
 
